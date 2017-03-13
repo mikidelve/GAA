@@ -16,7 +16,7 @@ public class Main extends Application {
 			primary = primaryStage;
 			primary.setTitle("Gestore Anagrafica Aziendale - Benvenuto");
 			FXMLLoader fx = new FXMLLoader();
-			fx.setLocation(getClass().getResource("controller/fxmlclass/Main.fxml"));
+			fx.setLocation(getClass().getResource("controller/fxmlclass/Login.fxml"));
 			root = (AnchorPane) fx.load();
 			Scene scene = new Scene(root);
 			primary.setScene(scene);

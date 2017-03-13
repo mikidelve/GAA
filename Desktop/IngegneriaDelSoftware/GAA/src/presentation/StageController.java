@@ -21,7 +21,7 @@ public abstract class StageController implements StageIF{
 			FXMLLoader fx = new FXMLLoader();
 			fx.setLocation(StageController.class.getResource(percorso_finale));
 			Stage a = new Stage();
-			a.setTitle(this.getClass().getName());
+			a.setTitle(CONTROLLER);
 			a.setScene(new Scene((Parent) fx.load()));
 			a.show();
 			

@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import presentation.Dispatcher;
+import presentation.MainController;
 import presentation.StageController;
 import presentation.controller.utility.ImageGetter;
 
@@ -41,13 +43,13 @@ public class HomeUtenteBaseController extends StageController {
 
 	@FXML
 	void Logout(ActionEvent event) {
-
+		this.closeStage();
+		MainController.getIstance().dispatchrequest("Login");
 	}
 
 	@FXML
 	void exit(ActionEvent event) {
-		Stage stage = (Stage) exit_btn.getScene().getWindow();
-		stage.close();
+		closeStage();
 	}
 
 	@FXML
@@ -59,10 +61,15 @@ public class HomeUtenteBaseController extends StageController {
 	void SchedaSelezionata(ActionEvent event) {
 
 	}
+	@Override
+	public void show() {
+		super.setController("HomeUtenteBase");
+		super.show();
+	}
 
 	@Override
 	public void closeStage() {
-		// TODO Auto-generated method stub
-
+		Stage stage = (Stage) exit_btn.getScene().getWindow();
+		stage.close();
 	}
 }
