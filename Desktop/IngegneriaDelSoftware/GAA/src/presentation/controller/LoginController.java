@@ -13,7 +13,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import presentation.Dispatcher;
 import presentation.MainController;
 import presentation.StageController;
 import presentation.controller.utility.ImageGetter;
@@ -47,22 +46,25 @@ public class LoginController extends StageController {
 	@FXML
 	void login(ActionEvent event) throws SQLException {
 		if (ub.checkCredenzialiClienti(user.getText(), pass.getText())) {
-			error.setText("SEI UN utente base");
-			MainController.getIstance().dispatchrequest("homeutentebase");
 			this.closeStage();
+			MainController.getIstance().dispatchrequest("finestrautentebase");
 		} else if (am.checkCredenzialiClienti(user.getText(), pass.getText())) {
-			error.setText("SEI UN AMMINISTRATORE");
+			this.closeStage();
+			MainController.getIstance().dispatchrequest("finestraamministratore");
 		} else
 			error.setText("La combinazione Username/Password e' errata");
+			pass.setText("");
 	}
 
 	@FXML
 	public void exit(ActionEvent e) {
 		closeStage();
 	}
+
 	@Override
 	public void show() {
 		super.setController("Login");
+		super.setTitle("Gestore Anagrafica Aziendale - Benvenuto");
 		super.show();
 	}
 

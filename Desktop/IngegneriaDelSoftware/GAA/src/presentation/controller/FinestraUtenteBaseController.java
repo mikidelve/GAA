@@ -6,12 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import presentation.Dispatcher;
 import presentation.MainController;
 import presentation.StageController;
 import presentation.controller.utility.ImageGetter;
 
-public class HomeUtenteBaseController extends StageController {
+public class FinestraUtenteBaseController extends StageController {
 
 	@FXML
 	private Button exit_btn;
@@ -63,7 +62,8 @@ public class HomeUtenteBaseController extends StageController {
 	}
 	@Override
 	public void show() {
-		super.setController("HomeUtenteBase");
+		super.setController("FinestraUtenteBase");
+		super.setTitle("Gestore Anagrafica Aziendale - UtenteStandard");
 		super.show();
 	}
 
