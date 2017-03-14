@@ -1,8 +1,11 @@
 package presentation.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.ImageView;
 import presentation.StageController;
 import presentation.controller.utility.ImageGetter;
@@ -16,6 +19,22 @@ public class FinestraAmministratoreController extends StageController {
 
     @FXML
     private ImageView logo;
+    @FXML
+	private ChoiceBox categoria;
+
+	ObservableList<String> categorie;
+
+	@SuppressWarnings("unchecked")
+	@FXML
+	public void initialize() {
+		logo.setImage(ImageGetter.getLogo());
+		categorie = FXCollections.observableArrayList();
+		categorie.add("Dipendenti");
+		categorie.add("Strumenti");
+		categorie.add("Spazi");
+		categoria.setItems(categorie);
+
+	}
 
     @FXML
     void Logout(ActionEvent event) {
@@ -27,11 +46,6 @@ public class FinestraAmministratoreController extends StageController {
 
     }
 
-	@FXML
-	public void initialize() {
-		
-		logo.setImage(ImageGetter.getLogo());
-	}
 	@Override
 	public void show() {
 		super.setController("FinestraAmministratore");

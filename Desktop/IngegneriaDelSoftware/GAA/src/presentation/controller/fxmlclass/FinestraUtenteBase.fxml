@@ -8,27 +8,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.FinestraUtenteBaseController">
-  <tabs>
-    <Tab text="HOME">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+	<tabs>
+		<Tab text="HOME">
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+					<children>
+						<Button fx:id="Logout" layoutX="488.0" layoutY="474.0" mnemonicParsing="false" onAction="#Logout" prefHeight="31.0" prefWidth="92.0" text="Logout" />
+						<ImageView fx:id="logo" fitHeight="150.0" fitWidth="325.0" layoutX="239.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
+						<Label alignment="CENTER" layoutX="175.0" layoutY="165.0" prefHeight="251.0" prefWidth="450.0" text="Benvenuto nel nostro Sistema di Gestione Anagrafica Aziendale.&#10;Adesso potrai compilare le schede descrittive richieste inserendo le informazioni circa i dipendenti, gli spazi e la strumentazione a disposizione della tua azienda.&#10;&#10;&#10;                                      BUON LAVORO.&#10;" textAlignment="JUSTIFY" textOverrun="CLIP" wrapText="true" />
+						<Button fx:id="exit_btn" layoutX="607.0" layoutY="474.0" mnemonicParsing="false" onAction="#exit" prefHeight="31.0" prefWidth="92.0" text="Esci" />
+					</children>
+				</AnchorPane>
+			</content>
+		</Tab>
+		  <Tab text="RICERCA">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="Logout" layoutX="488.0" layoutY="474.0" mnemonicParsing="false" onAction="#Logout" prefHeight="31.0" prefWidth="92.0" text="Logout" />
-                  <ImageView fx:id="logo" fitHeight="150.0" fitWidth="325.0" layoutX="239.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label alignment="CENTER" layoutX="175.0" layoutY="165.0" prefHeight="251.0" prefWidth="450.0" text="Benvenuto nel nostro Sistema di Gestione Anagrafica Aziendale.&#10;Adesso potrai compilare le schede descrittive richieste inserendo le informazioni circa i dipendenti, gli spazi e la strumentazione a disposizione della tua azienda.&#10;&#10;&#10;                                      BUON LAVORO.&#10;" textAlignment="JUSTIFY" textOverrun="CLIP" wrapText="true" />
-                  <Button fx:id="exit_btn" layoutX="607.0" layoutY="474.0" mnemonicParsing="false" onAction="#exit" prefHeight="31.0" prefWidth="92.0" text="Esci" />
+                  <Button fx:id="LogoutRicerca" layoutX="525.0" layoutY="468.0" mnemonicParsing="false" onAction="#Logout" prefHeight="31.0" prefWidth="92.0" text="Logout" />
+                  <Button fx:id="exit_btnRicerca" layoutX="661.0" layoutY="468.0" mnemonicParsing="false" onAction="#exit" prefHeight="31.0" prefWidth="92.0" text="Esci" />
+                  <Label layoutX="26.0" layoutY="37.0" prefHeight="31.0" prefWidth="400.0" text="Seleziona su quale tipologia di dato effettuare la ricerca" />
+                  <ChoiceBox fx:id="categoria" layoutX="124.0" layoutY="90.0" prefHeight="31.0" prefWidth="205.0" />
                </children></AnchorPane>
-      </content>
-    </Tab>
-    <Tab text="RICERCA">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-      </content>
-    </Tab>
-      <Tab text="SCHEDA">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-        </content>
+         </content>
       </Tab>
-  </tabs>
+		<Tab text="SCHEDA">
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+			</content>
+		</Tab>
+	</tabs>
 </TabPane>

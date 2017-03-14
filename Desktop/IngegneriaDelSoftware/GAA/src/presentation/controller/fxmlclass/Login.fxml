@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
@@ -17,7 +16,7 @@
       <Button fx:id="enter" layoutX="226.0" layoutY="298.0" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="62.0" text="Login" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="312.0" />
       <Button fx:id="exit_btn" layoutX="357.0" layoutY="298.0" mnemonicParsing="false" onAction="#exit" prefHeight="31.0" prefWidth="54.0" text="Esci" AnchorPane.leftAnchor="357.0" AnchorPane.rightAnchor="189.0" />
       <ImageView fx:id="logo" fitHeight="150.0" fitWidth="325.0" layoutX="156.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" />
-      
+    
       <Label fx:id="error" layoutX="174.0" layoutY="356.0" prefHeight="21.0" prefWidth="310.0" textFill="#ff0303" textOverrun="CLIP" />
    </children>
 </AnchorPane>

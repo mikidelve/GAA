@@ -1,17 +1,16 @@
 package presentation.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-import presentation.MainController;
 import presentation.StageController;
 import presentation.controller.utility.ImageGetter;
 
 public class FinestraUtenteBaseController extends StageController {
-
 	@FXML
 	private Button exit_btn;
 
@@ -20,46 +19,33 @@ public class FinestraUtenteBaseController extends StageController {
 
 	@FXML
 	private ImageView logo;
-
 	@FXML
-	private Tab Ricerca;
+	private ChoiceBox categoria;
 
-	@FXML
-	private Tab Scheda;
+	ObservableList<String> categorie;
 
-	@FXML
-	private Tab Home;
-
+	@SuppressWarnings("unchecked")
 	@FXML
 	public void initialize() {
 		logo.setImage(ImageGetter.getLogo());
-	}
-
-	@FXML
-	void HomeSelezionata(ActionEvent event) {
+		categorie = FXCollections.observableArrayList();
+		categorie.add("Dipendenti");
+		categorie.add("Strumenti");
+		categorie.add("Spazi");
+		categoria.setItems(categorie);
 
 	}
 
 	@FXML
 	void Logout(ActionEvent event) {
-		this.closeStage();
-		MainController.getIstance().dispatchrequest("Login");
+
 	}
 
 	@FXML
 	void exit(ActionEvent event) {
-		closeStage();
-	}
-
-	@FXML
-	void RicercaSelezionata(ActionEvent event) {
 
 	}
 
-	@FXML
-	void SchedaSelezionata(ActionEvent event) {
-
-	}
 	@Override
 	public void show() {
 		super.setController("FinestraUtenteBase");
@@ -69,7 +55,7 @@ public class FinestraUtenteBaseController extends StageController {
 
 	@Override
 	public void closeStage() {
-		Stage stage = (Stage) exit_btn.getScene().getWindow();
-		stage.close();
+		// TODO Auto-generated method stub
+
 	}
 }
