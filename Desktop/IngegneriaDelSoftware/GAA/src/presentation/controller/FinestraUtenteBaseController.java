@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import presentation.MainController;
 import presentation.StageController;
 import presentation.controller.utility.ImageGetter;
 
@@ -35,27 +37,28 @@ public class FinestraUtenteBaseController extends StageController {
 		categoria.setItems(categorie);
 
 	}
-
-	@FXML
-	void Logout(ActionEvent event) {
-
-	}
-
-	@FXML
-	void exit(ActionEvent event) {
-
-	}
-
-	@Override
+@Override
 	public void show() {
 		super.setController("FinestraUtenteBase");
 		super.setTitle("Gestore Anagrafica Aziendale - UtenteStandard");
 		super.show();
 	}
+	@FXML
+	void Logout(ActionEvent event) {
+		this.closeStage();
+		MainController.getIstance().dispatchrequest("Login");
+	}
+
+	@FXML
+	void exit(ActionEvent event) {
+		closeStage();
+	}
+
+	
 
 	@Override
 	public void closeStage() {
-		// TODO Auto-generated method stub
-
+		Stage stage = (Stage) exit_btn.getScene().getWindow();
+		stage.close();
 	}
 }
