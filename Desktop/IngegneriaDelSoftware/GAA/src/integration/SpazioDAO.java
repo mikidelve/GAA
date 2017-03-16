@@ -28,14 +28,15 @@ public class SpazioDAO extends DAOAB<Spazio>{
 		return false;
 	}
 
+
 	@Override
-	public Spazio read(String ID) throws SQLException {
+	public List<Spazio> getAll() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Spazio> getAll() throws SQLException {
+	public List<Spazio> search(String conditions) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

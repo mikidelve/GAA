@@ -22,7 +22,7 @@ public abstract class DAOAB<Entity> implements DAO<Entity>{
     public abstract boolean delete(String ID) throws SQLException;
 
     @Override
-    public abstract Entity read(String ID)  throws SQLException;
+    public abstract List<Entity> search(String conditions)  throws SQLException;
 
     @Override
     public abstract List<Entity> getAll()  throws SQLException;

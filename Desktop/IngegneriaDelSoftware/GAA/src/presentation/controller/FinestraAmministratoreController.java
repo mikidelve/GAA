@@ -1,6 +1,7 @@
 package presentation.controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import Entita.Dipendente;
 import integration.DipendenteDAO;
@@ -24,66 +25,13 @@ import presentation.controller.utility.ImageGetter;
 
 public class FinestraAmministratoreController extends StageController {
 	@FXML
-	private Button InserisciDip;
-
-	@FXML
-	private TextField mansione;
-
-	@FXML
-	private TextField data;
-
-	@FXML
-	private TextField mail;
-
-	@FXML
 	private Button exit_btn;
-
-	@FXML
-	private TextField cognome;
-
-	@FXML
-	private Button exit_btnInserisci;
-
-	@FXML
-	private TextField sede;
-
-	@FXML
-	private TextField codfisc;
-
-	@FXML
-	private TextField nome;
-
-	@FXML
-	private Button LogoutRicerca;
-
-	@FXML
-	private Button exit_btnRicerca;
-
-	@FXML
-	private TextField domicilio;
 
 	@FXML
 	private Button Logout;
 
 	@FXML
 	private ImageView logo;
-
-	@FXML
-	private TextField tel;
-
-	@FXML
-	private Button LogoutInserisci;
-	@FXML
-	private Label ErrorCampi;
-
-	@FXML
-	private ChoiceBox sessobox;
-	@FXML
-	private Label ErrorCodfis;
-	@FXML
-	private Label ErrorData;
-	@FXML
-	private ChoiceBox SceltaElemento;
 
 	// TABELLA RICERCA
 
@@ -115,8 +63,22 @@ public class FinestraAmministratoreController extends StageController {
 	private TableColumn COLcognome;
 	@FXML
 	private TableColumn COLmansione;
+	// FINE TABELLA
+	@FXML
+	private TextField mansione;
+	@FXML
+	private TextField cognome;
+	@FXML
+	private TextField sede;
+	@FXML
+	private TextField nome;
 
-	//ObservableList<String> categorie;
+	@FXML
+	private Button Cerca;
+	@FXML
+	private Button Mostratutti;
+
+	// ObservableList<String> categorie;
 	ObservableList<String> sessi;
 	static ObservableList<Dipendente> dipendenti = FXCollections.observableArrayList();
 
@@ -126,30 +88,9 @@ public class FinestraAmministratoreController extends StageController {
 	@FXML
 	public void initialize() throws SQLException {
 		logo.setImage(ImageGetter.getLogo());
-		/**
-		categorie = FXCollections.observableArrayList();
-		categorie.add("Dipendenti");
-		categorie.add("Strumenti");
-		categorie.add("Spazi");
-		categoria.setItems(categorie);
-		*/
-		sessi = FXCollections.observableArrayList();
-		sessi.add("M");
-		sessi.add("F");
-		sessobox.setItems(sessi);
-		//SceltaElemento.setItems(categorie);
 		dipendenti.addAll(dipendenteDAO.getAll());
 		setDatiDipendenti();
-		/**
-		 * SceltaElemento.getSelectionModel().selectedItemProperty().addListener
-		 * (new ChangeListener<String>() {
-		 * 
-		 * @Override public void changed(ObservableValue<? extends String>
-		 *           observable, String oldvalue, String newvalue) {
-		 *           if(newvalue.compareToIgnoreCase("dipendenti")==0){
-		 * 
-		 *           } } });
-		 */
+		Mostratutti.setVisible(false);
 	}
 
 	private void setDatiDipendenti() {
@@ -184,34 +125,6 @@ public class FinestraAmministratoreController extends StageController {
 	}
 
 	@FXML
-	void InserisciDip(ActionEvent event) {
-		String date = data.getText();
-		String cod = codfisc.getText();
-		try {
-			Dipendente dipendente = new Dipendente(nome.getText(), cognome.getText(), sessobox.getValue().toString(),
-					date, cod, mail.getText(), tel.getText(), domicilio.getText(), mansione.getText(), sede.getText());
-
-			if (!FormatoData.getIstance().ControllaData(date)) {
-				ErrorData.setVisible(true);
-				return;
-			}
-			try {
-				if (dipendente.create(dipendente)) {
-					ErrorData.setVisible(false);
-					ErrorCampi.setVisible(false);
-					System.out.println("FATTOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (NullPointerException e) {
-			ErrorCampi.setVisible(true);
-			return;
-		}
-	}
-
-	@FXML
 	void LogoutInserisci(ActionEvent event) {
 		this.Logout(event);
 	}
@@ -226,6 +139,85 @@ public class FinestraAmministratoreController extends StageController {
 		super.setController("FinestraAmministratore");
 		super.setTitle("Gestore Anagrafica Aziendale - Amministratore");
 		super.show();
+	}
+
+	@FXML
+	void Ricerca(ActionEvent event) {
+		String nomeric = null;
+		String cognomeric = null;
+		String sederic = null;
+		String mansioneric = null;
+		dipendenti = FXCollections.observableArrayList();
+		if (nome.getText().compareToIgnoreCase("") != 0) {
+			nomeric = nome.getText();
+		}
+		if (cognome.getText().compareToIgnoreCase("") != 0) {
+			cognomeric = cognome.getText();
+		}
+		if (sede.getText().compareToIgnoreCase("") != 0) {
+			sederic = sede.getText();
+		}
+		if (mansione.getText().compareToIgnoreCase("") != 0) {
+			mansioneric = mansione.getText();
+		}
+		try {
+			if (nomeric == null && cognomeric == null && sederic == null && mansioneric == null) {
+				return;
+			} else if (nomeric != null && cognomeric == null && sederic == null && mansioneric == null) {
+				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale  WHERE Nome='" + nomeric + "'"));
+			} else if (nomeric != null && cognomeric != null && sederic == null && mansioneric == null) {
+				dipendenti.addAll(dipendenteDAO.search(
+						"SELECT * FROM personale  WHERE Nome='" + nomeric + "' AND Cognome='" + cognomeric + "'"));
+			} else if (nomeric != null && cognomeric == null && sederic != null && mansioneric == null) {
+				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale  WHERE Nome='" + nomeric
+						+ "' AND SedeAppartenenza='" + sederic + "'"));
+			} else if (nomeric != null && cognomeric == null && sederic == null && mansioneric != null) {
+				dipendenti.addAll(dipendenteDAO.search(
+						"SELECT * FROM personale  WHERE Nome='" + nomeric + "' AND Mansione='" + mansioneric + "'"));
+			} else if (nomeric != null && cognomeric != null && sederic != null && mansioneric == null) {
+				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale WHERE Nome='" + nomeric
+						+ "' AND Cognome='" + cognomeric + "' AND SedeAppartenenza='" + sederic + "'"));
+			} else if (nomeric != null && cognomeric != null && sederic == null && mansioneric != null) {
+				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale WHERE Nome='" + nomeric
+						+ "' AND Cognome='" + cognomeric + "' AND Mansione='" + mansioneric + "'"));
+			} else if (nomeric != null && cognomeric != null && sederic != null && mansioneric != null) {
+				dipendenti.addAll(dipendenteDAO
+						.search("SELECT * FROM personale WHERE Nome='" + nomeric + "' AND Cognome='" + cognomeric
+								+ "' AND SedeAppartenenza='" + sederic + "' AND Mansione='" + mansioneric + "'"));
+			} else if (nomeric == null && cognomeric != null && sederic == null && mansioneric == null) {
+				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale WHERE Cognome='" + cognomeric + "'"));
+			} else if (nomeric == null && cognomeric != null && sederic != null && mansioneric == null) {
+				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale WHERE Cognome='" + cognomeric
+						+ "' AND SedeAppartenenza='" + sederic + "'"));
+			} else if (nomeric == null && cognomeric != null && sederic == null && mansioneric != null) {
+				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale WHERE Cognome='" + cognomeric
+						+ "' AND Mansione='" + mansioneric + "'"));
+			} else if (nomeric == null && cognomeric != null && sederic != null && mansioneric != null) {
+				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale WHERE Cognome='" + cognomeric
+						+ "' AND SedeAppartenenza='" + sederic + "' AND Mansione='" + mansioneric + "'"));
+			} else if (nomeric == null && cognomeric == null && sederic != null && mansioneric == null) {
+				dipendenti.addAll(
+						dipendenteDAO.search("SELECT * FROM personale WHERE SedeAppartenenza='" + sederic + "'"));
+			} else if (nomeric == null && cognomeric == null && sederic != null && mansioneric != null) {
+				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale WHERE SedeAppartenenza='" + sederic
+						+ "' AND Mansione='" + mansioneric + "'"));
+			} else if (nomeric == null && cognomeric == null && sederic == null && mansioneric != null) {
+				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale WHERE Mansione='" + mansioneric + "'"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.setDatiDipendenti();
+		Mostratutti.setVisible(true);
+	}
+
+	@FXML
+	void Mostratutti(ActionEvent event) throws SQLException {
+		dipendenti = FXCollections.observableArrayList();
+		dipendenti.addAll(dipendenteDAO.getAll());
+		this.setDatiDipendenti();
+		Mostratutti.setVisible(false);
 	}
 
 }

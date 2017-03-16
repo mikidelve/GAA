@@ -8,8 +8,9 @@ import java.util.List;
 
 import Entita.Strumento;
 
-public class StrumentoDAO extends DAOAB<Strumento>{
-	private static final String INSERT_QUERY="INSERT INTO Strumento VALUES(?,?,?,?,?)";
+public class StrumentoDAO extends DAOAB<Strumento> {
+	private static final String INSERT_QUERY = "INSERT INTO Strumento VALUES(?,?,?,?,?)";
+
 	@Override
 	public boolean create(Strumento entity) throws SQLException {
 		// TODO Auto-generated method stub
@@ -29,13 +30,13 @@ public class StrumentoDAO extends DAOAB<Strumento>{
 	}
 
 	@Override
-	public Strumento read(String ID) throws SQLException {
+	public List<Strumento> getAll() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Strumento> getAll() throws SQLException {
+	public List<Strumento> search(String conditions) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

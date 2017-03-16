@@ -1,7 +1,7 @@
 package Entita;
 
-import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 import integration.DipendenteDAO;
 
@@ -18,6 +18,21 @@ public class Dipendente {
 	private String telefono;
 	private String SedeAppartenenza;
 	private DipendenteDAO dao;
+
+	public Dipendente(String nome, String cognome, String sesso, String datadinascita, String codiceFiscale,
+			String mail, String domicilio, String mansione, String telefono, String sedeAppartenenza) {
+		Nome = nome;
+		Cognome = cognome;
+		this.sesso = sesso;
+		Datadinascita = datadinascita;
+		CodiceFiscale = codiceFiscale;
+		this.mail = mail;
+		Domicilio = domicilio;
+		Mansione = mansione;
+		this.telefono = telefono;
+		SedeAppartenenza = sedeAppartenenza;
+		this.dao = new DipendenteDAO();
+	}
 
 	public void setNome(String nome) {
 		Nome = nome;
@@ -61,21 +76,6 @@ public class Dipendente {
 
 	public void setDao(DipendenteDAO dao) {
 		this.dao = dao;
-	}
-
-	public Dipendente(String nome, String cognome, String sesso, String datadinascita, String codiceFiscale,
-			String mail, String domicilio, String mansione, String telefono, String sedeAppartenenza) {
-		Nome = nome;
-		Cognome = cognome;
-		this.sesso = sesso;
-		Datadinascita = datadinascita;
-		CodiceFiscale = codiceFiscale;
-		this.mail = mail;
-		Domicilio = domicilio;
-		Mansione = mansione;
-		this.telefono = telefono;
-		SedeAppartenenza = sedeAppartenenza;
-		this.dao = new DipendenteDAO();
 	}
 
 	public String getNome() {
@@ -152,8 +152,8 @@ public class Dipendente {
 
 	}
 
-	public Dipendente read(String usernameC) throws SQLException {
-		return dao.read(usernameC);
+	public List<Dipendente> search(String conditions) throws SQLException {
+		return dao.search(conditions);
 	}
 
 }

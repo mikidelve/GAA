@@ -55,9 +55,12 @@ public class DipendenteDAO extends DAOAB<Dipendente> {
 	}
 
 	@Override
-	public Dipendente read(String ID) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Dipendente> search(String query) throws SQLException {
+		Connection connessione = MySqlDaoFactory.connetti();
+		PreparedStatement prepStat = connessione.prepareStatement(query);
+		ResultSet risultato = prepStat.executeQuery();
+		List<Dipendente> lista=getLista(risultato);
+		return lista;
 	}
 
 	@Override

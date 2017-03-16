@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.paint.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -25,9 +26,9 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="LogoutRicerca" layoutX="525.0" layoutY="468.0" mnemonicParsing="false" onAction="#Logout" prefHeight="31.0" prefWidth="92.0" text="Logout" />
-                  <Button fx:id="exit_btnRicerca" layoutX="661.0" layoutY="468.0" mnemonicParsing="false" onAction="#exit" prefHeight="31.0" prefWidth="92.0" text="Esci" />
-                  <TableView fx:id="dipendenti_table" layoutX="31.0" layoutY="52.0" prefHeight="325.0" prefWidth="925.0">
+                  <Button fx:id="LogoutRicerca" layoutX="722.0" layoutY="562.0" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="90.0" text="Logout" />
+                  <Button fx:id="exit_btnRicerca" layoutX="852.0" layoutY="562.0" mnemonicParsing="false" onAction="#exit" prefHeight="30.0" prefWidth="90.0" text="Esci" />
+                  <TableView fx:id="dipendenti_table" layoutX="35.0" layoutY="205.0" prefHeight="325.0" prefWidth="925.0">
                      <columns>
                         <TableColumn fx:id="COLnome" prefWidth="75.0" text="Nome" />
                         <TableColumn fx:id="COLcognome" prefWidth="75.0" text="Cognome" />
@@ -41,6 +42,21 @@
                         <TableColumn fx:id="COLsede" prefWidth="73.0" text="Sede" />
                      </columns>
                   </TableView>
+                  <Label layoutX="464.0" layoutY="1.0" prefHeight="21.0" prefWidth="67.0" text="Ricerca">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="35.0" layoutY="53.0" text="Nome" />
+                  <Label layoutX="38.0" layoutY="108.0" text="Cognome" />
+                  <TextField fx:id="nome" layoutX="128.0" layoutY="48.0" />
+                  <TextField fx:id="cognome" layoutX="128.0" layoutY="103.0" />
+                  <Label layoutX="435.0" layoutY="53.0" text="SedeAppartenenza" />
+                  <Label layoutX="465.0" layoutY="109.0" text="Mansione" />
+                  <TextField fx:id="sede" layoutX="587.0" layoutY="48.0" />
+                  <TextField fx:id="mansione" layoutX="587.0" layoutY="104.0" />
+                  <Button fx:id="Cerca" layoutX="852.0" layoutY="48.0" mnemonicParsing="false" onAction="#Ricerca" prefHeight="30.0" prefWidth="90.0" text="Cerca" />
+                  <Button fx:id="Mostratutti" layoutX="836.0" layoutY="104.0" mnemonicParsing="false" onAction="#Mostratutti" prefHeight="31.0" prefWidth="123.0" text="Mostra tutti" />
                </children></AnchorPane>
          </content>
       </Tab>
@@ -51,36 +67,7 @@
       </Tab>
       <Tab text="Strumenti">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Label layoutX="45.0" layoutY="20.0" prefHeight="21.0" prefWidth="86.0" text="Nome:" />
-                  <Label layoutX="45.0" layoutY="220.0" prefHeight="21.0" prefWidth="102.0" text="Mail:" />
-                  <Label layoutX="45.0" layoutY="180.0" prefHeight="21.0" prefWidth="116.0" text="Codice Fiscale:" />
-                  <Label layoutX="45.0" layoutY="140.0" prefHeight="21.0" prefWidth="101.0" text="Data di nascita" />
-                  <Label layoutX="45.0" layoutY="100.0" prefHeight="21.0" prefWidth="79.0" text="Sesso:" />
-                  <Label layoutX="45.0" layoutY="60.0" prefHeight="21.0" prefWidth="97.0" text="Cognome:" />
-                  <Label layoutX="45.0" layoutY="260.0" prefHeight="21.0" prefWidth="108.0" text="Telefono:" />
-                  <Label layoutX="45.0" layoutY="300.0" prefHeight="21.0" prefWidth="110.0" text="Domicilio:" />
-                  <Label layoutX="45.0" layoutY="340.0" prefHeight="21.0" prefWidth="118.0" text="Mansione:" />
-                  <Label layoutX="45.0" layoutY="380.0" prefHeight="21.0" prefWidth="138.0" text="Sede appartenenza:" />
-                  <TextField fx:id="nome" layoutX="183.0" layoutY="15.0" />
-                  <TextField fx:id="cognome" layoutX="183.0" layoutY="55.0" />
-                  <TextField fx:id="data" layoutX="183.0" layoutY="135.0" />
-                  <TextField fx:id="codfisc" layoutX="183.0" layoutY="175.0" />
-                  <TextField fx:id="mail" layoutX="183.0" layoutY="215.0" />
-                  <TextField fx:id="tel" layoutX="183.0" layoutY="255.0" />
-                  <TextField fx:id="domicilio" layoutX="183.0" layoutY="295.0" />
-                  <TextField fx:id="mansione" layoutX="183.0" layoutY="335.0" />
-                  <TextField fx:id="sede" layoutX="183.0" layoutY="375.0" />
-                  <Button fx:id="InserisciDip" layoutX="241.0" layoutY="507.0" mnemonicParsing="false" onAction="#InserisciDip" text="Inserisci" />
-                  <Button fx:id="LogoutInserisci" layoutX="477.0" layoutY="507.0" mnemonicParsing="false" onAction="#LogoutInserisci" prefHeight="31.0" prefWidth="92.0" text="Logout" />
-                  <Button fx:id="exit_btnInserisci" layoutX="612.0" layoutY="507.0" mnemonicParsing="false" onAction="#exitInserisci" prefHeight="31.0" prefWidth="92.0" text="Esci" />
-                  <Label fx:id="ErrorData" layoutX="442.0" layoutY="140.0" text="Formato data di nascita non valido" textFill="RED" visible="false" />
-                  <Label fx:id="ErrorCodfis" layoutX="442.0" layoutY="180.0" prefHeight="21.0" prefWidth="237.0" text="Formato codice fiscale non valido" textFill="RED" visible="false" />
-                  <ChoiceBox fx:id="sessobox" layoutX="245.0" layoutY="95.0" prefHeight="31.0" prefWidth="64.0" />
-                  <Label fx:id="ErrorCampi" layoutX="158.0" layoutY="498.0" prefHeight="49.0" prefWidth="239.0" text="E' necessario compilare tutti i campi&#10; prima di inserire un elemento" textFill="RED" visible="false" />
-                  <ChoiceBox fx:id="SceltaElemento" layoutX="523.0" layoutY="66.0" prefWidth="150.0" />
-               </children></AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </content>
       </Tab>
       <Tab text="Scheda">

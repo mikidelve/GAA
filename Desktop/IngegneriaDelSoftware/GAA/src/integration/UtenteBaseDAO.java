@@ -35,11 +35,6 @@ public class UtenteBaseDAO extends DAOAB<UtenteBase> {
 		return null;
 	}
 
-	@Override
-	public UtenteBase read(String ID) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	public boolean checkCredenziali(String username,String password) throws SQLException{
 		Connection connessione=MySqlDaoFactory.connetti();
 		PreparedStatement prepStat = connessione.prepareStatement(CHECK_QUERY);
@@ -51,6 +46,12 @@ public class UtenteBaseDAO extends DAOAB<UtenteBase> {
 		}
 		else
 			return false;
+	}
+
+	@Override
+	public List<UtenteBase> search(String conditions) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

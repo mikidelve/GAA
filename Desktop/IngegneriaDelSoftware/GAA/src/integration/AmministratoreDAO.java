@@ -29,11 +29,6 @@ public class AmministratoreDAO extends DAOAB<Amministratore>{
 		return false;
 	}
 
-	@Override
-	public Amministratore read(String ID) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Amministratore> getAll() throws SQLException {
@@ -51,6 +46,12 @@ public class AmministratoreDAO extends DAOAB<Amministratore>{
 		}
 		else
 			return false;
+	}
+
+	@Override
+	public List<Amministratore> search(String conditions) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

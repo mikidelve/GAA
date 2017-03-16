@@ -50,9 +50,6 @@ public class Amministratore {
 
 	}
 
-	public Amministratore read(String usernameC) throws SQLException {
-		return AmministratoreDao.read(usernameC);
-	}
 
 	public boolean checkCredenzialiClienti(String usernameC, String passwordC) throws SQLException {
 		return AmministratoreDao.checkCredenziali(usernameC, passwordC);

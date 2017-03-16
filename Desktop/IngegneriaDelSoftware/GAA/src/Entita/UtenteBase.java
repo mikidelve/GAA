@@ -50,9 +50,6 @@ public class UtenteBase {
 
 	}
 
-	public UtenteBase read(String usernameC) throws SQLException {
-		return SegreteriaDao.read(usernameC);
-	}
 
 	public boolean checkCredenzialiClienti(String usernameC, String passwordC) throws SQLException {
 		return SegreteriaDao.checkCredenziali(usernameC, passwordC);
