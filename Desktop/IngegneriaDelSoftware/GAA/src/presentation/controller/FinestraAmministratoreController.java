@@ -4,7 +4,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import Entita.Dipendente;
+import Entita.Spazio;
 import integration.DipendenteDAO;
+import integration.SpazioDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,7 +35,7 @@ public class FinestraAmministratoreController extends StageController {
 	@FXML
 	private ImageView logo;
 
-	// TABELLA RICERCA
+	// TABELLA RICERCA DIPENDENTI
 
 	@FXML
 	private TableView dipendenti_table;
@@ -77,12 +79,40 @@ public class FinestraAmministratoreController extends StageController {
 	private Button Cerca;
 	@FXML
 	private Button Mostratutti;
+	// TABELLA RICERCA SPAZI
+
+	@FXML
+	private TableView spazi_table;
+
+	@FXML
+	private TableColumn COLnomeSpazi;
+
+	@FXML
+	private TableColumn COLubicazioneSpazi;
+
+	@FXML
+	private TableColumn COLcittaSpazi;
+	@FXML
+	private TableColumn COLcaratteristicheSpazi;
+	// FINE TABELLA
+	@FXML
+	private TextField sedeSpazi;
+	@FXML
+	private TextField nomeSpazi;
+
+	@FXML
+	private Button CercaSpazi;
+	@FXML
+	private Button MostratuttiSpazi;
+	// TABELLA RICERCA SPAZI
 
 	// ObservableList<String> categorie;
 	ObservableList<String> sessi;
 	static ObservableList<Dipendente> dipendenti = FXCollections.observableArrayList();
+	static ObservableList<Spazio> spazi = FXCollections.observableArrayList();
 
 	DipendenteDAO dipendenteDAO = new DipendenteDAO();
+	SpazioDAO spazioDAO = new SpazioDAO();
 
 	@SuppressWarnings("unchecked")
 	@FXML
@@ -91,6 +121,19 @@ public class FinestraAmministratoreController extends StageController {
 		dipendenti.addAll(dipendenteDAO.getAll());
 		setDatiDipendenti();
 		Mostratutti.setVisible(false);
+		MostratuttiSpazi.setVisible(false);
+		spazi.addAll(spazioDAO.getAll());
+		setDatiSpazi();
+	}
+
+	private void setDatiSpazi() {
+		spazi_table.setItems(spazi);
+		this.COLnomeSpazi.setCellValueFactory(new PropertyValueFactory<Dipendente, String>("Nome"));
+		this.COLcittaSpazi.setCellValueFactory(new PropertyValueFactory<Dipendente, String>("Citta"));
+		this.COLubicazioneSpazi.setCellValueFactory(new PropertyValueFactory<Dipendente, String>("Ubicazione"));
+		this.COLcaratteristicheSpazi
+				.setCellValueFactory(new PropertyValueFactory<Dipendente, String>("CaratteristicheDescrittive"));
+
 	}
 
 	private void setDatiDipendenti() {
@@ -218,6 +261,50 @@ public class FinestraAmministratoreController extends StageController {
 		dipendenti.addAll(dipendenteDAO.getAll());
 		this.setDatiDipendenti();
 		Mostratutti.setVisible(false);
+	}
+
+	@FXML
+	void LogoutSpazi(ActionEvent event) {
+		this.Logout(event);
+	}
+
+	@FXML
+	void exitSpazi(ActionEvent event) {
+		this.exit(event);
+	}
+
+	@FXML
+	void RicercaSpazi(ActionEvent event) throws SQLException {
+		String nome = null;
+		String citta = null;
+		spazi = FXCollections.observableArrayList();
+
+		if (nomeSpazi.getText().compareTo("") != 0) {
+			nome = nomeSpazi.getText();
+		}
+		if (sedeSpazi.getText().compareTo("") != 0) {
+			citta = sedeSpazi.getText();
+		}
+		if (citta == null && nome == null) {
+			return;
+		} else if (nome != null && citta == null) {
+			spazi.addAll(spazioDAO.search("SELECT * FROM spazi  WHERE Nome='" + nome + "'"));
+		} else if (nome == null && citta != null) {
+			spazi.addAll(spazioDAO.search("SELECT * FROM spazi  WHERE Citta='" + citta + "'"));
+		} else if (nome != null && citta != null) {
+			spazi.addAll(spazioDAO
+					.search("SELECT * FROM spazi  WHERE Nome='" + nome + "'" + " AND Citta='" + citta + "'"));
+		}
+		this.setDatiSpazi();
+		this.MostratuttiSpazi.setVisible(true);
+	}
+
+	@FXML
+	void MostratuttiSpazi(ActionEvent event) throws SQLException {
+		spazi = FXCollections.observableArrayList();
+		spazi.addAll(spazioDAO.getAll());
+		this.setDatiSpazi();
+		MostratuttiSpazi.setVisible(false);
 	}
 
 }

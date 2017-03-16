@@ -18,6 +18,10 @@ public class Dipendente {
 	private String telefono;
 	private String SedeAppartenenza;
 	private DipendenteDAO dao;
+	public Dipendente() {
+		dao = new DipendenteDAO();
+	}
+
 
 	public Dipendente(String nome, String cognome, String sesso, String datadinascita, String codiceFiscale,
 			String mail, String domicilio, String mansione, String telefono, String sedeAppartenenza) {
@@ -122,10 +126,7 @@ public class Dipendente {
 		return dao;
 	}
 
-	public Dipendente() {
-		dao = new DipendenteDAO();
-	}
-
+	
 	public Dipendente(String username, String password) {
 		this.username = username;
 	}

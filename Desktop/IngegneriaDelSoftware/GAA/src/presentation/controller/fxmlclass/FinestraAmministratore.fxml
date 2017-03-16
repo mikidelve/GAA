@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="699.0" prefWidth="994.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.FinestraAmministratoreController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.FinestraAmministratoreController">
    <tabs>
       <Tab text="Home">
          <content>
@@ -62,7 +62,31 @@
       </Tab>
       <Tab text="Spazi">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0">
+                     <children>
+                        <TableView fx:id="spazi_table" layoutX="58.0" layoutY="188.0" prefHeight="325.0" prefWidth="900.0">
+                           <columns>
+                              <TableColumn fx:id="COLnomeSpazi" prefWidth="124.0" text="Nome" />
+                              <TableColumn fx:id="COLcittaSpazi" prefWidth="156.0" text="Città" />
+                              <TableColumn fx:id="COLubicazioneSpazi" prefWidth="238.0" text="Ubicazione" />
+                              <TableColumn fx:id="COLcaratteristicheSpazi" prefWidth="381.0" text="Caratteristiche Descrittive" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="LogoutSpazi" layoutX="722.0" layoutY="562.0" mnemonicParsing="false" onAction="#LogoutSpazi" prefHeight="30.0" prefWidth="90.0" text="Logout" />
+                        <Button fx:id="exit_btnSpazi" layoutX="852.0" layoutY="562.0" mnemonicParsing="false" onAction="#exitSpazi" prefHeight="30.0" prefWidth="90.0" text="Esci" />
+                        <Label layoutX="464.0" layoutY="1.0" prefHeight="21.0" prefWidth="67.0" text="Ricerca">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="55.0" layoutY="73.0" text="Nome" />
+                        <TextField fx:id="nomeSpazi" layoutX="156.0" layoutY="68.0" />
+                        <Label layoutX="515.0" layoutY="73.0" text="Sede" />
+                        <TextField fx:id="sedeSpazi" layoutX="615.0" layoutY="68.0" />
+                        <Button fx:id="CercaSpazi" layoutX="859.0" layoutY="68.0" mnemonicParsing="false" onAction="#RicercaSpazi" prefHeight="30.0" prefWidth="90.0" text="Cerca" />
+                        <Button fx:id="MostratuttiSpazi" layoutX="846.0" layoutY="114.0" mnemonicParsing="false" onAction="#MostratuttiSpazi" prefHeight="31.0" prefWidth="123.0" text="Mostra tutti" />
+                     </children>
+                  </AnchorPane>
          </content>
       </Tab>
       <Tab text="Strumenti">
