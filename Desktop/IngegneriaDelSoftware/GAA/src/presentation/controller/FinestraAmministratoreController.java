@@ -5,8 +5,10 @@ import java.util.List;
 
 import Entita.Dipendente;
 import Entita.Spazio;
+import Entita.Strumento;
 import integration.DipendenteDAO;
 import integration.SpazioDAO;
+import integration.StrumentoDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -104,17 +106,58 @@ public class FinestraAmministratoreController extends StageController {
 	private Button CercaSpazi;
 	@FXML
 	private Button MostratuttiSpazi;
-	// TABELLA RICERCA SPAZI
+	// TABELLA RICERCA STRUMENTI
+	@FXML
+	private TableView strumenti_table;
+	@FXML
+	private TableColumn COLcaratteristicheStr;
+	@FXML
+	private TableColumn COLmodelloStr;
+	@FXML
+	private TableColumn COLpropietarioStr;
+
+	@FXML
+	private TableColumn COLannoStr;
+
+	@FXML
+	private TextField AAStr;
+	@FXML
+	private TableColumn COLnomeStr;
+	@FXML
+	private TextField nomeStr;
+
+	@FXML
+	private TextField ubicazioneStr;
+	@FXML
+	private TableColumn COLtipoStr;
+
+	@FXML
+	private TableColumn COLubicazioneStr;
+	@FXML
+	private TextField proprietarioStr;
+	@FXML
+	private Button mostratuttistr;
+
+	// FINE TABELLA STRUMENTI
+
+	@FXML
+	private Button InserisciDip;
+	@FXML
+	private Button InserisciSpazi;
+	@FXML
+	private Button InserisciStr;
 
 	// ObservableList<String> categorie;
 	ObservableList<String> sessi;
 	static ObservableList<Dipendente> dipendenti = FXCollections.observableArrayList();
 	static ObservableList<Spazio> spazi = FXCollections.observableArrayList();
+	static ObservableList<Object> strumenti = FXCollections.observableArrayList();
 
 	DipendenteDAO dipendenteDAO = new DipendenteDAO();
 	SpazioDAO spazioDAO = new SpazioDAO();
+	StrumentoDAO strumentoDAO = new StrumentoDAO();
+	public static boolean flagInserimento;
 
-	@SuppressWarnings("unchecked")
 	@FXML
 	public void initialize() throws SQLException {
 		logo.setImage(ImageGetter.getLogo());
@@ -124,15 +167,21 @@ public class FinestraAmministratoreController extends StageController {
 		MostratuttiSpazi.setVisible(false);
 		spazi.addAll(spazioDAO.getAll());
 		setDatiSpazi();
+		if (this.flagInserimento == true) {
+			this.InserisciDip.setVisible(true);
+			this.InserisciSpazi.setVisible(true);
+			this.InserisciStr.setVisible(true);
+		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private void setDatiSpazi() {
 		spazi_table.setItems(spazi);
-		this.COLnomeSpazi.setCellValueFactory(new PropertyValueFactory<Dipendente, String>("Nome"));
-		this.COLcittaSpazi.setCellValueFactory(new PropertyValueFactory<Dipendente, String>("Citta"));
-		this.COLubicazioneSpazi.setCellValueFactory(new PropertyValueFactory<Dipendente, String>("Ubicazione"));
+		this.COLnomeSpazi.setCellValueFactory(new PropertyValueFactory<Spazio, String>("Nome"));
+		this.COLcittaSpazi.setCellValueFactory(new PropertyValueFactory<Spazio, String>("Citta"));
+		this.COLubicazioneSpazi.setCellValueFactory(new PropertyValueFactory<Spazio, String>("Ubicazione"));
 		this.COLcaratteristicheSpazi
-				.setCellValueFactory(new PropertyValueFactory<Dipendente, String>("CaratteristicheDescrittive"));
+				.setCellValueFactory(new PropertyValueFactory<Spazio, String>("CaratteristicheDescrittive"));
 
 	}
 
@@ -153,6 +202,11 @@ public class FinestraAmministratoreController extends StageController {
 	@FXML
 	void Logout(ActionEvent event) {
 		this.closeStage();
+		this.flagInserimento = false;
+		spazi.clear();
+		dipendenti.clear();
+		this.setDatiDipendenti();
+		this.setDatiSpazi();
 		MainController.getIstance().dispatchrequest("Login");
 	}
 
@@ -177,10 +231,12 @@ public class FinestraAmministratoreController extends StageController {
 		this.exit(event);
 	}
 
-	@Override
-	public void show() {
+	public void show(String Livellopermesso) {
 		super.setController("FinestraAmministratore");
 		super.setTitle("Gestore Anagrafica Aziendale - Amministratore");
+		if (Livellopermesso.compareToIgnoreCase("A") == 0) {
+			this.flagInserimento = true;
+		}
 		super.show();
 	}
 
@@ -308,8 +364,32 @@ public class FinestraAmministratoreController extends StageController {
 	}
 
 	@FXML
+	void MostratuttiStr(ActionEvent event) throws SQLException {
+		strumenti = FXCollections.observableArrayList();
+		strumenti.addAll(strumentoDAO.getAll());
+		this.setDatiStrumeti();
+		mostratuttistr.setVisible(false);
+	}
+
+	private void setDatiStrumeti() {
+		this.strumenti_table.setItems(strumenti);
+		this.COLnomeStr.setCellValueFactory(new PropertyValueFactory<Strumento, String>("Nome"));
+		this.COLmodelloStr.setCellValueFactory(new PropertyValueFactory<Strumento, String>("Modello"));
+		this.COLtipoStr.setCellValueFactory(new PropertyValueFactory<Strumento, String>("Tipo"));
+		this.COLannoStr.setCellValueFactory(new PropertyValueFactory<Strumento, String>("AnnoAcquisto"));
+		this.COLpropietarioStr.setCellValueFactory(new PropertyValueFactory<Strumento, String>("Propietario"));
+		this.COLubicazioneStr.setCellValueFactory(new PropertyValueFactory<Strumento, String>("Ubicazione"));
+		this.COLcaratteristicheStr.setCellValueFactory(new PropertyValueFactory<Strumento, String>("Caratteristiche Descrittive"));
+	}
+
+	@FXML
+	void CercaStr(ActionEvent event) {
+
+	}
+
+	@FXML
 	void InserisciSpazi(ActionEvent event) {
-		
+
 	}
 
 	@FXML

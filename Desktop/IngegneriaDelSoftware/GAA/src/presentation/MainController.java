@@ -3,7 +3,6 @@ package presentation;
 public class MainController {
 	Dispatcher dispatcher;
 	
-
 	static MainController mc = new MainController();
 
 	public MainController() {

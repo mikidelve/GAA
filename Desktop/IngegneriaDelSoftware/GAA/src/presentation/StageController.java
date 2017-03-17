@@ -27,7 +27,6 @@ public abstract class StageController implements StageIF {
 			fx.setLocation(StageController.class.getResource(percorso_finale));
 			stage.setScene(new Scene((Parent) fx.load()));
 			stage.show();
-
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

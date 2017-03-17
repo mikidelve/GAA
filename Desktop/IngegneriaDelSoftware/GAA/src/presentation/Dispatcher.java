@@ -4,7 +4,6 @@ import presentation.controller.*;
 
 public class Dispatcher {
 	LoginController login;
-	FinestraUtenteBaseController Hmcontroller;
 	FinestraAmministratoreController fa;
 	InserisciSpazioController spazioController;
 	InserisciDipendenteController dipendentiController;
@@ -12,7 +11,6 @@ public class Dispatcher {
 
 	public Dispatcher() {
 		login = new LoginController();
-		Hmcontroller = new FinestraUtenteBaseController();
 		fa = new FinestraAmministratoreController();
 		this.spazioController = new InserisciSpazioController();
 		this.dipendentiController = new InserisciDipendenteController();
@@ -23,14 +21,14 @@ public class Dispatcher {
 		if (request.compareToIgnoreCase("Login") == 0) {
 			login.show();
 		} else if (request.compareToIgnoreCase("FinestraUtenteBase") == 0) {
-			Hmcontroller.show();
+			fa.show("B");
 		} else if (request.compareToIgnoreCase("Finestraamministratore") == 0) {
-			fa.show();
-		}else if(request.compareToIgnoreCase("InserisciDipendente")==0){
+			fa.show("A");
+		} else if (request.compareToIgnoreCase("InserisciDipendente") == 0) {
 			dipendentiController.show();
-		}else if(request.compareToIgnoreCase("InserisciStrumentazione")==0){
+		} else if (request.compareToIgnoreCase("InserisciStrumentazione") == 0) {
 			spazioController.show();
-		}else if(request.compareToIgnoreCase("InserisciSpazio")==0){
+		} else if (request.compareToIgnoreCase("InserisciSpazio") == 0) {
 			itemController.show();
 		}
 	}
