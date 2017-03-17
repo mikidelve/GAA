@@ -3,7 +3,6 @@ package presentation.controller;
 
 import java.sql.SQLException;
 
-import Entita.Amministratore;
 import Entita.UtenteBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,7 +34,6 @@ public class LoginController extends StageController {
 	@FXML
 	private Label error;
 
-	Amministratore am = new Amministratore();
 	UtenteBase ub = new UtenteBase();
 
 	@FXML
@@ -45,15 +43,15 @@ public class LoginController extends StageController {
 
 	@FXML
 	void login(ActionEvent event) throws SQLException {
-		if (ub.checkCredenzialiClienti(user.getText(), pass.getText())) {
+		if (ub.checkCredenzialiClienti(user.getText(), pass.getText()).compareToIgnoreCase("B") == 0) {
 			this.closeStage();
 			MainController.getIstance().dispatchrequest("finestrautentebase");
-		} else if (am.checkCredenzialiClienti(user.getText(), pass.getText())) {
+		} else if (ub.checkCredenzialiClienti(user.getText(), pass.getText()).compareToIgnoreCase("A") == 0) {
 			this.closeStage();
 			MainController.getIstance().dispatchrequest("finestraamministratore");
 		} else
 			error.setText("La combinazione Username/Password e' errata");
-			pass.setText("");
+		pass.setText("");
 	}
 
 	@FXML

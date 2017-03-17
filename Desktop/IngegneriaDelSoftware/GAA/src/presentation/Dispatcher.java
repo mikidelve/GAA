@@ -1,18 +1,22 @@
 package presentation;
 
-import presentation.controller.FinestraAmministratoreController;
-import presentation.controller.FinestraUtenteBaseController;
-import presentation.controller.LoginController;
+import presentation.controller.*;
 
 public class Dispatcher {
 	LoginController login;
 	FinestraUtenteBaseController Hmcontroller;
 	FinestraAmministratoreController fa;
+	InserisciSpazioController spazioController;
+	InserisciDipendenteController dipendentiController;
+	InserisciStrumentoController itemController;
 
 	public Dispatcher() {
 		login = new LoginController();
 		Hmcontroller = new FinestraUtenteBaseController();
 		fa = new FinestraAmministratoreController();
+		this.spazioController = new InserisciSpazioController();
+		this.dipendentiController = new InserisciDipendenteController();
+		this.itemController = new InserisciStrumentoController();
 	}
 
 	public void dispatch(String request) {
@@ -22,6 +26,12 @@ public class Dispatcher {
 			Hmcontroller.show();
 		} else if (request.compareToIgnoreCase("Finestraamministratore") == 0) {
 			fa.show();
+		}else if(request.compareToIgnoreCase("InserisciDipendente")==0){
+			dipendentiController.show();
+		}else if(request.compareToIgnoreCase("InserisciStrumentazione")==0){
+			spazioController.show();
+		}else if(request.compareToIgnoreCase("InserisciSpazio")==0){
+			itemController.show();
 		}
 	}
 }

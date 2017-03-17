@@ -292,8 +292,8 @@ public class FinestraAmministratoreController extends StageController {
 		} else if (nome == null && citta != null) {
 			spazi.addAll(spazioDAO.search("SELECT * FROM spazi  WHERE Citta='" + citta + "'"));
 		} else if (nome != null && citta != null) {
-			spazi.addAll(spazioDAO
-					.search("SELECT * FROM spazi  WHERE Nome='" + nome + "'" + " AND Citta='" + citta + "'"));
+			spazi.addAll(
+					spazioDAO.search("SELECT * FROM spazi  WHERE Nome='" + nome + "'" + " AND Citta='" + citta + "'"));
 		}
 		this.setDatiSpazi();
 		this.MostratuttiSpazi.setVisible(true);
@@ -307,4 +307,13 @@ public class FinestraAmministratoreController extends StageController {
 		MostratuttiSpazi.setVisible(false);
 	}
 
+	@FXML
+	void InserisciSpazi(ActionEvent event) {
+		
+	}
+
+	@FXML
+	void InserisciDip(ActionEvent event) {
+
+	}
 }

@@ -6,19 +6,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import Entita.Amministratore;
+import Entita.Dipendente;
+import Entita.UtenteBase;
 
-public class AmministratoreDAO extends DAOAB<Amministratore>{
-	private static final String CHECK_QUERY="SELECT Username FROM utente WHERE Username=? AND Password=? AND LivelloPermessi='A'";
+public class UtenteDAO extends DAOAB<UtenteBase> {
+	private static final String CHECK_QUERY = "SELECT * FROM utente WHERE Username=? AND Password=?";
 
 	@Override
-	public boolean create(Amministratore entity) throws SQLException {
+	public boolean create(UtenteBase entity) throws SQLException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean update(Amministratore entity) {
+	public boolean update(UtenteBase entity) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -29,27 +30,29 @@ public class AmministratoreDAO extends DAOAB<Amministratore>{
 		return false;
 	}
 
-
 	@Override
-	public List<Amministratore> getAll() throws SQLException {
+	public List<UtenteBase> getAll() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public boolean checkCredenziali(String username,String password) throws SQLException{
-		Connection connessione=MySqlDaoFactory.connetti();
+
+	public String checkCredenziali(String username, String password) throws SQLException {
+		Connection connessione = MySqlDaoFactory.connetti();
 		PreparedStatement prepStat = connessione.prepareStatement(CHECK_QUERY);
 		prepStat.setString(1, username);
 		prepStat.setString(2, password);
-		ResultSet ris=prepStat.executeQuery();
-		if(ris.next()){
-			return true;
+		ResultSet ris = prepStat.executeQuery();
+		ris.next();
+		try {
+			return ris.getString("LivelloPermessi");
+		} catch (SQLException e) {
+			return "N";
 		}
-		else
-			return false;
+
 	}
 
 	@Override
-	public List<Amministratore> search(String conditions) throws SQLException {
+	public List<UtenteBase> search(String conditions) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

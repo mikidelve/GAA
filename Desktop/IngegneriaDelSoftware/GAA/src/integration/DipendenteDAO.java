@@ -74,7 +74,6 @@ public class DipendenteDAO extends DAOAB<Dipendente> {
 
 	private List<Dipendente> getLista(ResultSet resultSet) throws SQLException {
 		List<Dipendente> dipendenti = new LinkedList<Dipendente>();
-
 		while (resultSet.next()) {
 			Dipendente elemento = new Dipendente();
 			String Nome = resultSet.getString("Nome");
