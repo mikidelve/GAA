@@ -7,14 +7,14 @@ public class Dispatcher {
 	FinestraAmministratoreController fa;
 	InserisciSpazioController spazioController;
 	InserisciDipendenteController dipendentiController;
-	InserisciStrumentoController itemController;
+	InserisciStrumentazioneController itemController;
 
 	public Dispatcher() {
 		login = new LoginController();
 		fa = new FinestraAmministratoreController();
 		this.spazioController = new InserisciSpazioController();
 		this.dipendentiController = new InserisciDipendenteController();
-		this.itemController = new InserisciStrumentoController();
+		this.itemController = new InserisciStrumentazioneController();
 	}
 
 	public void dispatch(String request) {
@@ -27,9 +27,9 @@ public class Dispatcher {
 		} else if (request.compareToIgnoreCase("InserisciDipendente") == 0) {
 			dipendentiController.show();
 		} else if (request.compareToIgnoreCase("InserisciStrumentazione") == 0) {
-			spazioController.show();
-		} else if (request.compareToIgnoreCase("InserisciSpazio") == 0) {
 			itemController.show();
+		} else if (request.compareToIgnoreCase("InserisciSpazio") == 0) {
+			spazioController.show();
 		}
 	}
 }

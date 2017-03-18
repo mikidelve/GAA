@@ -24,6 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import presentation.MainController;
 import presentation.StageController;
+import presentation.controller.utility.Coppia;
 import presentation.controller.utility.FormatoData;
 import presentation.controller.utility.ImageGetter;
 
@@ -76,11 +77,12 @@ public class FinestraAmministratoreController extends StageController {
 	private TextField sede;
 	@FXML
 	private TextField nome;
-
 	@FXML
 	private Button Cerca;
 	@FXML
 	private Button Mostratutti;
+	@FXML
+	private Button InserisciSpazio;
 	// TABELLA RICERCA SPAZI
 
 	@FXML
@@ -151,7 +153,7 @@ public class FinestraAmministratoreController extends StageController {
 	ObservableList<String> sessi;
 	static ObservableList<Dipendente> dipendenti = FXCollections.observableArrayList();
 	static ObservableList<Spazio> spazi = FXCollections.observableArrayList();
-	static ObservableList<Object> strumenti = FXCollections.observableArrayList();
+	static ObservableList<Strumento> strumenti = FXCollections.observableArrayList();
 
 	DipendenteDAO dipendenteDAO = new DipendenteDAO();
 	SpazioDAO spazioDAO = new SpazioDAO();
@@ -165,8 +167,11 @@ public class FinestraAmministratoreController extends StageController {
 		setDatiDipendenti();
 		Mostratutti.setVisible(false);
 		MostratuttiSpazi.setVisible(false);
+		this.mostratuttistr.setVisible(false);
 		spazi.addAll(spazioDAO.getAll());
 		setDatiSpazi();
+		strumenti.addAll(strumentoDAO.getAll());
+		setDatiStrumenti();
 		if (this.flagInserimento == true) {
 			this.InserisciDip.setVisible(true);
 			this.InserisciSpazi.setVisible(true);
@@ -241,72 +246,57 @@ public class FinestraAmministratoreController extends StageController {
 	}
 
 	@FXML
-	void Ricerca(ActionEvent event) {
+	void Ricerca(ActionEvent event) throws SQLException {
+		String query = "SELECT * FROM personale  WHERE ";
 		String nomeric = null;
 		String cognomeric = null;
 		String sederic = null;
 		String mansioneric = null;
 		dipendenti = FXCollections.observableArrayList();
+		Coppia[] parametri = new Coppia[4];
+
+		int i = 0;
 		if (nome.getText().compareToIgnoreCase("") != 0) {
 			nomeric = nome.getText();
+			Coppia c = new Coppia();
+			c.setColonna("Nome");
+			c.setValore(nomeric);
+			parametri[i] = c;
+			i++;
 		}
 		if (cognome.getText().compareToIgnoreCase("") != 0) {
 			cognomeric = cognome.getText();
+			Coppia c = new Coppia();
+			c.setColonna("Cognome");
+			c.setValore(cognomeric);
+			parametri[i] = c;
+			i++;
 		}
 		if (sede.getText().compareToIgnoreCase("") != 0) {
 			sederic = sede.getText();
+			Coppia c = new Coppia();
+			c.setColonna("SedeAppartenenza");
+			c.setValore(sederic);
+			parametri[i] = c;
+			i++;
 		}
 		if (mansione.getText().compareToIgnoreCase("") != 0) {
 			mansioneric = mansione.getText();
+			Coppia c = new Coppia();
+			c.setColonna("Mansione");
+			c.setValore(mansioneric);
+			parametri[i] = c;
+			i++;
 		}
-		try {
-			if (nomeric == null && cognomeric == null && sederic == null && mansioneric == null) {
-				return;
-			} else if (nomeric != null && cognomeric == null && sederic == null && mansioneric == null) {
-				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale  WHERE Nome='" + nomeric + "'"));
-			} else if (nomeric != null && cognomeric != null && sederic == null && mansioneric == null) {
-				dipendenti.addAll(dipendenteDAO.search(
-						"SELECT * FROM personale  WHERE Nome='" + nomeric + "' AND Cognome='" + cognomeric + "'"));
-			} else if (nomeric != null && cognomeric == null && sederic != null && mansioneric == null) {
-				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale  WHERE Nome='" + nomeric
-						+ "' AND SedeAppartenenza='" + sederic + "'"));
-			} else if (nomeric != null && cognomeric == null && sederic == null && mansioneric != null) {
-				dipendenti.addAll(dipendenteDAO.search(
-						"SELECT * FROM personale  WHERE Nome='" + nomeric + "' AND Mansione='" + mansioneric + "'"));
-			} else if (nomeric != null && cognomeric != null && sederic != null && mansioneric == null) {
-				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale WHERE Nome='" + nomeric
-						+ "' AND Cognome='" + cognomeric + "' AND SedeAppartenenza='" + sederic + "'"));
-			} else if (nomeric != null && cognomeric != null && sederic == null && mansioneric != null) {
-				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale WHERE Nome='" + nomeric
-						+ "' AND Cognome='" + cognomeric + "' AND Mansione='" + mansioneric + "'"));
-			} else if (nomeric != null && cognomeric != null && sederic != null && mansioneric != null) {
-				dipendenti.addAll(dipendenteDAO
-						.search("SELECT * FROM personale WHERE Nome='" + nomeric + "' AND Cognome='" + cognomeric
-								+ "' AND SedeAppartenenza='" + sederic + "' AND Mansione='" + mansioneric + "'"));
-			} else if (nomeric == null && cognomeric != null && sederic == null && mansioneric == null) {
-				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale WHERE Cognome='" + cognomeric + "'"));
-			} else if (nomeric == null && cognomeric != null && sederic != null && mansioneric == null) {
-				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale WHERE Cognome='" + cognomeric
-						+ "' AND SedeAppartenenza='" + sederic + "'"));
-			} else if (nomeric == null && cognomeric != null && sederic == null && mansioneric != null) {
-				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale WHERE Cognome='" + cognomeric
-						+ "' AND Mansione='" + mansioneric + "'"));
-			} else if (nomeric == null && cognomeric != null && sederic != null && mansioneric != null) {
-				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale WHERE Cognome='" + cognomeric
-						+ "' AND SedeAppartenenza='" + sederic + "' AND Mansione='" + mansioneric + "'"));
-			} else if (nomeric == null && cognomeric == null && sederic != null && mansioneric == null) {
-				dipendenti.addAll(
-						dipendenteDAO.search("SELECT * FROM personale WHERE SedeAppartenenza='" + sederic + "'"));
-			} else if (nomeric == null && cognomeric == null && sederic != null && mansioneric != null) {
-				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale WHERE SedeAppartenenza='" + sederic
-						+ "' AND Mansione='" + mansioneric + "'"));
-			} else if (nomeric == null && cognomeric == null && sederic == null && mansioneric != null) {
-				dipendenti.addAll(dipendenteDAO.search("SELECT * FROM personale WHERE Mansione='" + mansioneric + "'"));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (nome == null && cognome == null && sederic == null && mansioneric == null) {
+			return;
 		}
+		int j;
+		for (j = 0; j < i - 1; j++) {
+			query += parametri[j].getColonna() + "='" + parametri[j].getValore() + "' AND ";
+		}
+		query += parametri[j].getColonna() + "='" + parametri[j].getValore() + "'";
+		dipendenti.addAll(dipendenteDAO.search(query));
 		this.setDatiDipendenti();
 		Mostratutti.setVisible(true);
 	}
@@ -331,26 +321,37 @@ public class FinestraAmministratoreController extends StageController {
 
 	@FXML
 	void RicercaSpazi(ActionEvent event) throws SQLException {
+		String query = "SELECT * FROM spazi WHERE ";
 		String nome = null;
 		String citta = null;
 		spazi = FXCollections.observableArrayList();
-
-		if (nomeSpazi.getText().compareTo("") != 0) {
+		Coppia[] parametri = new Coppia[4];
+		int i = 0;
+		if (nomeSpazi.getText().compareToIgnoreCase("") != 0) {
 			nome = nomeSpazi.getText();
+			Coppia c = new Coppia();
+			c.setColonna("Nome");
+			c.setValore(nome);
+			parametri[i] = c;
+			i++;
 		}
-		if (sedeSpazi.getText().compareTo("") != 0) {
+		if (sedeSpazi.getText().compareToIgnoreCase("") != 0) {
 			citta = sedeSpazi.getText();
+			Coppia c = new Coppia();
+			c.setColonna("Citta");
+			c.setValore(citta);
+			parametri[i] = c;
+			i++;
 		}
-		if (citta == null && nome == null) {
+		if (nome == null && citta == null) {
 			return;
-		} else if (nome != null && citta == null) {
-			spazi.addAll(spazioDAO.search("SELECT * FROM spazi  WHERE Nome='" + nome + "'"));
-		} else if (nome == null && citta != null) {
-			spazi.addAll(spazioDAO.search("SELECT * FROM spazi  WHERE Citta='" + citta + "'"));
-		} else if (nome != null && citta != null) {
-			spazi.addAll(
-					spazioDAO.search("SELECT * FROM spazi  WHERE Nome='" + nome + "'" + " AND Citta='" + citta + "'"));
 		}
+		int j;
+		for (j = 0; j < i - 1; j++) {
+			query += parametri[j].getColonna() + "='" + parametri[j].getValore() + "' AND ";
+		}
+		query += parametri[j].getColonna() + "='" + parametri[j].getValore() + "'";
+		spazi.addAll(spazioDAO.search(query));
 		this.setDatiSpazi();
 		this.MostratuttiSpazi.setVisible(true);
 	}
@@ -367,33 +368,95 @@ public class FinestraAmministratoreController extends StageController {
 	void MostratuttiStr(ActionEvent event) throws SQLException {
 		strumenti = FXCollections.observableArrayList();
 		strumenti.addAll(strumentoDAO.getAll());
-		this.setDatiStrumeti();
+		this.setDatiStrumenti();
 		mostratuttistr.setVisible(false);
 	}
 
-	private void setDatiStrumeti() {
+	private void setDatiStrumenti() {
 		this.strumenti_table.setItems(strumenti);
 		this.COLnomeStr.setCellValueFactory(new PropertyValueFactory<Strumento, String>("Nome"));
 		this.COLmodelloStr.setCellValueFactory(new PropertyValueFactory<Strumento, String>("Modello"));
 		this.COLtipoStr.setCellValueFactory(new PropertyValueFactory<Strumento, String>("Tipo"));
 		this.COLannoStr.setCellValueFactory(new PropertyValueFactory<Strumento, String>("AnnoAcquisto"));
-		this.COLpropietarioStr.setCellValueFactory(new PropertyValueFactory<Strumento, String>("Propietario"));
+		this.COLpropietarioStr.setCellValueFactory(new PropertyValueFactory<Strumento, String>("Proprietario"));
 		this.COLubicazioneStr.setCellValueFactory(new PropertyValueFactory<Strumento, String>("Ubicazione"));
-		this.COLcaratteristicheStr.setCellValueFactory(new PropertyValueFactory<Strumento, String>("Caratteristiche Descrittive"));
+		this.COLcaratteristicheStr
+				.setCellValueFactory(new PropertyValueFactory<Strumento, String>("Caratteristiche Descrittive"));
 	}
 
 	@FXML
-	void CercaStr(ActionEvent event) {
+	void CercaStr(ActionEvent event) throws SQLException {
+		String query = "SELECT * FROM Strumentazione WHERE ";
+		Coppia[] parametri = new Coppia[4];
+		int i = 0;
+		String nomeStrric = null;
+		String proprietario = null;
+		String sederic = null;
+		String anno = null;
+		strumenti = FXCollections.observableArrayList();
+
+		if (nomeStr.getText().compareToIgnoreCase("") != 0) {
+			nomeStrric = nomeStr.getText();
+			Coppia c = new Coppia();
+			c.setColonna("Nome");
+			c.setValore(nomeStrric);
+			parametri[i] = c;
+			i++;
+		}
+		if (proprietarioStr.getText().compareToIgnoreCase("") != 0) {
+			proprietario = proprietarioStr.getText();
+			Coppia c = new Coppia();
+
+			c.setColonna("Proprietario");
+			c.setValore(proprietario);
+			parametri[i] = c;
+			i++;
+		}
+		if (ubicazioneStr.getText().compareToIgnoreCase("") != 0) {
+			sederic = sede.getText();
+			Coppia c = new Coppia();
+			c.setColonna("Ubicazione");
+			c.setValore(sederic);
+			parametri[i] = c;
+			i++;
+		}
+		if (AAStr.getText().compareToIgnoreCase("") != 0) {
+			anno = AAStr.getText();
+			Coppia c = new Coppia();
+			c.setColonna("AnnoAcquisto");
+			c.setValore(anno);
+			parametri[i] = c;
+			i++;
+		}
+		if (nomeStrric == null && proprietario == null && sederic == null && anno == null) {
+			return;
+		}
+		int j;
+		for (j = 0; j < i - 1; j++) {
+			query += parametri[j].getColonna() + "='" + parametri[j].getValore() + "' AND ";
+		}
+		query += parametri[j].getColonna() + "='" + parametri[j].getValore() + "'";
+		strumenti.addAll(strumentoDAO.search(query));
+		setDatiStrumenti();
+		this.mostratuttistr.setVisible(true);
 
 	}
 
 	@FXML
 	void InserisciSpazi(ActionEvent event) {
-
+		this.closeStage();
+		MainController.getIstance().dispatchrequest("inseriscispazio");
 	}
 
 	@FXML
 	void InserisciDip(ActionEvent event) {
+		this.closeStage();
+		MainController.getIstance().dispatchrequest("inseriscidipendente");
+	}
 
+	@FXML
+	void InserisciStr(ActionEvent event) {
+		this.closeStage();
+		MainController.getIstance().dispatchrequest("inseriscistrumentazione");
 	}
 }

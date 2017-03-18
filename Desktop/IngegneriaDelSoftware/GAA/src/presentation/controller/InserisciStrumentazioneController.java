@@ -4,25 +4,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import presentation.StageController;
 
-public class InserisciDipendenteController extends StageController{
-	  @FXML
-	    private Button InserisciDip;
+public class InserisciStrumentazioneController extends StageController{
+	 @FXML
+	    private ChoiceBox SceltaElemento;
 
 	    @FXML
-	    private TextField mansione;
+	    private TextField domicilio;
 
 	    @FXML
 	    private TextField data;
 
 	    @FXML
-	    private TextField mail;
-
-	    @FXML
-	    private Label ErrorCampi;
+	    private Button InserisciStrumentazione;
 
 	    @FXML
 	    private Button exit_btnInserisci;
@@ -31,34 +27,16 @@ public class InserisciDipendenteController extends StageController{
 	    private TextField cognome;
 
 	    @FXML
-	    private TextField sede;
-
-	    @FXML
 	    private TextField codfisc;
 
 	    @FXML
 	    private TextField nome;
 
 	    @FXML
-	    private ChoiceBox sessobox;
-
-	    @FXML
-	    private TextField domicilio;
-
-	    @FXML
-	    private TextField tel;
-
-	    @FXML
-	    private Label ErrorCodfis;
-
-	    @FXML
 	    private Button LogoutInserisci;
 
 	    @FXML
-	    private Label ErrorData;
-
-	    @FXML
-	    void InserisciDip(ActionEvent event) {
+	    void InserisciStrumentazione(ActionEvent event) {
 
 	    }
 
@@ -71,6 +49,7 @@ public class InserisciDipendenteController extends StageController{
 	    void exitInserisci(ActionEvent event) {
 
 	    }
+
 	@Override
 	public void closeStage() {
 		// TODO Auto-generated method stub
@@ -78,8 +57,8 @@ public class InserisciDipendenteController extends StageController{
 	}
 	@Override
 	public void show() {
-		super.setController("InserisciDipendente");
-		super.setTitle("GAA - Inserimento dipendente");
+		super.setController("InserisciStrumentazione");
+		super.setTitle("GAA - Inserimento strumentazione");
 		super.show();
 	}
 

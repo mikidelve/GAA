@@ -95,7 +95,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="InserisciStr" layoutX="67.0" layoutY="562.0" mnemonicParsing="false" onAction="#InserisciDip" prefHeight="31.0" prefWidth="188.0" text="Inserisci Strumentazione" visible="false" />
+                  <Button fx:id="InserisciStr" layoutX="67.0" layoutY="562.0" mnemonicParsing="false" onAction="#InserisciStr" prefHeight="31.0" prefWidth="188.0" text="Inserisci Strumentazione" visible="false" />
                   <TableView fx:id="strumenti_table" layoutX="58.0" layoutY="188.0" prefHeight="325.0" prefWidth="900.0">
                      <columns>
                         <TableColumn fx:id="COLnomeStr" prefWidth="104.0" text="Nome" />
@@ -109,17 +109,17 @@
                   </TableView>
                   <Button fx:id="LogoutStr" layoutX="722.0" layoutY="562.0" mnemonicParsing="false" onAction="#LogoutSpazi" prefHeight="30.0" prefWidth="90.0" text="Logout" />
                   <Button fx:id="EsciStr" layoutX="852.0" layoutY="562.0" mnemonicParsing="false" onAction="#exitSpazi" prefHeight="30.0" prefWidth="90.0" text="Esci" />
-                  <Label layoutX="467.0" layoutY="14.0" prefHeight="21.0" prefWidth="67.0" text="Ricerca">
+                  <Label layoutX="464.0" layoutY="1.0" prefHeight="21.0" prefWidth="67.0" text="Ricerca">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button layoutX="834.0" layoutY="105.0" mnemonicParsing="false" onAction="#MostratuttiStr" text="Mostratutti" />
+                  <Button fx:id="mostratuttistr" layoutX="834.0" layoutY="105.0" mnemonicParsing="false" onAction="#MostratuttiStr" text="Mostratutti" />
                   <Button layoutX="852.0" layoutY="48.0" mnemonicParsing="false" onAction="#CercaStr" text="Cerca" />
                   <Label layoutX="35.0" layoutY="53.0" text="Nome" />
                   <Label layoutX="20.0" layoutY="110.0" text="AnnoAcquisto" />
                   <Label layoutX="465.0" layoutY="53.0" text="Prorietario" />
-                  <Label layoutX="483.0" layoutY="110.0" text="Ubicaazione" />
+                  <Label layoutX="461.0" layoutY="110.0" text="Ubicazione" />
                   <TextField fx:id="nomeStr" layoutX="128.0" layoutY="48.0" />
                   <TextField fx:id="AAStr" layoutX="128.0" layoutY="103.0" />
                   <TextField fx:id="proprietarioStr" layoutX="587.0" layoutY="48.0" />
