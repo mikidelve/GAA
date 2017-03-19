@@ -6,21 +6,29 @@ public class FormatoData {
 	static FormatoData formatodata = new FormatoData();
 
 	public boolean ControllaData(String data) {
+		
 		if(data.length()<9) return false;
-		String anno = data.substring(0, 4);
-		String mese = data.substring(5, 7);
-		String giorno = data.substring(8, 10);
-		if (Integer.getInteger(anno) > 2017 || Integer.getInteger(anno) < 1900) {
+		try{
+		String anno = data.substring(6, 10);
+		String mese = data.substring(3,5);
+		String giorno = data.substring(0, 2);
+		System.out.println(anno);
+		System.out.println(mese);
+		System.out.println(giorno);
+		if (Integer.parseInt(anno) > 2017 || Integer.parseInt(anno) < 1900) {
 			return false;
-		} else if (Integer.getInteger(mese) < 0 && Integer.getInteger(mese) > 12) {
+		} else if (Integer.parseInt(mese) < 0 && Integer.parseInt(mese) > 12) {
 			return false;
-		} else if (Integer.getInteger(giorno) < 0
-				|| !GiornoMese(Integer.getInteger(giorno), Integer.getInteger(mese))) {
+		} else if (Integer.parseInt(giorno) < 0
+				|| !GiornoMese(Integer.parseInt(giorno), Integer.parseInt(mese))) {
 			return false;
 		} else if (data.substring(4, 5).compareTo("/") == 0 && data.substring(7, 8).compareTo("/") == 0) {
 			return false;
 		}
 		return true;
+		}catch(IndexOutOfBoundsException e){
+			return false;
+		}
 	}
 
 	private boolean GiornoMese(int giorno, int mese) {

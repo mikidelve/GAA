@@ -207,11 +207,6 @@ public class FinestraAmministratoreController extends StageController {
 	@FXML
 	void Logout(ActionEvent event) {
 		this.closeStage();
-		this.flagInserimento = false;
-		spazi.clear();
-		dipendenti.clear();
-		this.setDatiDipendenti();
-		this.setDatiSpazi();
 		MainController.getIstance().dispatchrequest("Login");
 	}
 
@@ -222,6 +217,13 @@ public class FinestraAmministratoreController extends StageController {
 
 	@Override
 	public void closeStage() {
+		this.flagInserimento = false;
+		spazi.clear();
+		dipendenti.clear();
+		this.strumenti.clear();
+		this.setDatiDipendenti();
+		this.setDatiSpazi();
+		this.setDatiStrumenti();
 		Stage stage = (Stage) exit_btn.getScene().getWindow();
 		stage.close();
 	}

@@ -10,7 +10,7 @@ import java.util.List;
 import Entita.Dipendente;
 
 public class DipendenteDAO extends DAOAB<Dipendente> {
-	private static final String INSERT_QUERY = "INSERT INTO personale VALUES(?,?,?,?,?,?,?,?,?,?)";
+	private static final String INSERT_QUERY = "INSERT INTO personale VALUES(?,?,?,?,?,?,?,?,?,?,null)";
 	private static final String GET_ALL = "SELECT * FROM personale";
 
 	@Override

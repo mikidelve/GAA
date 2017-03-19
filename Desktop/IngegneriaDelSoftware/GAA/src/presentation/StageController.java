@@ -23,7 +23,6 @@ public abstract class StageController implements StageIF {
 		try {
 
 			percorso_finale = CARTELLA_CONTROLLER + CONTROLLER + ESTENSIONE_CONTROLLER;
-			System.out.println(percorso_finale);
 			FXMLLoader fx = new FXMLLoader();
 			fx.setLocation(StageController.class.getResource(percorso_finale));
 			stage.setScene(new Scene((Parent) fx.load()));
