@@ -87,6 +87,7 @@ public class InserisciSpazioController extends StageController {
 	public void closeStage() {
 		Stage stage = (Stage) Esci.getScene().getWindow();
 		stage.close();
+		System.out.println("Librerie aggiunte");
 	}
 
 	@Override
