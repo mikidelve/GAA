@@ -1,7 +1,6 @@
 package presentation.controller;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -14,25 +13,19 @@ import integration.StrumentoDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import presentation.MainController;
 import presentation.StageController;
 import presentation.controller.utility.Coppia;
-import presentation.controller.utility.FormatoData;
 import presentation.controller.utility.ImageGetter;
 
 public class FinestraAmministratoreController extends StageController {
@@ -475,107 +468,96 @@ public class FinestraAmministratoreController extends StageController {
 		this.closeStage();
 		MainController.getIstance().dispatchrequest("inseriscistrumentazione");
 	}
-    @FXML
-    void AddStru(ActionEvent event) {
 
-    }
-    @FXML
-    void AddSpazi(ActionEvent event) {
+	@FXML
+	void AddStru(ActionEvent event) {
 
-    }
-    @FXML
-    void AddDip(ActionEvent event) {
+	}
 
-    }
-    @FXML
-    void DelStrum(ActionEvent event) throws SQLException {
-    	Object[] options = {"Si","No"};
-    	int choice = JOptionPane.showOptionDialog(null, "Vui davvero eliminare la Strumentazione selezionata?",
-    "",
-    JOptionPane.YES_NO_CANCEL_OPTION,
-    JOptionPane.QUESTION_MESSAGE,
-    null,
-    options,
-    options[1]);
-    	if(choice==JOptionPane.YES_OPTION){
-    		try{
-            	Strumento str=strumenti_table.getSelectionModel().getSelectedItem();
-            	str.delete(str.getNome());
-            	strumenti=FXCollections.observableArrayList();
-        		strumenti.addAll(strumentoDAO.getAll());
-        		setDatiStrumenti();
-            	}catch(NullPointerException e){
-            		ErrorDip.setTextFill(Color.valueOf("#ff0505"));	
-            	}
-    	}
-    	
-        }
-    
+	@FXML
+	void AddSpazi(ActionEvent event) {
 
-    @FXML
-    void ModStrum(ActionEvent event) {
+	}
 
-    }
+	@FXML
+	void AddDip(ActionEvent event) {
 
-    @FXML
-    void DelSpazi(ActionEvent event) throws SQLException {
-    	Object[] options = {"Si","No", };
-    	int choice = JOptionPane.showOptionDialog(null, "Vui davvero eliminare lo spazio selezionato?",
-    "",
-    JOptionPane.YES_NO_CANCEL_OPTION,
-    JOptionPane.QUESTION_MESSAGE,
-    null,
-    options,
-    options[1]);
-    	if(choice==JOptionPane.YES_OPTION){
-    		try{
-            	Spazio spazio=spazi_table.getSelectionModel().getSelectedItem();
-            	spazio.delete(spazio.getNome());
-            	spazi=FXCollections.observableArrayList();
-        		spazi.addAll(spazioDAO.getAll());
-        		setDatiSpazi();
-            	}catch(NullPointerException e){
-            		ErrorDip.setTextFill(Color.valueOf("#ff0505"));	
-            	}
-    	}
-   
-    	
-        }
-    
+	}
 
-    @FXML
-    void ModSpazi(ActionEvent event) {
+	@FXML
+	void DelStrum(ActionEvent event) throws SQLException {
+		try {
+			Strumento str = strumenti_table.getSelectionModel().getSelectedItem();
+			str.getNome();
+			Object[] options = { "Si", "No" };
+			int choice = JOptionPane.showOptionDialog(null, "Vui davvero eliminare la Strumentazione selezionata?", "",
+					JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+			if (choice == JOptionPane.YES_OPTION) {
+				str.delete(str.getNome());
+				strumenti = FXCollections.observableArrayList();
+				strumenti.addAll(strumentoDAO.getAll());
+				setDatiStrumenti();
+			}
+		} catch (NullPointerException e) {
+			ErrorDip.setTextFill(Color.valueOf("#ff0505"));
+		}
 
-    }
-    @FXML
-    void ModDip(ActionEvent event) {
+	}
 
-    }
+	@FXML
+	void ModStrum(ActionEvent event) {
 
-    @FXML
-    void DelDip(ActionEvent event) throws SQLException {
-    	Object[] options = {"Si","No"};
-    	int choice = JOptionPane.showOptionDialog(null, "Vui davvero eliminare lo Dipendente selezionato?",
-    "",
-    JOptionPane.YES_NO_CANCEL_OPTION,
-    JOptionPane.QUESTION_MESSAGE,
-    null,
-    options,
-    options[1]);
-    	if(choice==JOptionPane.YES_OPTION){
-    		try{
-    	    	Dipendente dip=dipendenti_table.getSelectionModel().getSelectedItem();
-    	    	dip.delete(dip.getCodiceFiscale());
-    	    	dipendenti=FXCollections.observableArrayList();
-    			dipendenti.addAll(dipendenteDAO.getAll());
-    			setDatiDipendenti();
-    	    	}catch(NullPointerException e){
-    	    		ErrorDip.setTextFill(Color.valueOf("#ff0505"));	
-    	    	}
-    	}
-   
-    
-    }
+	}
 
+	@FXML
+	void DelSpazi(ActionEvent event) throws SQLException {
+		try {
+			Spazio spazio = spazi_table.getSelectionModel().getSelectedItem();
+			spazio.getNome();
+			Object[] options = { "Si", "No", };
+			int choice = JOptionPane.showOptionDialog(null, "Vui davvero eliminare lo spazio selezionato?", "",
+					JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+			if (choice == JOptionPane.YES_OPTION) {
+				spazio.delete(spazio.getNome());
+				spazi = FXCollections.observableArrayList();
+				spazi.addAll(spazioDAO.getAll());
+				setDatiSpazi();
+			}
+		} catch (NullPointerException e) {
+			ErrorDip.setTextFill(Color.valueOf("#ff0505"));
+		}
+
+	}
+
+	@FXML
+	void ModSpazi(ActionEvent event) {
+
+	}
+
+	@FXML
+	void ModDip(ActionEvent event) {
+
+	}
+
+	@FXML
+	void DelDip(ActionEvent event) throws SQLException {
+		try {
+			Dipendente dip = dipendenti_table.getSelectionModel().getSelectedItem();
+			dip.getCodiceFiscale();
+			Object[] options = { "Si", "No" };
+			int choice = JOptionPane.showOptionDialog(null, "Vui davvero eliminare lo Dipendente selezionato?", "",
+					JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+			if (choice == JOptionPane.YES_OPTION) {
+
+				dip.delete(dip.getCodiceFiscale());
+				dipendenti = FXCollections.observableArrayList();
+				dipendenti.addAll(dipendenteDAO.getAll());
+				setDatiDipendenti();
+			}
+		} catch (NullPointerException e) {
+			ErrorDip.setTextFill(Color.valueOf("#ff0505"));
+		}
+
+	}
 
 }
