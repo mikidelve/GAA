@@ -12,6 +12,7 @@ import Entita.Dipendente;
 public class DipendenteDAO extends DAOAB<Dipendente> {
 	private static final String INSERT_QUERY = "INSERT INTO personale VALUES(?,?,?,?,?,?,?,?,?,?,null)";
 	private static final String GET_ALL = "SELECT * FROM personale";
+	private static final String DELETE = "DELETE FROM personale WHERE CodiceFiscale=?";
 
 	@Override
 	public boolean create(Dipendente entity) throws SQLException {
@@ -49,8 +50,10 @@ public class DipendenteDAO extends DAOAB<Dipendente> {
 
 	@Override
 	public boolean delete(String ID) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		Connection connessione = MySqlDaoFactory.connetti();
+		PreparedStatement prepStat = connessione.prepareStatement(DELETE);
+		prepStat.setString(1, ID);
+		return prepStat.executeUpdate() != 0;
 	}
 
 	@Override
@@ -58,7 +61,7 @@ public class DipendenteDAO extends DAOAB<Dipendente> {
 		Connection connessione = MySqlDaoFactory.connetti();
 		PreparedStatement prepStat = connessione.prepareStatement(query);
 		ResultSet risultato = prepStat.executeQuery();
-		List<Dipendente> lista=getLista(risultato);
+		List<Dipendente> lista = getLista(risultato);
 		return lista;
 	}
 

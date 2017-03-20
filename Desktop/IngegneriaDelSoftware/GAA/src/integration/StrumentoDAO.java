@@ -13,6 +13,7 @@ import Entita.Strumento;
 public class StrumentoDAO extends DAOAB<Strumento> {
 	private static final String INSERT_QUERY = "INSERT INTO Strumentazione VALUES(?,?,?,?,?,?)";
 	private static final String GET_ALL = "SELECT * FROM Strumentazione";
+	private static final String DELETE = "DELETE FROM Strumentazione WHERE Nome=?";
 
 	@Override
 	public boolean create(Strumento entity) throws SQLException {
@@ -41,8 +42,10 @@ public class StrumentoDAO extends DAOAB<Strumento> {
 
 	@Override
 	public boolean delete(String ID) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		Connection connessione = MySqlDaoFactory.connetti();
+		PreparedStatement prepStat = connessione.prepareStatement(DELETE);
+		prepStat.setString(1, ID);
+		return prepStat.executeUpdate() != 0;
 	}
 
 	@Override

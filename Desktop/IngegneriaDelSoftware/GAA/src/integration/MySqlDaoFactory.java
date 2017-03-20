@@ -13,11 +13,12 @@ public class MySqlDaoFactory {
   private static Connection con;
   
   private MySqlDaoFactory(){
-    //connessione="jdbc:mysql://localhost/gestoreanagrafica";
-                connessione="jdbc:mysql://athena.pixelstyle.it/giava_fm";
-    username="giava_fm";
-    password="arsg&ZWfwXPHw7S@IKE";
-                //database="giava_fm";
+    connessione="jdbc:mysql://localhost/gestoreanagrafica";
+                //connessione="jdbc:mysql://athena.pixelstyle.it/giava_fm";
+    //username="giava_fm";
+    //password="arsg&ZWfwXPHw7S@IKE";
+     username="root";
+     password="root";
   }
 
   public static MySqlDaoFactory getIstance() {

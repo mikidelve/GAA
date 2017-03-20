@@ -150,7 +150,6 @@ public class Dipendente {
 
 	public void delete(String ID) throws SQLException {
 		dao.delete(ID);
-
 	}
 
 	public List<Dipendente> search(String conditions) throws SQLException {

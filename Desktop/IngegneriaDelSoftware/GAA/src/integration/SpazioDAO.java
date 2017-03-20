@@ -13,6 +13,7 @@ import Entita.Spazio;
 public class SpazioDAO extends DAOAB<Spazio> {
 	private static final String INSERT_QUERY = "INSERT INTO spazi VALUES(?,?,?,?)";
 	private static final String GET_ALL = "SELECT * FROM spazi";
+	private static final String DELETE = "DELETE FROM spazi WHERE Nome=?";
 
 	@Override
 	public boolean create(Spazio entity) throws SQLException {
@@ -37,8 +38,10 @@ public class SpazioDAO extends DAOAB<Spazio> {
 
 	@Override
 	public boolean delete(String ID) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		Connection connessione = MySqlDaoFactory.connetti();
+		PreparedStatement prepStat = connessione.prepareStatement(DELETE);
+		prepStat.setString(1, ID);
+		return prepStat.executeUpdate() != 0;
 	}
 
 	@Override

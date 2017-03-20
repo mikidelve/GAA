@@ -12,15 +12,20 @@ import integration.StrumentoDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import presentation.MainController;
 import presentation.StageController;
@@ -29,6 +34,12 @@ import presentation.controller.utility.FormatoData;
 import presentation.controller.utility.ImageGetter;
 
 public class FinestraAmministratoreController extends StageController {
+	@FXML
+	private Label ErrorDip;
+	@FXML
+	private Label ErrorSpazi;
+	@FXML
+	private Label ErrorStr;
 	@FXML
 	private Button exit_btn;
 
@@ -41,7 +52,7 @@ public class FinestraAmministratoreController extends StageController {
 	// TABELLA RICERCA DIPENDENTI
 
 	@FXML
-	private TableView dipendenti_table;
+	private TableView<Dipendente> dipendenti_table;
 
 	@FXML
 	private TableColumn COLcodfis;
@@ -86,7 +97,7 @@ public class FinestraAmministratoreController extends StageController {
 	// TABELLA RICERCA SPAZI
 
 	@FXML
-	private TableView spazi_table;
+	private TableView<Spazio> spazi_table;
 
 	@FXML
 	private TableColumn COLnomeSpazi;
@@ -110,7 +121,7 @@ public class FinestraAmministratoreController extends StageController {
 	private Button MostratuttiSpazi;
 	// TABELLA RICERCA STRUMENTI
 	@FXML
-	private TableView strumenti_table;
+	private TableView<Strumento> strumenti_table;
 	@FXML
 	private TableColumn COLcaratteristicheStr;
 	@FXML
@@ -162,6 +173,7 @@ public class FinestraAmministratoreController extends StageController {
 
 	@FXML
 	public void initialize() throws SQLException {
+
 		logo.setImage(ImageGetter.getLogo());
 		dipendenti.addAll(dipendenteDAO.getAll());
 		setDatiDipendenti();
@@ -178,15 +190,15 @@ public class FinestraAmministratoreController extends StageController {
 			this.InserisciStr.setVisible(true);
 		}
 	}
-	//nel property va messo il nome del campo Entità(Spazio)
+
+	// nel property va messo il nome del campo Entità(Spazio)
 	@SuppressWarnings("unchecked")
 	private void setDatiSpazi() {
 		spazi_table.setItems(spazi);
 		this.COLnomeSpazi.setCellValueFactory(new PropertyValueFactory<Spazio, String>("Nome"));
 		this.COLcittaSpazi.setCellValueFactory(new PropertyValueFactory<Spazio, String>("Citta"));
 		this.COLubicazioneSpazi.setCellValueFactory(new PropertyValueFactory<Spazio, String>("Ubicazione"));
-		this.COLcaratteristicheSpazi
-				.setCellValueFactory(new PropertyValueFactory<Spazio, String>("Descrizione"));
+		this.COLcaratteristicheSpazi.setCellValueFactory(new PropertyValueFactory<Spazio, String>("Descrizione"));
 
 	}
 
@@ -461,4 +473,72 @@ public class FinestraAmministratoreController extends StageController {
 		this.closeStage();
 		MainController.getIstance().dispatchrequest("inseriscistrumentazione");
 	}
+    @FXML
+    void AddStru(ActionEvent event) {
+
+    }
+    @FXML
+    void AddSpazi(ActionEvent event) {
+
+    }
+    @FXML
+    void AddDip(ActionEvent event) {
+
+    }
+    @FXML
+    void DelStrum(ActionEvent event) throws SQLException {
+    	try{
+        	Strumento str=strumenti_table.getSelectionModel().getSelectedItem();
+        	str.delete(str.getNome());
+        	strumenti=FXCollections.observableArrayList();
+    		strumenti.addAll(strumentoDAO.getAll());
+    		setDatiStrumenti();
+        	}catch(NullPointerException e){
+        		ErrorDip.setTextFill(Color.valueOf("#ff0505"));	
+        	}
+        }
+    
+
+    @FXML
+    void ModStrum(ActionEvent event) {
+
+    }
+
+    @FXML
+    void DelSpazi(ActionEvent event) throws SQLException {
+    	try{
+        	Spazio spazio=spazi_table.getSelectionModel().getSelectedItem();
+        	spazio.delete(spazio.getNome());
+        	spazi=FXCollections.observableArrayList();
+    		spazi.addAll(spazioDAO.getAll());
+    		setDatiSpazi();
+        	}catch(NullPointerException e){
+        		ErrorDip.setTextFill(Color.valueOf("#ff0505"));	
+        	}
+        }
+    
+
+    @FXML
+    void ModSpazi(ActionEvent event) {
+
+    }
+    @FXML
+    void ModDip(ActionEvent event) {
+
+    }
+
+    @FXML
+    void DelDip(ActionEvent event) throws SQLException {
+    	try{
+    	Dipendente dip=dipendenti_table.getSelectionModel().getSelectedItem();
+    	dip.delete(dip.getCodiceFiscale());
+    	dipendenti=FXCollections.observableArrayList();
+		dipendenti.addAll(dipendenteDAO.getAll());
+		setDatiDipendenti();
+    	}catch(NullPointerException e){
+    		ErrorDip.setTextFill(Color.valueOf("#ff0505"));	
+    	}
+    }
+
+
 }
