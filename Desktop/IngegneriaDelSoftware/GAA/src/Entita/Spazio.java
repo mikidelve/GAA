@@ -1,5 +1,8 @@
 package Entita;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import integration.SpazioDAO;
 
 public class Spazio {
@@ -52,5 +55,23 @@ public class Spazio {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+
+	public boolean create(Spazio entity) throws SQLException {
+		return dao.create(entity);
+	}
+
+	public void update(Spazio entity) {
+		dao.update(entity);
+
+	}
+
+	public void delete(String ID) throws SQLException {
+		dao.delete(ID);
+
+	}
+
+	public List<Spazio> search(String conditions) throws SQLException {
+		return dao.search(conditions);
 	}
 }

@@ -15,7 +15,6 @@ public class DipendenteDAO extends DAOAB<Dipendente> {
 
 	@Override
 	public boolean create(Dipendente entity) throws SQLException {
-		boolean risultato;
 		Connection connessione = MySqlDaoFactory.connetti();
 		PreparedStatement prepStat = connessione.prepareStatement(INSERT_QUERY);
 		String nome = entity.getNome();
@@ -38,7 +37,7 @@ public class DipendenteDAO extends DAOAB<Dipendente> {
 		prepStat.setString(9, mansione);
 		String sede = entity.getSedeAppartenenza();
 		prepStat.setString(10, sede);
-		return risultato = prepStat.executeUpdate() != 0;
+		return prepStat.executeUpdate() != 0;
 
 	}
 

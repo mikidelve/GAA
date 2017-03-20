@@ -1,53 +1,94 @@
 package presentation.controller;
 
+import java.sql.SQLException;
+
+import Entita.Spazio;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import presentation.MainController;
 import presentation.StageController;
 
-public class InserisciSpazioController extends StageController{
-	   @FXML
-	    private Button InserisciDip;
+public class InserisciSpazioController extends StageController {
+	@FXML
+	private Button InserisciSpazio;
 
-	    @FXML
-	    private ChoiceBox SceltaElemento1;
+	@FXML
+	private Button Esci;
 
-	    @FXML
-	    private ChoiceBox SceltaElemento;
+	@FXML
+	private Button Indietro;
 
-	    @FXML
-	    private Button exit_btnInserisci;
+	@FXML
+	private TextField nome;
 
-	    @FXML
-	    private TextField codfisc;
+	@FXML
+	private TextField ubicazione;
 
-	    @FXML
-	    private TextField nome;
+	@FXML
+	private TextField citta;
 
-	    @FXML
-	    private Button LogoutInserisci;
+	@FXML
+	private TextArea desc;
+	@FXML
+	private Label ErrorCampi;
 
-	    @FXML
-	    void InserisciSpazio(ActionEvent event) {
+	@FXML
+	private Label ErrorSQL;
+	@FXML
+	private Label successo;
 
-	    }
+	@FXML
+	void InserisciSpazio(ActionEvent event) {
+		Spazio spazio;
+		try {
+			spazio = new Spazio(nome.getText(), citta.getText(), ubicazione.getText(), desc.getText());
+		} catch (NullPointerException e) {
+			ErrorCampi.setVisible(true);
+			successo.setVisible(false);
+			ErrorSQL.setVisible(false);
+			return;
+		}
+		try {
+			if (spazio.create(spazio)) {
+				successo.setVisible(true);
+				ErrorSQL.setVisible(false);
+				ErrorCampi.setVisible(false);
+				nome.setText("");
+				desc.setText("");
+				citta.setText("");
+				ubicazione.setText("");
+			}
+		} catch (SQLException e) {
+			ErrorSQL.setVisible(true);
+			successo.setVisible(false);
+			ErrorCampi.setVisible(false);
+			e.printStackTrace();
+		}
+	}
 
-	    @FXML
-	    void LogoutInserisci(ActionEvent event) {
+	@FXML
+	void Indietro(ActionEvent event) {
+		this.closeStage();
+		MainController.getIstance().dispatchrequest("finestraamministratore");
+	}
 
-	    }
+	@FXML
+	void Esci(ActionEvent event) {
+		this.closeStage();
+	}
 
-	    @FXML
-	    void exitInserisci(ActionEvent event) {
-
-	    }
 	@Override
 	public void closeStage() {
-		// TODO Auto-generated method stub
-		
+		Stage stage = (Stage) Esci.getScene().getWindow();
+		stage.close();
 	}
+
 	@Override
 	public void show() {
 		super.setController("InserisciSpazio");

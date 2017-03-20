@@ -1,5 +1,8 @@
 package Entita;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import integration.StrumentoDAO;
 
 public class Strumento {
@@ -73,5 +76,22 @@ public class Strumento {
 
 	public void setUbicazione(String ubicazione) {
 		Ubicazione = ubicazione;
+	}
+	public boolean create(Strumento entity) throws SQLException {
+		return dao.create(entity);
+	}
+
+	public void update(Strumento entity) {
+		dao.update(entity);
+
+	}
+
+	public void delete(String ID) throws SQLException {
+		dao.delete(ID);
+
+	}
+
+	public List<Strumento> search(String conditions) throws SQLException {
+		return dao.search(conditions);
 	}
 }

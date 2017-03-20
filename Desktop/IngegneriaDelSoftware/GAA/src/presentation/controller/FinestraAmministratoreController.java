@@ -178,7 +178,7 @@ public class FinestraAmministratoreController extends StageController {
 			this.InserisciStr.setVisible(true);
 		}
 	}
-
+	//nel property va messo il nome del campo Entità(Spazio)
 	@SuppressWarnings("unchecked")
 	private void setDatiSpazi() {
 		spazi_table.setItems(spazi);
@@ -186,7 +186,7 @@ public class FinestraAmministratoreController extends StageController {
 		this.COLcittaSpazi.setCellValueFactory(new PropertyValueFactory<Spazio, String>("Citta"));
 		this.COLubicazioneSpazi.setCellValueFactory(new PropertyValueFactory<Spazio, String>("Ubicazione"));
 		this.COLcaratteristicheSpazi
-				.setCellValueFactory(new PropertyValueFactory<Spazio, String>("CaratteristicheDescrittive"));
+				.setCellValueFactory(new PropertyValueFactory<Spazio, String>("Descrizione"));
 
 	}
 

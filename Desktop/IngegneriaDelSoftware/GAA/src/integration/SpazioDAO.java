@@ -11,13 +11,22 @@ import Entita.Dipendente;
 import Entita.Spazio;
 
 public class SpazioDAO extends DAOAB<Spazio> {
-	private static final String INSERT_QUERY = "INSERT INTO Spazio VALUES(?,?,?,?)";
+	private static final String INSERT_QUERY = "INSERT INTO spazi VALUES(?,?,?,?)";
 	private static final String GET_ALL = "SELECT * FROM spazi";
 
 	@Override
 	public boolean create(Spazio entity) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		Connection connessione = MySqlDaoFactory.connetti();
+		PreparedStatement prepStat = connessione.prepareStatement(INSERT_QUERY);
+		String nome=entity.getNome();
+		prepStat.setString(1, nome);
+		String caratteristiche=entity.getDescrizione();
+		prepStat.setString(2, caratteristiche);
+		String citta=entity.getCitta();
+		prepStat.setString(3, citta);
+		String ubicazione=entity.getUbicazione();
+		prepStat.setString(4, ubicazione);
+		return prepStat.executeUpdate() != 0;
 	}
 
 	@Override

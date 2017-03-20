@@ -11,13 +11,26 @@ import Entita.Spazio;
 import Entita.Strumento;
 
 public class StrumentoDAO extends DAOAB<Strumento> {
-	private static final String INSERT_QUERY = "INSERT INTO Strumentazione VALUES(?,?,?,?,?)";
+	private static final String INSERT_QUERY = "INSERT INTO Strumentazione VALUES(?,?,?,?,?,?)";
 	private static final String GET_ALL = "SELECT * FROM Strumentazione";
 
 	@Override
 	public boolean create(Strumento entity) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		Connection connessione = MySqlDaoFactory.connetti();
+		PreparedStatement prepStat = connessione.prepareStatement(INSERT_QUERY);
+		String Nome = entity.getNome();
+		prepStat.setString(1, Nome);
+		String Modello = entity.getModello();
+		prepStat.setString(2, Modello);
+		String Tipo = entity.getTipo();
+		prepStat.setString(3, Tipo);
+		String AnnoAcquisto = entity.getAnnoAcquisto();
+		prepStat.setString(4, AnnoAcquisto);
+		String Proprietario = entity.getProprietario();
+		prepStat.setString(5, Proprietario);
+		String Ubicazione = entity.getUbicazione();
+		prepStat.setString(6, Ubicazione);
+		return prepStat.executeUpdate() != 0;
 	}
 
 	@Override
@@ -33,18 +46,18 @@ public class StrumentoDAO extends DAOAB<Strumento> {
 	}
 
 	@Override
-	public List<Strumento> getAll()  {
-		try{
-		Connection connessione = MySqlDaoFactory.connetti();
-		PreparedStatement prepStat = connessione.prepareStatement(GET_ALL);
-		ResultSet risultato = prepStat.executeQuery();
-		List<Strumento> lista = getLista(risultato);
-		return lista;
-		}catch(SQLException e){
+	public List<Strumento> getAll() {
+		try {
+			Connection connessione = MySqlDaoFactory.connetti();
+			PreparedStatement prepStat = connessione.prepareStatement(GET_ALL);
+			ResultSet risultato = prepStat.executeQuery();
+			List<Strumento> lista = getLista(risultato);
+			return lista;
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
-		
+
 	}
 
 	@Override
