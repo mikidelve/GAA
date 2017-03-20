@@ -3,6 +3,8 @@ package presentation.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import Entita.Dipendente;
 import Entita.Spazio;
 import Entita.Strumento;
@@ -487,15 +489,26 @@ public class FinestraAmministratoreController extends StageController {
     }
     @FXML
     void DelStrum(ActionEvent event) throws SQLException {
-    	try{
-        	Strumento str=strumenti_table.getSelectionModel().getSelectedItem();
-        	str.delete(str.getNome());
-        	strumenti=FXCollections.observableArrayList();
-    		strumenti.addAll(strumentoDAO.getAll());
-    		setDatiStrumenti();
-        	}catch(NullPointerException e){
-        		ErrorDip.setTextFill(Color.valueOf("#ff0505"));	
-        	}
+    	Object[] options = {"Si","No"};
+    	int choice = JOptionPane.showOptionDialog(null, "Vui davvero eliminare la Strumentazione selezionata?",
+    "",
+    JOptionPane.YES_NO_CANCEL_OPTION,
+    JOptionPane.QUESTION_MESSAGE,
+    null,
+    options,
+    options[1]);
+    	if(choice==JOptionPane.YES_OPTION){
+    		try{
+            	Strumento str=strumenti_table.getSelectionModel().getSelectedItem();
+            	str.delete(str.getNome());
+            	strumenti=FXCollections.observableArrayList();
+        		strumenti.addAll(strumentoDAO.getAll());
+        		setDatiStrumenti();
+            	}catch(NullPointerException e){
+            		ErrorDip.setTextFill(Color.valueOf("#ff0505"));	
+            	}
+    	}
+    	
         }
     
 
@@ -506,15 +519,27 @@ public class FinestraAmministratoreController extends StageController {
 
     @FXML
     void DelSpazi(ActionEvent event) throws SQLException {
-    	try{
-        	Spazio spazio=spazi_table.getSelectionModel().getSelectedItem();
-        	spazio.delete(spazio.getNome());
-        	spazi=FXCollections.observableArrayList();
-    		spazi.addAll(spazioDAO.getAll());
-    		setDatiSpazi();
-        	}catch(NullPointerException e){
-        		ErrorDip.setTextFill(Color.valueOf("#ff0505"));	
-        	}
+    	Object[] options = {"Si","No", };
+    	int choice = JOptionPane.showOptionDialog(null, "Vui davvero eliminare lo spazio selezionato?",
+    "",
+    JOptionPane.YES_NO_CANCEL_OPTION,
+    JOptionPane.QUESTION_MESSAGE,
+    null,
+    options,
+    options[1]);
+    	if(choice==JOptionPane.YES_OPTION){
+    		try{
+            	Spazio spazio=spazi_table.getSelectionModel().getSelectedItem();
+            	spazio.delete(spazio.getNome());
+            	spazi=FXCollections.observableArrayList();
+        		spazi.addAll(spazioDAO.getAll());
+        		setDatiSpazi();
+            	}catch(NullPointerException e){
+            		ErrorDip.setTextFill(Color.valueOf("#ff0505"));	
+            	}
+    	}
+   
+    	
         }
     
 
@@ -529,15 +554,27 @@ public class FinestraAmministratoreController extends StageController {
 
     @FXML
     void DelDip(ActionEvent event) throws SQLException {
-    	try{
-    	Dipendente dip=dipendenti_table.getSelectionModel().getSelectedItem();
-    	dip.delete(dip.getCodiceFiscale());
-    	dipendenti=FXCollections.observableArrayList();
-		dipendenti.addAll(dipendenteDAO.getAll());
-		setDatiDipendenti();
-    	}catch(NullPointerException e){
-    		ErrorDip.setTextFill(Color.valueOf("#ff0505"));	
+    	Object[] options = {"Si","No"};
+    	int choice = JOptionPane.showOptionDialog(null, "Vui davvero eliminare lo Dipendente selezionato?",
+    "",
+    JOptionPane.YES_NO_CANCEL_OPTION,
+    JOptionPane.QUESTION_MESSAGE,
+    null,
+    options,
+    options[1]);
+    	if(choice==JOptionPane.YES_OPTION){
+    		try{
+    	    	Dipendente dip=dipendenti_table.getSelectionModel().getSelectedItem();
+    	    	dip.delete(dip.getCodiceFiscale());
+    	    	dipendenti=FXCollections.observableArrayList();
+    			dipendenti.addAll(dipendenteDAO.getAll());
+    			setDatiDipendenti();
+    	    	}catch(NullPointerException e){
+    	    		ErrorDip.setTextFill(Color.valueOf("#ff0505"));	
+    	    	}
     	}
+   
+    
     }
 
 
