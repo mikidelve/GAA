@@ -508,7 +508,14 @@ public class FinestraAmministratoreController extends StageController {
 
 	@FXML
 	void ModStrum(ActionEvent event) {
-
+		try {
+			Strumento str = strumenti_table.getSelectionModel().getSelectedItem();
+			super.setStr(str);
+			System.out.println(str.getNome());
+			MainController.getIstance().dispatchrequest("Modificastrumentazione");
+		} catch (NullPointerException e) {
+			ErrorDip.setTextFill(Color.valueOf("#ff0505"));
+		}
 	}
 
 	@FXML
@@ -533,20 +540,26 @@ public class FinestraAmministratoreController extends StageController {
 
 	@FXML
 	void ModSpazi(ActionEvent event) {
-
+			Spazio spazio = spazi_table.getSelectionModel().getSelectedItem();
+			if(spazi_table.getSelectionModel().getSelectedItem()==null){
+				ErrorSpazi.setTextFill(Color.valueOf("#ff0505"));
+			}else{
+			super.setSpazio(spazio);
+			MainController.getIstance().dispatchrequest("Modificaspazio");
+			}
 	}
 
 	@FXML
 	void ModDip(ActionEvent event) {
-	
-		try {
 			Dipendente dip = dipendenti_table.getSelectionModel().getSelectedItem();
-			super.setDip(dip);
-			MainController.getIstance().dispatchrequest("ModificaDipendente");
-		} catch (NullPointerException e) {
-			ErrorDip.setTextFill(Color.valueOf("#ff0505"));
-		}
-	}
+			if(dipendenti_table.getSelectionModel().getSelectedItem()==null){
+				ErrorDip.setTextFill(Color.valueOf("#ff0505"));
+			}else{
+				super.setDip(dip);
+				MainController.getIstance().dispatchrequest("ModificaDipendente");
+			}
+		} 
+	
 
 	@FXML
 	void DelDip(ActionEvent event) throws SQLException {

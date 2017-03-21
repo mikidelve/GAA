@@ -12,6 +12,8 @@ public class Dispatcher {
 	InserisciDipendenteController dipendentiController;
 	InserisciStrumentazioneController itemController;
 	ModificaDipendenteController modDip;
+	ModificaSpazioController modSpace;
+	ModificaStrumentazioneController modstr;
 
 	public Dispatcher() {
 		login = new LoginController();
@@ -20,6 +22,8 @@ public class Dispatcher {
 		this.dipendentiController = new InserisciDipendenteController();
 		this.itemController = new InserisciStrumentazioneController();
 		this.modDip = new ModificaDipendenteController();
+		this.modSpace=new ModificaSpazioController();
+		this.modstr=new ModificaStrumentazioneController();
 	}
 
 	public void dispatch(String request) {
@@ -37,6 +41,10 @@ public class Dispatcher {
 			spazioController.show();
 		}else if(request.compareToIgnoreCase("Modificadipendente")==0){
 			modDip.show();
+		}else if(request.compareToIgnoreCase("Modificaspazio")==0){
+			modSpace.show();
+		}else if(request.compareToIgnoreCase("Modificastrumentazione")==0){
+			modstr.show();
 		}
 	}
 

@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="431.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.ModificaSpazioController">
    <children>
-      <Button fx:id="ModificaSpazio" layoutX="58.0" layoutY="485.0" mnemonicParsing="false" onAction="#ModificaSpazio" text="Inserisci" />
+      <Button fx:id="ModificaSpazio" layoutX="58.0" layoutY="485.0" mnemonicParsing="false" onAction="#ModificaSpazio" text="Modifica" />
       <Button fx:id="Indietro" layoutX="193.0" layoutY="485.0" mnemonicParsing="false" onAction="#Indietro" prefHeight="31.0" prefWidth="92.0" text="Indietro" />
       <Button fx:id="Esci" layoutX="288.0" layoutY="485.0" mnemonicParsing="false" onAction="#Esci" prefHeight="31.0" prefWidth="92.0" text="Esci" />
       <Label layoutX="40.0" layoutY="30.0" prefHeight="21.0" prefWidth="86.0" text="Nome:" />
