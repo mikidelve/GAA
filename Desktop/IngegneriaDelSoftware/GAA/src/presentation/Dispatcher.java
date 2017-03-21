@@ -1,5 +1,8 @@
 package presentation;
 
+import Entita.Dipendente;
+import Entita.Spazio;
+import Entita.Strumento;
 import presentation.controller.*;
 
 public class Dispatcher {
@@ -8,6 +11,7 @@ public class Dispatcher {
 	InserisciSpazioController spazioController;
 	InserisciDipendenteController dipendentiController;
 	InserisciStrumentazioneController itemController;
+	ModificaDipendenteController modDip;
 
 	public Dispatcher() {
 		login = new LoginController();
@@ -15,6 +19,7 @@ public class Dispatcher {
 		this.spazioController = new InserisciSpazioController();
 		this.dipendentiController = new InserisciDipendenteController();
 		this.itemController = new InserisciStrumentazioneController();
+		this.modDip = new ModificaDipendenteController();
 	}
 
 	public void dispatch(String request) {
@@ -30,6 +35,9 @@ public class Dispatcher {
 			itemController.show();
 		} else if (request.compareToIgnoreCase("InserisciSpazio") == 0) {
 			spazioController.show();
+		}else if(request.compareToIgnoreCase("Modificadipendente")==0){
+			modDip.show();
 		}
 	}
+
 }

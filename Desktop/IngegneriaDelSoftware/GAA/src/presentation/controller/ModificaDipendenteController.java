@@ -3,6 +3,7 @@ package presentation.controller;
 import java.sql.SQLException;
 
 import Entita.Dipendente;
+import integration.DipendenteDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,9 +17,9 @@ import presentation.MainController;
 import presentation.StageController;
 import presentation.controller.utility.FormatoData;
 
-public class InserisciDipendenteController extends StageController {
+public class ModificaDipendenteController extends StageController{
 	@FXML
-	private Button InserisciDip;
+	private Button ModificaDip;
 
 	@FXML
 	private TextField mansione;
@@ -68,57 +69,56 @@ public class InserisciDipendenteController extends StageController {
 	private Label successo;
 	
 	static ObservableList sessi;
-
+	
+	String oldcodfis;
+	
+	DipendenteDAO dao=new DipendenteDAO();
 	@FXML
 	public void initialize() throws SQLException {
 		sessi = FXCollections.observableArrayList();
 		sessi.add("M");
 		sessi.add("F");
 		sessobox.setItems(sessi);
+		nome.setText(super.getDip().getNome());
+		cognome.setText(super.getDip().getCognome());
+		sessobox.setValue(super.getDip().getSesso());
+		data.setText(super.getDip().getDatadinascita());
+		oldcodfis=super.getDip().getCodiceFiscale();
+		codfisc.setText(super.getDip().getCodiceFiscale());
+		mail.setText(super.getDip().getMail());
+		tel.setText(super.getDip().getTelefono());
+		domicilio.setText(super.getDip().getDomicilio());
+		mansione.setText(super.getDip().getMansione());
+		sede.setText(super.getDip().getSedeAppartenenza());
+		successo.setVisible(false);
+		
 	}
-
 	@FXML
-	void InserisciDip(ActionEvent event) {
-		String date = data.getText();
-		String cod = codfisc.getText();
+	void ModificaDip(ActionEvent event) throws SQLException {
+
 		Dipendente dipendente;
 		try {
-			dipendente = new Dipendente(nome.getText(), cognome.getText(), sessobox.getValue().toString(), date, cod,
-					mail.getText(), domicilio.getText(), mansione.getText(), tel.getText(), sede.getText());
+			dipendente = new Dipendente(nome.getText(), cognome.getText(), sessobox.getValue().toString(), data.getText(), codfisc.getText(),
+					mail.getText() ,domicilio.getText(), mansione.getText(),tel.getText(), sede.getText());
 		} catch (NullPointerException e) {
 			ErrorCampi.setVisible(true);
 			successo.setVisible(false);
 			return;
 		}
-		if (!FormatoData.getIstance().ControllaData(date)) {
+		dao.delete(oldcodfis);
+		if (!FormatoData.getIstance().ControllaData(data.getText())) {
 			ErrorData.setVisible(true);
 			successo.setVisible(false);
 			return;
 		}
 		try {
-			if (dipendente.create(dipendente)) {
-				ErrorData.setVisible(false);
-				ErrorCampi.setVisible(false);
-				successo.setVisible(true);
-				nome.setText("");
-				cognome.setText("");
-				sessobox.setValue("");
-				data.setText("");
-				codfisc.setText("");
-				mail.setText("");
-				tel.setText("");
-				domicilio.setText("");
-				mansione.setText("");
-				sede.setText("");
-			} else {
-			}
+			dao.create(dipendente);
+			successo.setVisible(true);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
-
 	@FXML
 	void Indietro(ActionEvent event) {
 		this.closeStage();
@@ -135,12 +135,11 @@ public class InserisciDipendenteController extends StageController {
 		Stage stage = (Stage) exit_btnInserisci.getScene().getWindow();
 		stage.close();
 	}
-
+	
 	@Override
 	public void show() {
-		super.setController("InserisciDipendente");
-		super.setTitle("GAA - Inserimento dipendente");
+		super.setController("ModificaDipendente");
+		super.setTitle("GAA - Modifica dipendente");
 		super.show();
 	}
-
 }

@@ -12,9 +12,6 @@ public class FormatoData {
 		String anno = data.substring(6, 10);
 		String mese = data.substring(3,5);
 		String giorno = data.substring(0, 2);
-		System.out.println(anno);
-		System.out.println(mese);
-		System.out.println(giorno);
 		if (Integer.parseInt(anno) > 2017 || Integer.parseInt(anno) < 1900) {
 			return false;
 		} else if (Integer.parseInt(mese) < 0 && Integer.parseInt(mese) > 12) {

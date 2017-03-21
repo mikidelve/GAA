@@ -1,5 +1,9 @@
 package presentation;
 
+import Entita.Dipendente;
+import Entita.Spazio;
+import Entita.Strumento;
+
 public class MainController {
 	Dispatcher dispatcher;
 	
@@ -12,6 +16,7 @@ public class MainController {
 	public void dispatchrequest(String request) {
 		this.dispatcher.dispatch(request);
 	}
+
 	public static MainController getIstance(){
 		return mc;
 	}

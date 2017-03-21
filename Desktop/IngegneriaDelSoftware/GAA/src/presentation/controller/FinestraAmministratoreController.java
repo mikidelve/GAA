@@ -168,7 +168,9 @@ public class FinestraAmministratoreController extends StageController {
 
 	@FXML
 	public void initialize() throws SQLException {
-
+		dipendenti = FXCollections.observableArrayList();
+		spazi = FXCollections.observableArrayList();
+		strumenti = FXCollections.observableArrayList();
 		logo.setImage(ImageGetter.getLogo());
 		dipendenti.addAll(dipendenteDAO.getAll());
 		setDatiDipendenti();
@@ -536,7 +538,14 @@ public class FinestraAmministratoreController extends StageController {
 
 	@FXML
 	void ModDip(ActionEvent event) {
-
+	
+		try {
+			Dipendente dip = dipendenti_table.getSelectionModel().getSelectedItem();
+			super.setDip(dip);
+			MainController.getIstance().dispatchrequest("ModificaDipendente");
+		} catch (NullPointerException e) {
+			ErrorDip.setTextFill(Color.valueOf("#ff0505"));
+		}
 	}
 
 	@FXML
