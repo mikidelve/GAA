@@ -9,152 +9,171 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.FinestraAmministratoreController">
-   <tabs>
-      <Tab text="Home">
+	<tabs>
+		<Tab text="Home">
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+					<children>
+						<Button fx:id="Logout" layoutX="488.0" layoutY="474.0" mnemonicParsing="false" onAction="#Logout" prefHeight="31.0" prefWidth="92.0" text="Logout" />
+						<ImageView fx:id="logo" fitHeight="150.0" fitWidth="325.0" layoutX="239.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
+						<Label alignment="CENTER" layoutX="175.0" layoutY="165.0" prefHeight="251.0" prefWidth="450.0" text="Benvenuto nel nostro Sistema di Gestione Anagrafica Aziendale.&#10;Adesso potrai compilare le schede descrittive richieste inserendo le informazioni circa i dipendenti, gli spazi e la strumentazione a disposizione della tua azienda.&#10;Inoltre avendo effettuato l'accesso come Amministratore potrai aggiungere,modificare o cancellare le informazioni conenute nell'archivio.&#10;&#10;&#10;                                      BUON LAVORO.&#10;" textAlignment="JUSTIFY" textOverrun="CLIP" wrapText="true" />
+						<Button fx:id="exit_btn" layoutX="607.0" layoutY="474.0" mnemonicParsing="false" onAction="#exit" prefHeight="31.0" prefWidth="92.0" text="Esci" />
+					</children>
+				</AnchorPane>
+			</content>
+		</Tab>
+		<Tab fx:id="dipendente" text="Dipendenti">
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+					<children>
+						<Button fx:id="LogoutRicerca" layoutX="722.0" layoutY="593.0" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="90.0" text="Logout" />
+						<Button fx:id="exit_btnRicerca" layoutX="853.0" layoutY="593.0" mnemonicParsing="false" onAction="#exit" prefHeight="30.0" prefWidth="90.0" text="Esci" />
+						<TableView fx:id="dipendenti_table" layoutX="35.0" layoutY="205.0" prefHeight="325.0" prefWidth="803.0">
+							<columns>
+								<TableColumn fx:id="COLnome" prefWidth="75.0" text="Nome" />
+								<TableColumn fx:id="COLcognome" prefWidth="75.0" text="Cognome" />
+								<TableColumn fx:id="COLsesso" prefWidth="46.0" text="Sesso" />
+								<TableColumn fx:id="COLdata" prefWidth="112.0" text="Data di nascita" />
+								<TableColumn fx:id="COLcodfis" prefWidth="93.0" text="CodiceFiscale" />
+								<TableColumn fx:id="COLmail" prefWidth="88.0" text="Mail" />
+								<TableColumn fx:id="COLtel" prefWidth="82.0" text="Telefono" />
+								<TableColumn fx:id="COLdomicilio" prefWidth="82.0" text="Domicilio" />
+								<TableColumn fx:id="COLmansione" minWidth="2.0" prefWidth="76.0" text="Mansione" />
+								<TableColumn fx:id="COLsede" prefWidth="73.0" text="Sede" />
+							</columns>
+						</TableView>
+						<Label layoutX="464.0" layoutY="1.0" prefHeight="21.0" prefWidth="67.0" text="Ricerca">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</Label>
+						<Label layoutX="35.0" layoutY="53.0" text="Nome" />
+						<Label layoutX="38.0" layoutY="108.0" text="Cognome" />
+						<TextField fx:id="nome" layoutX="128.0" layoutY="48.0" />
+						<TextField fx:id="cognome" layoutX="128.0" layoutY="103.0" />
+						<Label layoutX="435.0" layoutY="53.0" text="SedeAppartenenza" />
+						<Label layoutX="465.0" layoutY="109.0" text="Mansione" />
+						<TextField fx:id="sede" layoutX="587.0" layoutY="48.0" />
+						<TextField fx:id="mansione" layoutX="587.0" layoutY="104.0" />
+						<Button fx:id="Cerca" layoutX="852.0" layoutY="48.0" mnemonicParsing="false" onAction="#Ricerca" prefHeight="30.0" prefWidth="90.0" text="Cerca" />
+						<Button fx:id="Mostratutti" layoutX="836.0" layoutY="104.0" mnemonicParsing="false" onAction="#Mostratutti" prefHeight="31.0" prefWidth="123.0" text="Mostra tutti" />
+						<Button fx:id="InserisciDip" layoutX="58.0" layoutY="562.0" mnemonicParsing="false" onAction="#InserisciDip" prefHeight="31.0" prefWidth="155.0" text="Inserisci Dipendente" visible="false" />
+						<Button layoutX="843.0" layoutY="268.0" mnemonicParsing="false" onAction="#AddDip" text="Aggiungi a scheda" />
+						<Button fx:id="ModDipendente" layoutX="882.0" layoutY="331.0" mnemonicParsing="false" onAction="#ModDip" text="Modifica" />
+						<Button fx:id="DelDipendente" layoutX="887.0" layoutY="392.0" mnemonicParsing="false" onAction="#DelDip" text="Elimina" />
+						<Label fx:id="ErrorDip" layoutX="208.0" layoutY="535.0" text="Seleziona una riga prima per eliminare o cancellare il relativo Dipendente">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</Label>
+					</children>
+				</AnchorPane>
+			</content>
+		</Tab>
+		<Tab text="Spazi">
+			<content>
+				<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0">
+					<children>
+						<TableView fx:id="spazi_table" layoutX="58.0" layoutY="188.0" prefHeight="325.0" prefWidth="754.0">
+							<columns>
+								<TableColumn fx:id="COLnomeSpazi" prefWidth="124.0" text="Nome" />
+								<TableColumn fx:id="COLcittaSpazi" prefWidth="156.0" text="Città" />
+								<TableColumn fx:id="COLubicazioneSpazi" prefWidth="135.0" text="Ubicazione" />
+								<TableColumn fx:id="COLcaratteristicheSpazi" prefWidth="338.0" text="Caratteristiche Descrittive" />
+							</columns>
+						</TableView>
+						<Button fx:id="LogoutSpazi" layoutX="720.0" layoutY="593.0" mnemonicParsing="false" onAction="#LogoutSpazi" prefHeight="30.0" prefWidth="90.0" text="Logout" />
+						<Button fx:id="exit_btnSpazi" layoutX="852.0" layoutY="593.0" mnemonicParsing="false" onAction="#exitSpazi" prefHeight="30.0" prefWidth="90.0" text="Esci" />
+						<Label layoutX="464.0" layoutY="1.0" prefHeight="21.0" prefWidth="67.0" text="Ricerca">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</Label>
+						<Label layoutX="55.0" layoutY="73.0" text="Nome" />
+						<TextField fx:id="nomeSpazi" layoutX="156.0" layoutY="68.0" />
+						<Label layoutX="515.0" layoutY="73.0" text="Sede" />
+						<TextField fx:id="sedeSpazi" layoutX="615.0" layoutY="68.0" />
+						<Button fx:id="CercaSpazi" layoutX="859.0" layoutY="68.0" mnemonicParsing="false" onAction="#RicercaSpazi" prefHeight="30.0" prefWidth="90.0" text="Cerca" />
+						<Button fx:id="MostratuttiSpazi" layoutX="846.0" layoutY="114.0" mnemonicParsing="false" onAction="#MostratuttiSpazi" prefHeight="31.0" prefWidth="123.0" text="Mostra tutti" />
+						<Button fx:id="InserisciSpazi" layoutX="58.0" layoutY="562.0" mnemonicParsing="false" onAction="#InserisciSpazi" prefHeight="31.0" prefWidth="155.0" text="Inserisci Spazio" visible="false" />
+						<Button fx:id="DelSpazio" layoutX="874.0" layoutY="392.0" mnemonicParsing="false" onAction="#DelSpazi" text="Elimina" />
+						<Button fx:id="ModSpazio" layoutX="869.0" layoutY="328.0" mnemonicParsing="false" onAction="#ModSpazi" text="Modifica" />
+						<Button layoutX="836.0" layoutY="268.0" mnemonicParsing="false" onAction="#AddSpazi" text="Aggiungi a scheda" />
+						<Label fx:id="ErrorSpazi" layoutX="226.0" layoutY="530.0" text="Seleziona una riga prima per eliminare o cancellare il relativo Spazio">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</Label>
+					</children>
+				</AnchorPane>
+			</content>
+		</Tab>
+		<Tab text="Strumentazione">
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+					<children>
+						<Button fx:id="InserisciStr" layoutX="67.0" layoutY="562.0" mnemonicParsing="false" onAction="#InserisciStr" prefHeight="31.0" prefWidth="188.0" text="Inserisci Strumentazione" visible="false" />
+						<TableView fx:id="strumenti_table" layoutX="35.0" layoutY="186.0" prefHeight="325.0" prefWidth="790.0">
+							<columns>
+								<TableColumn fx:id="COLnomeStr" prefWidth="104.0" text="Nome" />
+								<TableColumn fx:id="COLmodelloStr" prefWidth="94.0" text="Modello" />
+								<TableColumn fx:id="COLtipoStr" prefWidth="94.0" text="Tipo" />
+								<TableColumn fx:id="COLannoStr" prefWidth="116.0" text="AnnoAcquisto" />
+								<TableColumn fx:id="COLpropietarioStr" prefWidth="104.0" text="Propietario" />
+								<TableColumn fx:id="COLubicazioneStr" prefWidth="104.0" text="Ubicazione" />
+								<TableColumn fx:id="COLcaratteristicheStr" prefWidth="172.0" text="Caratteristiche Descrittive" />
+							</columns>
+						</TableView>
+						<Button fx:id="LogoutStr" layoutX="723.0" layoutY="593.0" mnemonicParsing="false" onAction="#LogoutSpazi" prefHeight="30.0" prefWidth="90.0" text="Logout" />
+						<Button fx:id="EsciStr" layoutX="852.0" layoutY="593.0" mnemonicParsing="false" onAction="#exitSpazi" prefHeight="30.0" prefWidth="90.0" text="Esci" />
+						<Label layoutX="464.0" layoutY="1.0" prefHeight="21.0" prefWidth="67.0" text="Ricerca">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</Label>
+						<Button fx:id="mostratuttistr" layoutX="834.0" layoutY="105.0" mnemonicParsing="false" onAction="#MostratuttiStr" text="Mostratutti" />
+						<Button layoutX="852.0" layoutY="48.0" mnemonicParsing="false" onAction="#CercaStr" text="Cerca" />
+						<Label layoutX="35.0" layoutY="53.0" text="Nome" />
+						<Label layoutX="20.0" layoutY="110.0" text="AnnoAcquisto" />
+						<Label layoutX="465.0" layoutY="53.0" text="Prorietario" />
+						<Label layoutX="461.0" layoutY="110.0" text="Ubicazione" />
+						<TextField fx:id="nomeStr" layoutX="128.0" layoutY="48.0" />
+						<TextField fx:id="AAStr" layoutX="128.0" layoutY="103.0" />
+						<TextField fx:id="proprietarioStr" layoutX="587.0" layoutY="48.0" />
+						<TextField fx:id="ubicazioneStr" layoutX="587.0" layoutY="103.0" />
+						<Button fx:id="DelStr" layoutX="882.0" layoutY="393.0" mnemonicParsing="false" onAction="#DelStrum" text="Elimina" />
+						<Button fx:id="ModStr" layoutX="877.0" layoutY="331.0" mnemonicParsing="false" onAction="#ModStrum" text="Modifica" />
+						<Button layoutX="844.0" layoutY="268.0" mnemonicParsing="false" onAction="#AddStru" text="Aggiungi a scheda" />
+						<Label fx:id="ErrorStr" layoutX="197.0" layoutY="532.0" text="Seleziona una riga prima per eliminare o cancellare la relativa Strumentazione">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</Label>
+					</children>
+				</AnchorPane>
+			</content>
+		</Tab>
+		<Tab text="Scheda">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Button fx:id="Logout" layoutX="488.0" layoutY="474.0" mnemonicParsing="false" onAction="#Logout" prefHeight="31.0" prefWidth="92.0" text="Logout" />
-                  <ImageView fx:id="logo" fitHeight="150.0" fitWidth="325.0" layoutX="239.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label alignment="CENTER" layoutX="175.0" layoutY="165.0" prefHeight="251.0" prefWidth="450.0" text="Benvenuto nel nostro Sistema di Gestione Anagrafica Aziendale.&#10;Adesso potrai compilare le schede descrittive richieste inserendo le informazioni circa i dipendenti, gli spazi e la strumentazione a disposizione della tua azienda.&#10;Inoltre avendo effettuato l'accesso come Amministratore potrai aggiungere,modificare o cancellare le informazioni conenute nell'archivio.&#10;&#10;&#10;                                      BUON LAVORO.&#10;" textAlignment="JUSTIFY" textOverrun="CLIP" wrapText="true" />
-                  <Button fx:id="exit_btn" layoutX="607.0" layoutY="474.0" mnemonicParsing="false" onAction="#exit" prefHeight="31.0" prefWidth="92.0" text="Esci" />
-               </children>
-            </AnchorPane>
-         </content>
-      </Tab>
-      <Tab fx:id="dipendente" text="Dipendenti">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Button fx:id="LogoutRicerca" layoutX="722.0" layoutY="562.0" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="90.0" text="Logout" />
-                  <Button fx:id="exit_btnRicerca" layoutX="852.0" layoutY="562.0" mnemonicParsing="false" onAction="#exit" prefHeight="30.0" prefWidth="90.0" text="Esci" />
-                  <TableView fx:id="dipendenti_table" layoutX="35.0" layoutY="205.0" prefHeight="325.0" prefWidth="803.0">
-                     <columns>
-                        <TableColumn fx:id="COLnome" prefWidth="75.0" text="Nome" />
-                        <TableColumn fx:id="COLcognome" prefWidth="75.0" text="Cognome" />
-                        <TableColumn fx:id="COLsesso" prefWidth="46.0" text="Sesso" />
-                        <TableColumn fx:id="COLdata" prefWidth="112.0" text="Data di nascita" />
-                        <TableColumn fx:id="COLcodfis" prefWidth="93.0" text="CodiceFiscale" />
-                        <TableColumn fx:id="COLmail" prefWidth="88.0" text="Mail" />
-                        <TableColumn fx:id="COLtel" prefWidth="82.0" text="Telefono" />
-                        <TableColumn fx:id="COLdomicilio" prefWidth="82.0" text="Domicilio" />
-                        <TableColumn fx:id="COLmansione" minWidth="2.0" prefWidth="76.0" text="Mansione" />
-                        <TableColumn fx:id="COLsede" prefWidth="73.0" text="Sede" />
-                     </columns>
-                  </TableView>
-                  <Label layoutX="464.0" layoutY="1.0" prefHeight="21.0" prefWidth="67.0" text="Ricerca">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="35.0" layoutY="53.0" text="Nome" />
-                  <Label layoutX="38.0" layoutY="108.0" text="Cognome" />
-                  <TextField fx:id="nome" layoutX="128.0" layoutY="48.0" />
-                  <TextField fx:id="cognome" layoutX="128.0" layoutY="103.0" />
-                  <Label layoutX="435.0" layoutY="53.0" text="SedeAppartenenza" />
-                  <Label layoutX="465.0" layoutY="109.0" text="Mansione" />
-                  <TextField fx:id="sede" layoutX="587.0" layoutY="48.0" />
-                  <TextField fx:id="mansione" layoutX="587.0" layoutY="104.0" />
-                  <Button fx:id="Cerca" layoutX="852.0" layoutY="48.0" mnemonicParsing="false" onAction="#Ricerca" prefHeight="30.0" prefWidth="90.0" text="Cerca" />
-                  <Button fx:id="Mostratutti" layoutX="836.0" layoutY="104.0" mnemonicParsing="false" onAction="#Mostratutti" prefHeight="31.0" prefWidth="123.0" text="Mostra tutti" />
-                  <Button fx:id="InserisciDip" layoutX="58.0" layoutY="562.0" mnemonicParsing="false" onAction="#InserisciDip" prefHeight="31.0" prefWidth="155.0" text="Inserisci Dipendente" visible="false" />
-                  <Button layoutX="843.0" layoutY="268.0" mnemonicParsing="false" onAction="#AddDip" text="Aggiungi a scheda" />
-                  <Button layoutX="882.0" layoutY="331.0" mnemonicParsing="false" onAction="#ModDip" text="Modifica" />
-                  <Button layoutX="887.0" layoutY="392.0" mnemonicParsing="false" onAction="#DelDip" text="Elimina" />
-                  <Label fx:id="ErrorDip" layoutX="208.0" layoutY="535.0" text="Seleziona una riga prima per eliminare o cancellare il relativo Dipendente">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-               </children></AnchorPane>
-         </content>
-      </Tab>
-      <Tab text="Spazi">
-         <content>
-                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0">
+            <ScrollPane fitToWidth="true" prefHeight="1400.0" prefWidth="1000.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1400.0" prefWidth="1000.0">
                      <children>
-                        <TableView fx:id="spazi_table" layoutX="58.0" layoutY="188.0" prefHeight="325.0" prefWidth="754.0">
-                           <columns>
-                              <TableColumn fx:id="COLnomeSpazi" prefWidth="124.0" text="Nome" />
-                              <TableColumn fx:id="COLcittaSpazi" prefWidth="156.0" text="Città" />
-                              <TableColumn fx:id="COLubicazioneSpazi" prefWidth="135.0" text="Ubicazione" />
-                              <TableColumn fx:id="COLcaratteristicheSpazi" prefWidth="338.0" text="Caratteristiche Descrittive" />
-                           </columns>
-                        </TableView>
-                        <Button fx:id="LogoutSpazi" layoutX="722.0" layoutY="562.0" mnemonicParsing="false" onAction="#LogoutSpazi" prefHeight="30.0" prefWidth="90.0" text="Logout" />
-                        <Button fx:id="exit_btnSpazi" layoutX="852.0" layoutY="562.0" mnemonicParsing="false" onAction="#exitSpazi" prefHeight="30.0" prefWidth="90.0" text="Esci" />
-                        <Label layoutX="464.0" layoutY="1.0" prefHeight="21.0" prefWidth="67.0" text="Ricerca">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="55.0" layoutY="73.0" text="Nome" />
-                        <TextField fx:id="nomeSpazi" layoutX="156.0" layoutY="68.0" />
-                        <Label layoutX="515.0" layoutY="73.0" text="Sede" />
-                        <TextField fx:id="sedeSpazi" layoutX="615.0" layoutY="68.0" />
-                        <Button fx:id="CercaSpazi" layoutX="859.0" layoutY="68.0" mnemonicParsing="false" onAction="#RicercaSpazi" prefHeight="30.0" prefWidth="90.0" text="Cerca" />
-                        <Button fx:id="MostratuttiSpazi" layoutX="846.0" layoutY="114.0" mnemonicParsing="false" onAction="#MostratuttiSpazi" prefHeight="31.0" prefWidth="123.0" text="Mostra tutti" />
-                  <Button fx:id="InserisciSpazi" layoutX="58.0" layoutY="562.0" mnemonicParsing="false" onAction="#InserisciSpazi" prefHeight="31.0" prefWidth="155.0" text="Inserisci Spazio" visible="false" />
-                  <Button layoutX="874.0" layoutY="392.0" mnemonicParsing="false" onAction="#DelSpazi" text="Elimina" />
-                  <Button layoutX="869.0" layoutY="328.0" mnemonicParsing="false" onAction="#ModSpazi" text="Modifica" />
-                  <Button layoutX="836.0" layoutY="268.0" mnemonicParsing="false" onAction="#AddSpazi" text="Aggiungi a scheda" />
-                  <Label fx:id="ErrorSpazi" layoutX="226.0" layoutY="530.0" text="Seleziona una riga prima per eliminare o cancellare il relativo Spazio">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
+                        <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutY="39.0" prefHeight="47.0" prefWidth="1000.0" text="La seguente scheda descrittiva mostrerà le informazioni circa l'anagrafica aziendale." />
+                        <TextArea fx:id="txtdipendenti" editable="false" layoutY="86.0" prefHeight="200.0" prefWidth="850.0" text="Elenco Dipendenti :&#10;" />
+                        <TextArea fx:id="txtspazi" editable="false" layoutY="286.0" prefHeight="200.0" prefWidth="850.0" text="Elenco Spazi:&#10;" />
+                        <TextArea fx:id="txtstr" editable="false" layoutY="486.0" prefHeight="200.0" prefWidth="850.0" text="Elenco Strumentazione:&#10;" />
+                        <Label fx:id="DataOra" layoutY="4.0" prefHeight="21.0" prefWidth="1000.0" />
+                        <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutY="700.0" prefHeight="47.0" prefWidth="1000.0" text="Testo conclusivo" />
+                        <Button fx:id="partistatiche" layoutX="784.0" layoutY="10.0" mnemonicParsing="false" onAction="#modstatiche" prefHeight="31.0" prefWidth="184.0" text="Modifica Parti statiche" />
+                        <Button layoutX="882.0" layoutY="371.0" mnemonicParsing="false" onAction="#Stampa" text="Stampa" />
+                        <Button layoutX="890.0" layoutY="299.0" mnemonicParsing="false" onAction="#Salva" text="Salva" />
+                        <Button layoutX="784.0" layoutY="47.0" mnemonicParsing="false" onAction="#moddinamiche" text="Modifica parti dinamiche" />
                      </children>
                   </AnchorPane>
+              </content>
+            </ScrollPane>
          </content>
-      </Tab>
-      <Tab text="Strumentazione">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Button fx:id="InserisciStr" layoutX="67.0" layoutY="562.0" mnemonicParsing="false" onAction="#InserisciStr" prefHeight="31.0" prefWidth="188.0" text="Inserisci Strumentazione" visible="false" />
-                  <TableView fx:id="strumenti_table" layoutX="35.0" layoutY="186.0" prefHeight="325.0" prefWidth="790.0">
-                     <columns>
-                        <TableColumn fx:id="COLnomeStr" prefWidth="104.0" text="Nome" />
-                        <TableColumn fx:id="COLmodelloStr" prefWidth="94.0" text="Modello" />
-                        <TableColumn fx:id="COLtipoStr" prefWidth="94.0" text="Tipo" />
-                        <TableColumn fx:id="COLannoStr" prefWidth="116.0" text="AnnoAcquisto" />
-                        <TableColumn fx:id="COLpropietarioStr" prefWidth="104.0" text="Propietario" />
-                        <TableColumn fx:id="COLubicazioneStr" prefWidth="104.0" text="Ubicazione" />
-                        <TableColumn fx:id="COLcaratteristicheStr" prefWidth="172.0" text="Caratteristiche Descrittive" />
-                     </columns>
-                  </TableView>
-                  <Button fx:id="LogoutStr" layoutX="722.0" layoutY="562.0" mnemonicParsing="false" onAction="#LogoutSpazi" prefHeight="30.0" prefWidth="90.0" text="Logout" />
-                  <Button fx:id="EsciStr" layoutX="852.0" layoutY="562.0" mnemonicParsing="false" onAction="#exitSpazi" prefHeight="30.0" prefWidth="90.0" text="Esci" />
-                  <Label layoutX="464.0" layoutY="1.0" prefHeight="21.0" prefWidth="67.0" text="Ricerca">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="mostratuttistr" layoutX="834.0" layoutY="105.0" mnemonicParsing="false" onAction="#MostratuttiStr" text="Mostratutti" />
-                  <Button layoutX="852.0" layoutY="48.0" mnemonicParsing="false" onAction="#CercaStr" text="Cerca" />
-                  <Label layoutX="35.0" layoutY="53.0" text="Nome" />
-                  <Label layoutX="20.0" layoutY="110.0" text="AnnoAcquisto" />
-                  <Label layoutX="465.0" layoutY="53.0" text="Prorietario" />
-                  <Label layoutX="461.0" layoutY="110.0" text="Ubicazione" />
-                  <TextField fx:id="nomeStr" layoutX="128.0" layoutY="48.0" />
-                  <TextField fx:id="AAStr" layoutX="128.0" layoutY="103.0" />
-                  <TextField fx:id="proprietarioStr" layoutX="587.0" layoutY="48.0" />
-                  <TextField fx:id="ubicazioneStr" layoutX="587.0" layoutY="103.0" />
-                  <Button layoutX="882.0" layoutY="393.0" mnemonicParsing="false" onAction="#DelStrum" text="Elimina" />
-                  <Button layoutX="877.0" layoutY="331.0" mnemonicParsing="false" onAction="#ModStrum" text="Modifica" />
-                  <Button layoutX="844.0" layoutY="268.0" mnemonicParsing="false" onAction="#AddStru" text="Aggiungi a scheda" />
-                  <Label fx:id="ErrorStr" layoutX="197.0" layoutY="532.0" text="Seleziona una riga prima per eliminare o cancellare la relativa Strumentazione">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-               </children></AnchorPane>
-        </content>
-      </Tab>
-      <Tab text="Scheda">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-        </content>
-      </Tab>
-   </tabs>
+		</Tab>
+	</tabs>
 </TabPane>

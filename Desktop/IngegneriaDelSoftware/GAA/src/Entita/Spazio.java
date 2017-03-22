@@ -6,6 +6,11 @@ import java.util.List;
 import integration.SpazioDAO;
 
 public class Spazio {
+	@Override
+	public String toString() {
+		return nome+" ,"+citta+" ," + " ,"+ubicazione+" ," +descrizione;
+	}
+
 	private String nome;
 	private String citta;
 	private String ubicazione;

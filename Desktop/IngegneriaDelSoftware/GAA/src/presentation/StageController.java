@@ -14,6 +14,8 @@ public abstract class StageController implements StageIF {
 	private static Dipendente dip = new Dipendente();
 	private static Spazio spazio=new Spazio();
 	private static Strumento str=new Strumento();
+	private static String Permessi="";
+
 	
 
 	private final String CARTELLA_CONTROLLER = "controller/fxmlclass/";
@@ -69,5 +71,12 @@ public abstract class StageController implements StageIF {
 
 	public static void setStr(Strumento str) {
 		StageController.str = str;
+	}
+	public static String getPermessi() {
+		return Permessi;
+	}
+
+	public static void setPermessi(String permessi) {
+		Permessi = permessi;
 	}
 }

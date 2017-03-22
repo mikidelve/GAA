@@ -4,6 +4,7 @@ package presentation.controller;
 import java.sql.SQLException;
 
 import Entita.UtenteBase;
+import integration.SchedaDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -33,6 +34,7 @@ public class LoginController extends StageController {
 	private TextField user;
 	@FXML
 	private Label error;
+	SchedaDAO schedaDAO=new SchedaDAO();
 
 	UtenteBase ub = new UtenteBase();
 
@@ -45,13 +47,17 @@ public class LoginController extends StageController {
 	void login(ActionEvent event) throws SQLException {
 		if (ub.checkCredenzialiClienti(user.getText(), pass.getText()).compareToIgnoreCase("B") == 0) {
 			this.closeStage();
+			super.setPermessi("B");
 			MainController.getIstance().dispatchrequest("finestrautentebase");
 		} else if (ub.checkCredenzialiClienti(user.getText(), pass.getText()).compareToIgnoreCase("A") == 0) {
 			this.closeStage();
+			super.setPermessi("A");
 			MainController.getIstance().dispatchrequest("finestraamministratore");
-		} else
+		} else{
 			error.setText("La combinazione Username/Password e' errata");
 		pass.setText("");
+		}
+		schedaDAO.NewTable();
 	}
 
 	@FXML

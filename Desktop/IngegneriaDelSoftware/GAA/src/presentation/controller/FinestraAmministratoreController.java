@@ -5,9 +5,11 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import Entita.Dipendente;
+import Entita.Scheda;
 import Entita.Spazio;
 import Entita.Strumento;
 import integration.DipendenteDAO;
+import integration.SchedaDAO;
 import integration.SpazioDAO;
 import integration.StrumentoDAO;
 import javafx.collections.FXCollections;
@@ -18,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
@@ -154,6 +157,31 @@ public class FinestraAmministratoreController extends StageController {
 	private Button InserisciSpazi;
 	@FXML
 	private Button InserisciStr;
+	@FXML
+	private Button ModDipendente;
+	@FXML
+	private Button DelDipendente;
+	@FXML
+	private Button ModSpazio;
+	@FXML
+	private Button DelSpazio;
+	@FXML
+	private Button ModStr;
+	@FXML
+	private Button DelStr;
+	// TAB SCHEDA
+	@FXML
+	private TextArea txtstr;
+	@FXML
+	private Label DataOra;
+	@FXML
+	private Button partistatiche;
+	@FXML
+	private TextArea txtdipendenti;
+	@FXML
+	private TextArea txtspazi;
+	@FXML
+	private Button partidinamiche;
 
 	// ObservableList<String> categorie;
 	ObservableList<String> sessi;
@@ -164,10 +192,19 @@ public class FinestraAmministratoreController extends StageController {
 	DipendenteDAO dipendenteDAO = new DipendenteDAO();
 	SpazioDAO spazioDAO = new SpazioDAO();
 	StrumentoDAO strumentoDAO = new StrumentoDAO();
+	SchedaDAO schedaDAO = new SchedaDAO();
 	public static boolean flagInserimento;
 
 	@FXML
 	public void initialize() throws SQLException {
+		if (super.getPermessi().compareToIgnoreCase("B") == 0) {
+			ModDipendente.setVisible(false);
+			DelDipendente.setVisible(false);
+			ModSpazio.setVisible(false);
+			DelSpazio.setVisible(false);
+			ModStr.setVisible(false);
+			DelStr.setVisible(false);
+		}
 		dipendenti = FXCollections.observableArrayList();
 		spazi = FXCollections.observableArrayList();
 		strumenti = FXCollections.observableArrayList();
@@ -472,18 +509,25 @@ public class FinestraAmministratoreController extends StageController {
 	}
 
 	@FXML
-	void AddStru(ActionEvent event) {
-
+	void AddStru(ActionEvent event) throws SQLException {
+		Strumento str = strumenti_table.getSelectionModel().getSelectedItem();
+		Scheda scheda = new Scheda(str.getNome(), str.toString(), "Strumentazione");
+		schedaDAO.create(scheda);
 	}
 
 	@FXML
-	void AddSpazi(ActionEvent event) {
-
+	void AddSpazi(ActionEvent event) throws SQLException {
+		Spazio spazio = spazi_table.getSelectionModel().getSelectedItem();
+		Scheda scheda = new Scheda(spazio.getNome(), spazio.toString(), "Spazio");
+		schedaDAO.create(scheda);
 	}
 
 	@FXML
-	void AddDip(ActionEvent event) {
-
+	void AddDip(ActionEvent event) throws SQLException {
+		Dipendente dip = dipendenti_table.getSelectionModel().getSelectedItem();
+		Scheda scheda = new Scheda(dip.getCodiceFiscale(), dip.toString(), "Dipendente");
+		schedaDAO.create(scheda);
+		
 	}
 
 	@FXML
@@ -540,26 +584,25 @@ public class FinestraAmministratoreController extends StageController {
 
 	@FXML
 	void ModSpazi(ActionEvent event) {
-			Spazio spazio = spazi_table.getSelectionModel().getSelectedItem();
-			if(spazi_table.getSelectionModel().getSelectedItem()==null){
-				ErrorSpazi.setTextFill(Color.valueOf("#ff0505"));
-			}else{
+		Spazio spazio = spazi_table.getSelectionModel().getSelectedItem();
+		if (spazi_table.getSelectionModel().getSelectedItem() == null) {
+			ErrorSpazi.setTextFill(Color.valueOf("#ff0505"));
+		} else {
 			super.setSpazio(spazio);
 			MainController.getIstance().dispatchrequest("Modificaspazio");
-			}
+		}
 	}
 
 	@FXML
 	void ModDip(ActionEvent event) {
-			Dipendente dip = dipendenti_table.getSelectionModel().getSelectedItem();
-			if(dipendenti_table.getSelectionModel().getSelectedItem()==null){
-				ErrorDip.setTextFill(Color.valueOf("#ff0505"));
-			}else{
-				super.setDip(dip);
-				MainController.getIstance().dispatchrequest("ModificaDipendente");
-			}
-		} 
-	
+		Dipendente dip = dipendenti_table.getSelectionModel().getSelectedItem();
+		if (dipendenti_table.getSelectionModel().getSelectedItem() == null) {
+			ErrorDip.setTextFill(Color.valueOf("#ff0505"));
+		} else {
+			super.setDip(dip);
+			MainController.getIstance().dispatchrequest("ModificaDipendente");
+		}
+	}
 
 	@FXML
 	void DelDip(ActionEvent event) throws SQLException {
@@ -579,6 +622,30 @@ public class FinestraAmministratoreController extends StageController {
 		} catch (NullPointerException e) {
 			ErrorDip.setTextFill(Color.valueOf("#ff0505"));
 		}
+
+	}
+
+	/**
+	 * TAB SCHEDA
+	 */
+
+	@FXML
+	void modstatiche(ActionEvent event) {
+
+	}
+
+	@FXML
+	void Stampa(ActionEvent event) {
+
+	}
+
+	@FXML
+	void Salva(ActionEvent event) {
+
+	}
+
+	@FXML
+	void moddinamiche(ActionEvent event) {
 
 	}
 

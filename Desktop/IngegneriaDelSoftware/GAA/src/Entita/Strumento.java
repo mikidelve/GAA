@@ -6,6 +6,12 @@ import java.util.List;
 import integration.StrumentoDAO;
 
 public class Strumento {
+	@Override
+	public String toString() {
+		return Nome + ", " + Modello + ", " + Tipo + ", " + AnnoAcquisto
+				+ ", " + Proprietario + ", " + Ubicazione;
+	}
+
 	private String Nome;
 	private String Modello;
 	private String Tipo;

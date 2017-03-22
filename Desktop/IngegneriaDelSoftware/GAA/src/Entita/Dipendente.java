@@ -6,6 +6,14 @@ import java.util.List;
 import integration.DipendenteDAO;
 
 public class Dipendente {
+	@Override
+	public String toString() {
+		return  Nome + " " + Cognome + ", " + sesso
+				+ ", " + Datadinascita + ", " + CodiceFiscale + ", " + mail
+				+ ", " + Domicilio + ", " + Mansione + ", " + telefono
+				+ ", " + SedeAppartenenza;
+	}
+
 	private String username;
 	private String Nome;
 	private String Cognome;
