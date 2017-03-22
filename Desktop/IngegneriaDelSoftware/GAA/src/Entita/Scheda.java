@@ -11,6 +11,10 @@ public Scheda(String chiaveelemento, String descr, String tipologia) {
 	this.chiaveelemento = chiaveelemento;
 }
 
+public Scheda() {
+	// TODO Auto-generated constructor stub
+}
+
 public String getChiaveelemento() {
 	return chiaveelemento;
 }

@@ -66,6 +66,11 @@
 								<Font size="18.0" />
 							</font>
 						</Label>
+                  <Label fx:id="ErrorDoppiodip" layoutX="210.0" layoutY="595.0" prefHeight="27.0" prefWidth="511.0" text="Non puoi aggiungere due volte lo stesso elemento alla scheda" textFill="RED" visible="false">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
 					</children>
 				</AnchorPane>
 			</content>
@@ -104,6 +109,11 @@
 								<Font size="18.0" />
 							</font>
 						</Label>
+                  <Label fx:id="ErrorDoppiospazio" layoutX="213.0" layoutY="595.0" prefHeight="27.0" prefWidth="502.0" text="Non puoi aggiungere due volte lo stesso elemento alla scheda" textFill="RED" visible="false">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
 					</children>
 				</AnchorPane>
 			</content>
@@ -149,26 +159,29 @@
 								<Font size="18.0" />
 							</font>
 						</Label>
+                  <Label fx:id="ErrorDoppiostr" layoutX="212.0" layoutY="595.0" prefHeight="27.0" prefWidth="507.0" text="Non puoi aggiungere due volte lo stesso elemento alla scheda" textFill="RED" visible="false">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
 					</children>
 				</AnchorPane>
 			</content>
 		</Tab>
-		<Tab text="Scheda">
+		<Tab fx:id="tabScheda" text="Scheda">
          <content>
             <ScrollPane fitToWidth="true" prefHeight="1400.0" prefWidth="1000.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1400.0" prefWidth="1000.0">
                      <children>
-                        <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutY="39.0" prefHeight="47.0" prefWidth="1000.0" text="La seguente scheda descrittiva mostrerà le informazioni circa l'anagrafica aziendale." />
-                        <TextArea fx:id="txtdipendenti" editable="false" layoutY="86.0" prefHeight="200.0" prefWidth="850.0" text="Elenco Dipendenti :&#10;" />
-                        <TextArea fx:id="txtspazi" editable="false" layoutY="286.0" prefHeight="200.0" prefWidth="850.0" text="Elenco Spazi:&#10;" />
-                        <TextArea fx:id="txtstr" editable="false" layoutY="486.0" prefHeight="200.0" prefWidth="850.0" text="Elenco Strumentazione:&#10;" />
+                        <TextArea fx:id="txtscheda" editable="false" layoutY="86.0" prefHeight="460.0" prefWidth="778.0" />
                         <Label fx:id="DataOra" layoutY="4.0" prefHeight="21.0" prefWidth="1000.0" />
-                        <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutY="700.0" prefHeight="47.0" prefWidth="1000.0" text="Testo conclusivo" />
                         <Button fx:id="partistatiche" layoutX="784.0" layoutY="10.0" mnemonicParsing="false" onAction="#modstatiche" prefHeight="31.0" prefWidth="184.0" text="Modifica Parti statiche" />
-                        <Button layoutX="882.0" layoutY="371.0" mnemonicParsing="false" onAction="#Stampa" text="Stampa" />
-                        <Button layoutX="890.0" layoutY="299.0" mnemonicParsing="false" onAction="#Salva" text="Salva" />
+                        <Button layoutX="847.0" layoutY="371.0" mnemonicParsing="false" onAction="#Stampa" text="Stampa" />
+                        <Button layoutX="855.0" layoutY="293.0" mnemonicParsing="false" onAction="#Salva" text="Salva" />
                         <Button layoutX="784.0" layoutY="47.0" mnemonicParsing="false" onAction="#moddinamiche" text="Modifica parti dinamiche" />
+                        <TextArea fx:id="txtend" editable="false" layoutY="545.0" prefHeight="117.0" prefWidth="778.0" text="Testo conclusivo&#10;" />
+                        <TextArea fx:id="txtintro" editable="false" layoutY="35.0" prefHeight="53.0" prefWidth="778.0" text="La seguente scheda descrittiva mostrerà le informazioni circa l'anagrafica aziendale." />
                      </children>
                   </AnchorPane>
               </content>
