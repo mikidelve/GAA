@@ -11,7 +11,7 @@ import Entita.Spazio;
 import Entita.Strumento;
 
 public class StrumentoDAO extends DAOAB<Strumento> {
-	private static final String INSERT_QUERY = "INSERT INTO Strumentazione VALUES(?,?,?,?,?,?)";
+	private static final String INSERT_QUERY = "INSERT INTO Strumentazione (strumentazione.Nome,strumentazione.Modello,strumentazione.Tipo,strumentazione.AnnoAcquisto,strumentazione.Proprietario,strumentazione.Ubicazione) VALUES(?,?,?,?,?,?)";
 	private static final String GET_ALL = "SELECT * FROM Strumentazione";
 	private static final String DELETE = "DELETE FROM Strumentazione WHERE Nome=?";
 
