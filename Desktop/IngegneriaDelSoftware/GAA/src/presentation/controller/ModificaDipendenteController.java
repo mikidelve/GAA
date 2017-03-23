@@ -48,6 +48,7 @@ public class ModificaDipendenteController extends StageController{
 	@FXML
 	private TextField nome;
 
+	@SuppressWarnings("rawtypes")
 	@FXML
 	private ChoiceBox sessobox;
 
@@ -68,11 +69,13 @@ public class ModificaDipendenteController extends StageController{
 	@FXML
 	private Label successo;
 	
+	@SuppressWarnings("rawtypes")
 	static ObservableList sessi;
 	
 	String oldcodfis;
 	
 	DipendenteDAO dao=new DipendenteDAO();
+	@SuppressWarnings("unchecked")
 	@FXML
 	public void initialize() throws SQLException {
 		sessi = FXCollections.observableArrayList();

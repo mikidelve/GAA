@@ -2,7 +2,6 @@ package presentation.controller;
 
 import java.sql.SQLException;
 
-import Entita.Spazio;
 import Entita.Strumento;
 import integration.StrumentoDAO;
 import javafx.event.ActionEvent;

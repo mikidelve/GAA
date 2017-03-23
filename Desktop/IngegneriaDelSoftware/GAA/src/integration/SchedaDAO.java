@@ -7,9 +7,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import Entita.Dipendente;
 import Entita.Scheda;
-import Entita.Spazio;
 
 public class SchedaDAO extends DAOAB<Scheda> {
 	private static final String DROP_TABLE = "DROP TABLE IF EXISTS scheda";

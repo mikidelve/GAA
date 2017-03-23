@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import Entita.Dipendente;
 import Entita.Spazio;
 
 public class SpazioDAO extends DAOAB<Spazio> {

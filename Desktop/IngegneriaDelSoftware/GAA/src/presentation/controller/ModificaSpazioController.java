@@ -2,10 +2,8 @@ package presentation.controller;
 
 import java.sql.SQLException;
 
-import Entita.Dipendente;
 import Entita.Spazio;
 import integration.SpazioDAO;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import presentation.MainController;
 import presentation.StageController;
-import presentation.controller.utility.FormatoData;
 
 public class ModificaSpazioController extends StageController{
 	   @FXML

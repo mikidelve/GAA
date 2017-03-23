@@ -8,17 +8,11 @@ public class MySqlDaoFactory {
   
   private static MySqlDaoFactory dao;
   private static String connessione;
-  private static String password;
-  private static String username;
   private static Connection con;
   
   private MySqlDaoFactory(){
     connessione="jdbc:mysql://localhost/gestoreanagrafica";
-                //connessione="jdbc:mysql://athena.pixelstyle.it/giava_fm";
-    //username="giava_fm";
-    //password="arsg&ZWfwXPHw7S@IKE";
-     username="root";
-     password="root";
+
   }
 
   public static MySqlDaoFactory getIstance() {
@@ -29,7 +23,7 @@ public class MySqlDaoFactory {
   }
   public static Connection connetti() throws SQLException {
     getIstance();
-    con = DriverManager.getConnection(connessione, username, password);
+    con = DriverManager.getConnection(connessione, "root", "root");
     return con;
   }
 }

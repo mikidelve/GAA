@@ -67,8 +67,10 @@ public class InserisciDipendenteController extends StageController {
 	@FXML
 	private Label successo;
 	
+	@SuppressWarnings("rawtypes")
 	static ObservableList sessi;
 
+	@SuppressWarnings("unchecked")
 	@FXML
 	public void initialize() throws SQLException {
 		sessi = FXCollections.observableArrayList();

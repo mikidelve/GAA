@@ -18,6 +18,7 @@ public class PDFschedaGenerator {
 	static PDFschedaGenerator pdf = new PDFschedaGenerator();
 	public static final String DEST = "GeneratedPDF/SchedaDescrittiva";
 
+	@SuppressWarnings("static-access")
 	public void createPdf(int numPDF, String data, String testointro, String contenuto, String testofinale)
 			throws IOException, DocumentException {
 		String dest = DEST + numPDF + ".pdf";

@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import Entita.Dipendente;
 import Entita.UtenteBase;
 
 public class UtenteDAO extends DAOAB<UtenteBase> {

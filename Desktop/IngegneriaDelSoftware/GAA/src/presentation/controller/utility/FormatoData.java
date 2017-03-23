@@ -1,6 +1,5 @@
 package presentation.controller.utility;
 
-import presentation.MainController;
 
 public class FormatoData {
 	static FormatoData formatodata = new FormatoData();

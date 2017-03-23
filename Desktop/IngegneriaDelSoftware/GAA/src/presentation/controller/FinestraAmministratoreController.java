@@ -3,7 +3,6 @@ package presentation.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -41,6 +40,8 @@ import presentation.StageController;
 import presentation.controller.utility.Coppia;
 import presentation.controller.utility.ImageGetter;
 import presentation.controller.utility.PDFschedaGenerator;
+
+@SuppressWarnings("rawtypes")
 
 public class FinestraAmministratoreController extends StageController {
 	@FXML
@@ -206,9 +207,9 @@ public class FinestraAmministratoreController extends StageController {
 
 	// ObservableList<String> categorie;
 	ObservableList<String> sessi;
-	static ObservableList<Dipendente> dipendenti = FXCollections.observableArrayList();
-	static ObservableList<Spazio> spazi = FXCollections.observableArrayList();
-	static ObservableList<Strumento> strumenti = FXCollections.observableArrayList();
+	ObservableList<Dipendente> dipendenti = FXCollections.observableArrayList();
+	ObservableList<Spazio> spazi = FXCollections.observableArrayList();
+	ObservableList<Strumento> strumenti = FXCollections.observableArrayList();
 
 	DipendenteDAO dipendenteDAO = new DipendenteDAO();
 	SpazioDAO spazioDAO = new SpazioDAO();
@@ -309,6 +310,7 @@ public class FinestraAmministratoreController extends StageController {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	private void setDatiDipendenti() {
 		dipendenti_table.setItems(dipendenti);
 		this.COLnome.setCellValueFactory(new PropertyValueFactory<Dipendente, String>("Nome"));
@@ -334,6 +336,7 @@ public class FinestraAmministratoreController extends StageController {
 		closeStage();
 	}
 
+	@SuppressWarnings("static-access")
 	@Override
 	public void closeStage() {
 		this.flagInserimento = false;
@@ -357,6 +360,7 @@ public class FinestraAmministratoreController extends StageController {
 		this.exit(event);
 	}
 
+	@SuppressWarnings("static-access")
 	public void show(String Livellopermesso) {
 		super.setController("FinestraAmministratore");
 		super.setTitle("Gestore Anagrafica Aziendale - Amministratore");
@@ -493,6 +497,7 @@ public class FinestraAmministratoreController extends StageController {
 		mostratuttistr.setVisible(false);
 	}
 
+	@SuppressWarnings("unchecked")
 	private void setDatiStrumenti() {
 		this.strumenti_table.setItems(strumenti);
 		this.COLnomeStr.setCellValueFactory(new PropertyValueFactory<Strumento, String>("Nome"));

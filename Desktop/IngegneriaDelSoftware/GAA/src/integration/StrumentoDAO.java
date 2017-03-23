@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import Entita.Spazio;
 import Entita.Strumento;
 
 public class StrumentoDAO extends DAOAB<Strumento> {

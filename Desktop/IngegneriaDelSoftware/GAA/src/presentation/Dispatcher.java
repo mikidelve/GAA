@@ -1,8 +1,6 @@
 package presentation;
 
-import Entita.Dipendente;
-import Entita.Spazio;
-import Entita.Strumento;
+
 import presentation.controller.*;
 
 public class Dispatcher {
