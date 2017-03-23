@@ -5,7 +5,11 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
-
+/**
+ * Prima classe avviata che mostra la schermata di login
+ * @author Giava
+ *
+ */
 public class Main extends Application {
 	Stage primary;
 	AnchorPane root;

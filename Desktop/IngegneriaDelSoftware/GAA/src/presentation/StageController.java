@@ -10,14 +10,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Implementa i metodi base dei diversi controller e memorizza alcune
+ * informazioni che saranno passate tra i diversi controller
+ * 
+ * @author Giava
+ *
+ */
 public abstract class StageController implements StageIF {
 	private static Dipendente dip = new Dipendente();
-	private static Spazio spazio=new Spazio();
-	private static Strumento str=new Strumento();
-	private static String Permessi="";
+	private static Spazio spazio = new Spazio();
+	private static Strumento str = new Strumento();
+	private static String Permessi = "";
 	private static int numPDF;
-	
-
 
 	private final String CARTELLA_CONTROLLER = "controller/fxmlclass/";
 	private final String ESTENSIONE_CONTROLLER = ".fxml";
@@ -58,6 +63,7 @@ public abstract class StageController implements StageIF {
 	public void setDip(Dipendente dipendente) {
 		dip = dipendente;
 	}
+
 	public static Spazio getSpazio() {
 		return spazio;
 	}
@@ -73,6 +79,7 @@ public abstract class StageController implements StageIF {
 	public static void setStr(Strumento str) {
 		StageController.str = str;
 	}
+
 	public static String getPermessi() {
 		return Permessi;
 	}

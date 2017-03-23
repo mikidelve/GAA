@@ -13,7 +13,11 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-
+/**
+ * Gestisce la creazione e la stampa del pdf
+ * @author Giava
+ *
+ */
 public class PDFschedaGenerator {
 	static PDFschedaGenerator pdf = new PDFschedaGenerator();
 	public static final String DEST = "GeneratedPDF/SchedaDescrittiva";

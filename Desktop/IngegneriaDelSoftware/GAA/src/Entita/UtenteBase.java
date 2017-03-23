@@ -3,7 +3,11 @@ package Entita;
 import java.sql.SQLException;
 
 import integration.UtenteDAO;
-
+/**
+ * Rappresenta l'entità Utente
+ * @author Giava
+ *
+ */
 public class UtenteBase {
 	private String username;
 	private String passowrd;

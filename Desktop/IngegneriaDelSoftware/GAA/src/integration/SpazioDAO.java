@@ -8,7 +8,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import Entita.Spazio;
-
+/**
+ * Classe DAO utilizzata per implementare le operazioni riguardanti gli spazi
+ * @author Giava
+ *
+ */
 public class SpazioDAO extends DAOAB<Spazio> {
 	private static final String INSERT_QUERY = "INSERT INTO spazi VALUES(?,?,?,?)";
 	private static final String GET_ALL = "SELECT * FROM spazi";

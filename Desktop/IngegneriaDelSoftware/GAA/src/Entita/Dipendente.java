@@ -4,7 +4,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 import integration.DipendenteDAO;
-
+/**
+ * Rappresenta l'entità Dipendente
+ * @author Giava
+ *
+ */
 public class Dipendente {
 	@Override
 	public String toString() {

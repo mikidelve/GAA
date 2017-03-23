@@ -2,7 +2,11 @@ package integration;
 
 import java.sql.SQLException;
 import java.util.List;
-
+/**
+ * Classe astratta dao che definisce le operazioni che ciascuna entità dao dovrà implementare
+ * @author Giava
+ *
+ */
 public abstract class DAOAB<Entity> {
 
 	public DAOAB() {

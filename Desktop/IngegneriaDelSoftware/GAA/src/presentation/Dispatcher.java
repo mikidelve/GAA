@@ -2,7 +2,11 @@ package presentation;
 
 
 import presentation.controller.*;
-
+/**
+ * Riceve le richieste dei vari controlli e visualizza la schermata relativa
+ * @author Giava
+ *
+ */
 public class Dispatcher {
 	LoginController login;
 	FinestraAmministratoreController fa;

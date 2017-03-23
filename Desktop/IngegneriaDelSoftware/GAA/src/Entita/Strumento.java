@@ -4,7 +4,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 import integration.StrumentoDAO;
-
+/**
+ * Rappresenta l'entità Strumento
+ * @author Giava
+ *
+ */
 public class Strumento {
 	@Override
 	public String toString() {

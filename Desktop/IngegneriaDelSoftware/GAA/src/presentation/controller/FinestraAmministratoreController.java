@@ -41,169 +41,176 @@ import presentation.controller.utility.Coppia;
 import presentation.controller.utility.ImageGetter;
 import presentation.controller.utility.PDFschedaGenerator;
 
+/**
+ * Gestisce tutta l'interfaccia del sistema, con le diverse tab. Nasconde i
+ * button di inserimento e modifica se l'accesso è effettuato da un utente con
+ * permessi standard
+ * 
+ * @author Giava
+ *
+ */
 @SuppressWarnings("rawtypes")
-
 public class FinestraAmministratoreController extends StageController {
 	@FXML
-	private Label ErrorDip;
+	Label ErrorDip;
 	@FXML
-	private Label ErrorSpazi;
+	Label ErrorSpazi;
 	@FXML
-	private Label ErrorStr;
+	Label ErrorStr;
 	@FXML
-	private Label ErrorDoppiodip;
+	Label ErrorDoppiodip;
 	@FXML
-	private Label ErrorDoppiostr;
+	Label ErrorDoppiostr;
 	@FXML
-	private Label ErrorDoppiospazio;
+	Label ErrorDoppiospazio;
 	@FXML
-	private Button exit_btn;
+	Button exit_btn;
 
 	@FXML
-	private Button Logout;
+	Button Logout;
 
 	@FXML
-	private ImageView logo;
+	ImageView logo;
 
 	// TABELLA RICERCA DIPENDENTI
 
 	@FXML
-	private TableView<Dipendente> dipendenti_table;
+	TableView<Dipendente> dipendenti_table;
 
 	@FXML
-	private TableColumn COLcodfis;
+	TableColumn COLcodfis;
 
 	@FXML
-	private TableColumn COLsede;
+	TableColumn COLsede;
 
 	@FXML
-	private TableColumn COLnome;
+	TableColumn COLnome;
 	@FXML
-	private TableColumn COLdomicilio;
+	TableColumn COLdomicilio;
 	@FXML
-	private TableColumn COLdata;
+	TableColumn COLdata;
 
 	@FXML
-	private TableColumn COLmail;
+	TableColumn COLmail;
 
 	@FXML
-	private TableColumn COLtel;
+	TableColumn COLtel;
 	@FXML
-	private TableColumn COLsesso;
+	TableColumn COLsesso;
 
 	@FXML
-	private TableColumn COLcognome;
+	TableColumn COLcognome;
 	@FXML
-	private TableColumn COLmansione;
+	TableColumn COLmansione;
 	// FINE TABELLA
 	@FXML
-	private TextField mansione;
+	TextField mansione;
 	@FXML
-	private TextField cognome;
+	TextField cognome;
 	@FXML
-	private TextField sede;
+	TextField sede;
 	@FXML
-	private TextField nome;
+	TextField nome;
 	@FXML
-	private Button Cerca;
+	Button Cerca;
 	@FXML
-	private Button Mostratutti;
+	Button Mostratutti;
 	@FXML
-	private Button InserisciSpazio;
+	Button InserisciSpazio;
 	// TABELLA RICERCA SPAZI
 
 	@FXML
-	private TableView<Spazio> spazi_table;
+	TableView<Spazio> spazi_table;
 
 	@FXML
-	private TableColumn COLnomeSpazi;
+	TableColumn COLnomeSpazi;
 
 	@FXML
-	private TableColumn COLubicazioneSpazi;
+	TableColumn COLubicazioneSpazi;
 
 	@FXML
-	private TableColumn COLcittaSpazi;
+	TableColumn COLcittaSpazi;
 	@FXML
-	private TableColumn COLcaratteristicheSpazi;
+	TableColumn COLcaratteristicheSpazi;
 	// FINE TABELLA
 	@FXML
-	private TextField sedeSpazi;
+	TextField sedeSpazi;
 	@FXML
-	private TextField nomeSpazi;
+	TextField nomeSpazi;
 
 	@FXML
-	private Button CercaSpazi;
+	Button CercaSpazi;
 	@FXML
-	private Button MostratuttiSpazi;
+	Button MostratuttiSpazi;
 	// TABELLA RICERCA STRUMENTI
 	@FXML
-	private TableView<Strumento> strumenti_table;
+	TableView<Strumento> strumenti_table;
 	@FXML
-	private TableColumn COLcaratteristicheStr;
+	TableColumn COLcaratteristicheStr;
 	@FXML
-	private TableColumn COLmodelloStr;
+	TableColumn COLmodelloStr;
 	@FXML
-	private TableColumn COLpropietarioStr;
+	TableColumn COLpropietarioStr;
 
 	@FXML
-	private TableColumn COLannoStr;
+	TableColumn COLannoStr;
 
 	@FXML
-	private TextField AAStr;
+	TextField AAStr;
 	@FXML
-	private TableColumn COLnomeStr;
+	TableColumn COLnomeStr;
 	@FXML
-	private TextField nomeStr;
+	TextField nomeStr;
 
 	@FXML
-	private TextField ubicazioneStr;
+	TextField ubicazioneStr;
 	@FXML
-	private TableColumn COLtipoStr;
+	TableColumn COLtipoStr;
 
 	@FXML
-	private TableColumn COLubicazioneStr;
+	TableColumn COLubicazioneStr;
 	@FXML
-	private TextField proprietarioStr;
+	TextField proprietarioStr;
 	@FXML
-	private Button mostratuttistr;
+	Button mostratuttistr;
 
 	// FINE TABELLA STRUMENTI
 
 	@FXML
-	private Button InserisciDip;
+	Button InserisciDip;
 	@FXML
-	private Button InserisciSpazi;
+	Button InserisciSpazi;
 	@FXML
-	private Button InserisciStr;
+	Button InserisciStr;
 	@FXML
-	private Button ModDipendente;
+	Button ModDipendente;
 	@FXML
-	private Button DelDipendente;
+	Button DelDipendente;
 	@FXML
-	private Button ModSpazio;
+	Button ModSpazio;
 	@FXML
-	private Button DelSpazio;
+	Button DelSpazio;
 	@FXML
-	private Button ModStr;
+	Button ModStr;
 	@FXML
-	private Button DelStr;
+	Button DelStr;
 	// TAB SCHEDA
 	@FXML
-	private TextArea txtscheda;
+	TextArea txtscheda;
 	@FXML
-	private Label DataOra;
+	Label DataOra;
 	@FXML
-	private Button partistatiche;
+	Button partistatiche;
 	@FXML
-	private TextArea txtend;
+	TextArea txtend;
 	@FXML
-	private TextArea txtintro;
+	TextArea txtintro;
 	@FXML
-	private Button partidinamiche;
+	Button partidinamiche;
 	@FXML
-	private Tab tabScheda;
+	Tab tabScheda;
 	@FXML
-	private Label savesuc;
+	Label savesuc;
 
 	// ObservableList<String> categorie;
 	ObservableList<String> sessi;

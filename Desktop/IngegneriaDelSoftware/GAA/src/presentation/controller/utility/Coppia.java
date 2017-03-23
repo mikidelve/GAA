@@ -1,5 +1,9 @@
 package presentation.controller.utility;
-
+/**
+ * Record 
+ * @author Giava
+ *
+ */
 public class Coppia {
 String colonna;
 String valore;

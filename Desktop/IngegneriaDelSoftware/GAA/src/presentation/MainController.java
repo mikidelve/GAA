@@ -1,7 +1,11 @@
 package presentation;
 
 
-
+/**
+ * Classe che serve a interfacciarsi con tutte le altre classi e richiamare le diverse schermate 
+ * @author Giava
+ *
+ */
 public class MainController {
 	Dispatcher dispatcher;	
 	static MainController mc = new MainController();

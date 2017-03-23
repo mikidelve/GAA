@@ -4,7 +4,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 import integration.SpazioDAO;
-
+/**
+ * Rappresenta l'entità Spazio
+ * @author Giava
+ *
+ */
 public class Spazio {
 	@Override
 	public String toString() {

@@ -8,7 +8,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import Entita.Strumento;
-
+/**
+ * Classe DAO utilizzata per implementare le operazioni riguardanti gli strumenti
+ * @author Giava
+ *
+ */
 public class StrumentoDAO extends DAOAB<Strumento> {
 	private static final String INSERT_QUERY = "INSERT INTO Strumentazione (strumentazione.Nome,strumentazione.Modello,strumentazione.Tipo,strumentazione.AnnoAcquisto,strumentazione.Proprietario,strumentazione.Ubicazione) VALUES(?,?,?,?,?,?)";
 	private static final String GET_ALL = "SELECT * FROM Strumentazione";

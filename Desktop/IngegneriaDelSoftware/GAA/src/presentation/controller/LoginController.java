@@ -17,7 +17,11 @@ import javafx.stage.Stage;
 import presentation.MainController;
 import presentation.StageController;
 import presentation.controller.utility.ImageGetter;
-
+/**
+ * Controller del login
+ * @author Giava
+ *
+ */
 public class LoginController extends StageController {
 	@FXML
 	private PasswordField pass;

@@ -12,7 +12,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import presentation.MainController;
 import presentation.StageController;
-
+/**
+ * Controller per l'inserimento degli spazi
+ * @author Giava
+ *
+ */
 public class InserisciSpazioController extends StageController {
 	@FXML
 	private Button InserisciSpazio;

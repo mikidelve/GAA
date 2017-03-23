@@ -11,7 +11,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import presentation.MainController;
 import presentation.StageController;
-
+/**
+ * Controller per l'inserimento degli strumenti
+ * @author Giava
+ *
+ */
 public class InserisciStrumentazioneController extends StageController {
 	@FXML
 	private TextField tipo;

@@ -7,7 +7,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 import Entita.UtenteBase;
-
+/**
+ * Classe DAO utilizzata per implementare le operazioni riguardanti gli utenti
+ * @author Giava
+ *
+ */
 public class UtenteDAO extends DAOAB<UtenteBase> {
 	private static final String CHECK_QUERY = "SELECT * FROM utente WHERE Username=? AND Password=?";
 

@@ -8,7 +8,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import Entita.Scheda;
-
+/**
+ * Classe DAO utilizzata per implementare le operazioni riguardanti le schede
+ * @author Giava
+ *
+ */
 public class SchedaDAO extends DAOAB<Scheda> {
 	private static final String DROP_TABLE = "DROP TABLE IF EXISTS scheda";
 	private static final String NEW_TABLE = "CREATE TABLE scheda ("

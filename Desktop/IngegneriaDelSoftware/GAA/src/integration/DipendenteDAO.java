@@ -8,7 +8,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import Entita.Dipendente;
-
+/**
+ * Classe DAO utilizzata per implementare le operazioni riguardanti i dipendenti
+ * @author Giava
+ *
+ */
 public class DipendenteDAO extends DAOAB<Dipendente> {
 	private static final String INSERT_QUERY = "INSERT INTO personale VALUES(?,?,?,?,?,?,?,?,?,?,null)";
 	private static final String GET_ALL = "SELECT * FROM personale";

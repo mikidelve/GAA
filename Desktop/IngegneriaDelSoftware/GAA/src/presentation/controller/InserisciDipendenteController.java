@@ -15,7 +15,11 @@ import javafx.stage.Stage;
 import presentation.MainController;
 import presentation.StageController;
 import presentation.controller.utility.FormatoData;
-
+/**
+ * Controller per l'inserimento dei dipendenti
+ * @author Giava
+ *
+ */
 public class InserisciDipendenteController extends StageController {
 	@FXML
 	private Button InserisciDip;

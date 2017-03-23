@@ -3,7 +3,11 @@ package integration;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+/**
+ * Classe DAO utilizzata per effettuare la connessione al  database
+ * @author Giava
+ *
+ */
 public class MySqlDaoFactory {
   
   private static MySqlDaoFactory dao;

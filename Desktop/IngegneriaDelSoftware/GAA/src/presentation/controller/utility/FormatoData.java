@@ -1,6 +1,10 @@
 package presentation.controller.utility;
 
-
+/**
+ * Controlla il formato della data inserita
+ * @author Giava
+ *
+ */
 public class FormatoData {
 	static FormatoData formatodata = new FormatoData();
 

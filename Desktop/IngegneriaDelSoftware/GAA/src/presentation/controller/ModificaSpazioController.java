@@ -13,7 +13,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import presentation.MainController;
 import presentation.StageController;
-
+/**
+ * Controller per la modifica degli spazi
+ * @author Giava
+ *
+ */
 public class ModificaSpazioController extends StageController{
 	   @FXML
 	    private Button ModificaSpazio;

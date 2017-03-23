@@ -16,7 +16,11 @@ import javafx.stage.Stage;
 import presentation.MainController;
 import presentation.StageController;
 import presentation.controller.utility.FormatoData;
-
+/**
+ * Controller per la modifica dei dipendenti
+ * @author Giava
+ *
+ */
 public class ModificaDipendenteController extends StageController{
 	@FXML
 	private Button ModificaDip;

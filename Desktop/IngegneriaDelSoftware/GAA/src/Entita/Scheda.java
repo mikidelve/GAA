@@ -1,5 +1,9 @@
 package Entita;
-
+/**
+ * Rappresenta l'entità Scheda
+ * @author Giava
+ *
+ */
 public class Scheda {
 private String descr;
 private String tipologia;
