@@ -15,8 +15,9 @@ public abstract class StageController implements StageIF {
 	private static Spazio spazio=new Spazio();
 	private static Strumento str=new Strumento();
 	private static String Permessi="";
-
+	private static int numPDF;
 	
+
 
 	private final String CARTELLA_CONTROLLER = "controller/fxmlclass/";
 	private final String ESTENSIONE_CONTROLLER = ".fxml";
@@ -78,5 +79,13 @@ public abstract class StageController implements StageIF {
 
 	public static void setPermessi(String permessi) {
 		Permessi = permessi;
+	}
+
+	public static int getNumPDF() {
+		return numPDF;
+	}
+
+	public static void setNumPDF(int numPDF) {
+		StageController.numPDF = numPDF;
 	}
 }

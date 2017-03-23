@@ -1,6 +1,7 @@
 
 package presentation.controller;
 
+import java.io.File;
 import java.sql.SQLException;
 
 import Entita.UtenteBase;
@@ -41,6 +42,9 @@ public class LoginController extends StageController {
 	@FXML
 	public void initialize() {
 		logo.setImage(ImageGetter.getLogo());
+		File file2 = new File("GeneratedPDF");
+		String[] lista=file2.list();
+		super.setNumPDF(lista.length +1);
 	}
 
 	@FXML

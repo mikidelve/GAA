@@ -1,10 +1,15 @@
 package presentation.controller;
 
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+
+import com.itextpdf.text.DocumentException;
 
 import Entita.Dipendente;
 import Entita.Scheda;
@@ -35,6 +40,7 @@ import presentation.MainController;
 import presentation.StageController;
 import presentation.controller.utility.Coppia;
 import presentation.controller.utility.ImageGetter;
+import presentation.controller.utility.PDFschedaGenerator;
 
 public class FinestraAmministratoreController extends StageController {
 	@FXML
@@ -161,7 +167,7 @@ public class FinestraAmministratoreController extends StageController {
 	private Button mostratuttistr;
 
 	// FINE TABELLA STRUMENTI
-	
+
 	@FXML
 	private Button InserisciDip;
 	@FXML
@@ -195,6 +201,8 @@ public class FinestraAmministratoreController extends StageController {
 	private Button partidinamiche;
 	@FXML
 	private Tab tabScheda;
+	@FXML
+	private Label savesuc;
 
 	// ObservableList<String> categorie;
 	ObservableList<String> sessi;
@@ -250,8 +258,9 @@ public class FinestraAmministratoreController extends StageController {
 						Iterator<Scheda> it = elementi.iterator();
 						while (it.hasNext()) {
 							Scheda scheda = it.next();
-							if (scheda.getTipologia().compareToIgnoreCase("dipendente")==0) {
-								txtscheda.setText(txtscheda.getText() + scheda.getDescr() + "\n");
+							if (scheda.getTipologia().compareToIgnoreCase("dipendente") == 0) {
+								txtscheda.setText(
+										txtscheda.getText() + "			" + "•  " + scheda.getDescr() + "\n" + "\n");
 							}
 						}
 					}
@@ -260,8 +269,9 @@ public class FinestraAmministratoreController extends StageController {
 						Iterator<Scheda> it = elementi.iterator();
 						while (it.hasNext()) {
 							Scheda scheda = it.next();
-							if (scheda.getTipologia().compareToIgnoreCase("spazio")==0) {
-								txtscheda.setText(txtscheda.getText() + scheda.getDescr() + "\n");
+							if (scheda.getTipologia().compareToIgnoreCase("spazio") == 0) {
+								txtscheda.setText(
+										txtscheda.getText() + "			" + "•  " + scheda.getDescr() + "\n" + "\n");
 							}
 						}
 					}
@@ -270,8 +280,9 @@ public class FinestraAmministratoreController extends StageController {
 						Iterator<Scheda> it = elementi.iterator();
 						while (it.hasNext()) {
 							Scheda scheda = it.next();
-							if (scheda.getTipologia().compareToIgnoreCase("strumentazione")==0) {
-								txtscheda.setText(txtscheda.getText() + scheda.getDescr() + "\n");
+							if (scheda.getTipologia().compareToIgnoreCase("strumentazione") == 0) {
+								txtscheda.setText(
+										txtscheda.getText() + "			" + "•  " + scheda.getDescr() + "\n" + "\n");
 							}
 						}
 					}
@@ -281,6 +292,10 @@ public class FinestraAmministratoreController extends StageController {
 				}
 			}
 		});
+		Calendar gc = Calendar.getInstance();
+		String data = gc.get(Calendar.DAY_OF_MONTH) + "/" + ((gc.get(Calendar.MONTH)) + 1) + "/"
+				+ gc.get(Calendar.YEAR);
+		DataOra.setText("   " + data);
 	}
 
 	// nel property va messo il nome del campo Entità(Spazio)
@@ -570,11 +585,11 @@ public class FinestraAmministratoreController extends StageController {
 	void AddStru(ActionEvent event) throws SQLException {
 		Strumento str = strumenti_table.getSelectionModel().getSelectedItem();
 		Scheda scheda = new Scheda(str.getNome(), str.toString(), "Strumentazione");
-		try{
+		try {
 			schedaDAO.create(scheda);
-			}catch(SQLException e){
-				ErrorDoppiostr.setVisible(true);
-			}
+		} catch (SQLException e) {
+			ErrorDoppiostr.setVisible(true);
+		}
 		this.flagstr = true;
 	}
 
@@ -582,11 +597,11 @@ public class FinestraAmministratoreController extends StageController {
 	void AddSpazi(ActionEvent event) throws SQLException {
 		Spazio spazio = spazi_table.getSelectionModel().getSelectedItem();
 		Scheda scheda = new Scheda(spazio.getNome(), spazio.toString(), "Spazio");
-		try{
+		try {
 			schedaDAO.create(scheda);
-			}catch(SQLException e){
-				ErrorDoppiospazio.setVisible(true);
-			}
+		} catch (SQLException e) {
+			ErrorDoppiospazio.setVisible(true);
+		}
 		this.flagspazio = true;
 	}
 
@@ -594,9 +609,9 @@ public class FinestraAmministratoreController extends StageController {
 	void AddDip(ActionEvent event) throws SQLException {
 		Dipendente dip = dipendenti_table.getSelectionModel().getSelectedItem();
 		Scheda scheda = new Scheda(dip.getCodiceFiscale(), dip.toString(), "Dipendente");
-		try{
-		schedaDAO.create(scheda);
-		}catch(SQLException e){
+		try {
+			schedaDAO.create(scheda);
+		} catch (SQLException e) {
 			ErrorDoppiodip.setVisible(true);
 		}
 		this.flagdip = true;
@@ -708,18 +723,32 @@ public class FinestraAmministratoreController extends StageController {
 	}
 
 	@FXML
-	void Stampa(ActionEvent event) {
-
+	void Stampa(ActionEvent event) throws IOException {
+		this.Salva(event);
+		PDFschedaGenerator.getIstance().StampaPDF(super.getNumPDF());
 	}
 
 	@FXML
 	void Salva(ActionEvent event) {
-
+		try {
+			PDFschedaGenerator.getIstance().createPdf(super.getNumPDF(), DataOra.getText(), txtintro.getText(),
+					txtscheda.getText(), txtend.getText());
+			savesuc.setVisible(true);
+		} catch (IOException | DocumentException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
 	void moddinamiche(ActionEvent event) {
 		this.txtscheda.setEditable(true);
+	}
+
+	@FXML
+	void NuovaScheda(ActionEvent event) throws SQLException {
+		super.setNumPDF(super.getNumPDF() + 1);
+		this.schedaDAO.NewTable();
+		savesuc.setVisible(false);
 	}
 
 }

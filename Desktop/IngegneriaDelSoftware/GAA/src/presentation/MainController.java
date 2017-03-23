@@ -5,8 +5,7 @@ import Entita.Spazio;
 import Entita.Strumento;
 
 public class MainController {
-	Dispatcher dispatcher;
-	
+	Dispatcher dispatcher;	
 	static MainController mc = new MainController();
 
 	public MainController() {
