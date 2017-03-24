@@ -12,11 +12,13 @@ public class MySqlDaoFactory {
   
   private static MySqlDaoFactory dao;
   private static String connessione;
-  private static Connection con;
+  private static String password;
+  private static String username;
   
   private MySqlDaoFactory(){
     connessione="jdbc:mysql://localhost/gestoreanagrafica";
-
+    username="root";
+    password="root";
   }
 
   public static MySqlDaoFactory getIstance() {
@@ -27,7 +29,7 @@ public class MySqlDaoFactory {
   }
   public static Connection connetti() throws SQLException {
     getIstance();
-    con = DriverManager.getConnection(connessione, "root", "root");
+    Connection con = DriverManager.getConnection(connessione, username, password);
     return con;
   }
 }

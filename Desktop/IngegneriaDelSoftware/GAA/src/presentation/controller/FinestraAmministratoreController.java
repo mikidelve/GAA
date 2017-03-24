@@ -58,6 +58,12 @@ public class FinestraAmministratoreController extends StageController {
 	@FXML
 	Label ErrorStr;
 	@FXML
+	Label ErrorDipA;
+	@FXML
+	Label ErrorSpaziA;
+	@FXML
+	Label ErrorStrA;
+	@FXML
 	Label ErrorDoppiodip;
 	@FXML
 	Label ErrorDoppiostr;
@@ -222,6 +228,11 @@ public class FinestraAmministratoreController extends StageController {
 	SpazioDAO spazioDAO = new SpazioDAO();
 	StrumentoDAO strumentoDAO = new StrumentoDAO();
 	SchedaDAO schedaDAO = new SchedaDAO();
+	List<Scheda> elementi;
+	/**
+	 * Flag utilizzato per settare o meno a visible le funzionalità di
+	 * inserimento
+	 */
 	public static boolean flagInserimento;
 	boolean flagdip = false;
 	boolean flagstr = false;
@@ -236,6 +247,15 @@ public class FinestraAmministratoreController extends StageController {
 			DelSpazio.setVisible(false);
 			ModStr.setVisible(false);
 			DelStr.setVisible(false);
+			partistatiche.setVisible(false);
+			this.ErrorDip.setVisible(true);
+			this.ErrorSpazi.setVisible(true);
+			this.ErrorStr.setVisible(true);
+		}
+		if (super.getPermessi().compareToIgnoreCase("A") == 0) {
+			this.ErrorDipA.setVisible(true);
+			this.ErrorSpaziA.setVisible(true);
+			this.ErrorStrA.setVisible(true);
 		}
 		dipendenti = FXCollections.observableArrayList();
 		spazi = FXCollections.observableArrayList();
@@ -260,39 +280,14 @@ public class FinestraAmministratoreController extends StageController {
 			public void handle(Event t) {
 				txtscheda.setText("");
 				try {
-					List<Scheda> elementi = schedaDAO.getAll();
 					if (flagdip) {
-						txtscheda.setText(txtscheda.getText() + "Elenco dipendenti :" + "\n");
-						Iterator<Scheda> it = elementi.iterator();
-						while (it.hasNext()) {
-							Scheda scheda = it.next();
-							if (scheda.getTipologia().compareToIgnoreCase("dipendente") == 0) {
-								txtscheda.setText(
-										txtscheda.getText() + "			" + "•  " + scheda.getDescr() + "\n" + "\n");
-							}
-						}
+						setElencoDip();
 					}
 					if (flagspazio) {
-						txtscheda.setText(txtscheda.getText() + "Elenco spazi :" + "\n");
-						Iterator<Scheda> it = elementi.iterator();
-						while (it.hasNext()) {
-							Scheda scheda = it.next();
-							if (scheda.getTipologia().compareToIgnoreCase("spazio") == 0) {
-								txtscheda.setText(
-										txtscheda.getText() + "			" + "•  " + scheda.getDescr() + "\n" + "\n");
-							}
-						}
+						setElencoSpazi();
 					}
 					if (flagstr) {
-						txtscheda.setText(txtscheda.getText() + "Elenco strumentazione :" + "\n");
-						Iterator<Scheda> it = elementi.iterator();
-						while (it.hasNext()) {
-							Scheda scheda = it.next();
-							if (scheda.getTipologia().compareToIgnoreCase("strumentazione") == 0) {
-								txtscheda.setText(
-										txtscheda.getText() + "			" + "•  " + scheda.getDescr() + "\n" + "\n");
-							}
-						}
+						setElencoStr();
 					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -304,6 +299,43 @@ public class FinestraAmministratoreController extends StageController {
 		String data = gc.get(Calendar.DAY_OF_MONTH) + "/" + ((gc.get(Calendar.MONTH)) + 1) + "/"
 				+ gc.get(Calendar.YEAR);
 		DataOra.setText("   " + data);
+	}
+
+	private void setElencoDip() throws SQLException {
+		elementi = schedaDAO.getAll();
+		txtscheda.setText(txtscheda.getText() + "Elenco dipendenti :" + "\n");
+		Iterator<Scheda> it = elementi.iterator();
+		while (it.hasNext()) {
+			Scheda scheda = it.next();
+			if (scheda.getTipologia().compareToIgnoreCase("dipendente") == 0) {
+				txtscheda.setText(txtscheda.getText() + "			" + "•  " + scheda.getDescr() + "\n" + "\n");
+			}
+		}
+	}
+
+	private void setElencoStr() throws SQLException {
+		elementi = schedaDAO.getAll();
+		txtscheda.setText(txtscheda.getText() + "Elenco strumentazione :" + "\n");
+		Iterator<Scheda> it = elementi.iterator();
+		while (it.hasNext()) {
+			Scheda scheda = it.next();
+			if (scheda.getTipologia().compareToIgnoreCase("strumentazione") == 0) {
+				txtscheda.setText(txtscheda.getText() + "			" + "•  " + scheda.getDescr() + "\n" + "\n");
+			}
+		}
+
+	}
+
+	private void setElencoSpazi() throws SQLException {
+		elementi = schedaDAO.getAll();
+		txtscheda.setText(txtscheda.getText() + "Elenco spazi :" + "\n");
+		Iterator<Scheda> it = elementi.iterator();
+		while (it.hasNext()) {
+			Scheda scheda = it.next();
+			if (scheda.getTipologia().compareToIgnoreCase("spazio") == 0) {
+				txtscheda.setText(txtscheda.getText() + "			" + "•  " + scheda.getDescr() + "\n" + "\n");
+			}
+		}
 	}
 
 	// nel property va messo il nome del campo Entità(Spazio)
@@ -596,9 +628,14 @@ public class FinestraAmministratoreController extends StageController {
 	@FXML
 	void AddStru(ActionEvent event) throws SQLException {
 		Strumento str = strumenti_table.getSelectionModel().getSelectedItem();
-		Scheda scheda = new Scheda(str.getNome(), str.toString(), "Strumentazione");
 		try {
+			Scheda scheda = new Scheda(str.getNome(), str.toString(), "Strumentazione");
 			schedaDAO.create(scheda);
+		} catch (NullPointerException e) {
+			if (super.getPermessi().compareToIgnoreCase("B") == 0)
+				ErrorStr.setTextFill(Color.valueOf("#ff0505"));
+			else
+				ErrorStrA.setTextFill(Color.valueOf("#ff0505"));
 		} catch (SQLException e) {
 			ErrorDoppiostr.setVisible(true);
 		}
@@ -608,10 +645,17 @@ public class FinestraAmministratoreController extends StageController {
 	@FXML
 	void AddSpazi(ActionEvent event) throws SQLException {
 		Spazio spazio = spazi_table.getSelectionModel().getSelectedItem();
-		Scheda scheda = new Scheda(spazio.getNome(), spazio.toString(), "Spazio");
 		try {
+			Scheda scheda = new Scheda(spazio.getNome(), spazio.toString(), "Spazio");
 			schedaDAO.create(scheda);
-		} catch (SQLException e) {
+		} catch (NullPointerException e) {
+			if (super.getPermessi().compareToIgnoreCase("B") == 0)
+				ErrorSpazi.setTextFill(Color.valueOf("#ff0505"));
+			else
+				ErrorSpaziA.setTextFill(Color.valueOf("#ff0505"));
+		} catch (
+
+		SQLException e) {
 			ErrorDoppiospazio.setVisible(true);
 		}
 		this.flagspazio = true;
@@ -620,9 +664,14 @@ public class FinestraAmministratoreController extends StageController {
 	@FXML
 	void AddDip(ActionEvent event) throws SQLException {
 		Dipendente dip = dipendenti_table.getSelectionModel().getSelectedItem();
-		Scheda scheda = new Scheda(dip.getCodiceFiscale(), dip.toString(), "Dipendente");
 		try {
+			Scheda scheda = new Scheda(dip.getCodiceFiscale(), dip.toString(), "Dipendente");
 			schedaDAO.create(scheda);
+		} catch (NullPointerException e) {
+			if (super.getPermessi().compareToIgnoreCase("B") == 0)
+				ErrorDip.setTextFill(Color.valueOf("#ff0505"));
+			else
+				ErrorDipA.setTextFill(Color.valueOf("#ff0505"));
 		} catch (SQLException e) {
 			ErrorDoppiodip.setVisible(true);
 		}
@@ -760,6 +809,7 @@ public class FinestraAmministratoreController extends StageController {
 	void NuovaScheda(ActionEvent event) throws SQLException {
 		super.setNumPDF(super.getNumPDF() + 1);
 		this.schedaDAO.NewTable();
+		this.txtscheda.setText("");
 		savesuc.setVisible(false);
 	}
 

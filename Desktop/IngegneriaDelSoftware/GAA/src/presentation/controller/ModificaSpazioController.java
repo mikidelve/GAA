@@ -20,31 +20,31 @@ import presentation.StageController;
  */
 public class ModificaSpazioController extends StageController{
 	   @FXML
-	    private Button ModificaSpazio;
+	     Button ModificaSpazio;
 
 	    @FXML
-	    private Button Esci;
+	     Button Esci;
 
 	    @FXML
-	    private Label ErrorSQL;
+	     Label ErrorSQL;
 
 	    @FXML
-	    private Button Indietro;
+	     Button Indietro;
 
 	    @FXML
-	    private TextField nome;
+	     TextField nome;
 
 	    @FXML
-	    private TextField ubicazione;
+	     TextField ubicazione;
 
 	    @FXML
-	    private Label successo;
+	     Label successo;
 
 	    @FXML
-	    private TextField citta;
+	     TextField citta;
 
 	    @FXML
-	    private TextArea desc;
+	     TextArea desc;
 	    SpazioDAO dao=new SpazioDAO();
 	    String oldnome;
 	    

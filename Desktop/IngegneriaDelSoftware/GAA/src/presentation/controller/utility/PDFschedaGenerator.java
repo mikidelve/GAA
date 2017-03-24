@@ -13,6 +13,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+
 /**
  * Gestisce la creazione e la stampa del pdf
  * @author Giava
@@ -20,6 +21,9 @@ import com.itextpdf.text.pdf.PdfWriter;
  */
 public class PDFschedaGenerator {
 	static PDFschedaGenerator pdf = new PDFschedaGenerator();
+	/**
+	 * Destinazione e nome definito per la scheda che sarà salvata/stampata
+	 */
 	public static final String DEST = "GeneratedPDF/SchedaDescrittiva";
 
 	@SuppressWarnings("static-access")

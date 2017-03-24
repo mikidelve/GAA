@@ -23,55 +23,55 @@ import presentation.controller.utility.FormatoData;
  */
 public class ModificaDipendenteController extends StageController{
 	@FXML
-	private Button ModificaDip;
+	 Button ModificaDip;
 
 	@FXML
-	private TextField mansione;
+	 TextField mansione;
 
 	@FXML
-	private TextField data;
+	 TextField data;
 
 	@FXML
-	private TextField mail;
+	 TextField mail;
 
 	@FXML
-	private Label ErrorCampi;
+	 Label ErrorCampi;
 
 	@FXML
-	private Button exit_btnInserisci;
+	 Button exit_btnInserisci;
 
 	@FXML
-	private TextField cognome;
+	 TextField cognome;
 
 	@FXML
-	private TextField sede;
+	 TextField sede;
 
 	@FXML
-	private TextField codfisc;
+	 TextField codfisc;
 
 	@FXML
-	private TextField nome;
+	 TextField nome;
 
 	@SuppressWarnings("rawtypes")
 	@FXML
-	private ChoiceBox sessobox;
+	 ChoiceBox sessobox;
 
 	@FXML
-	private TextField domicilio;
+	 TextField domicilio;
 
 	@FXML
-	private TextField tel;
+	 TextField tel;
 
 	@FXML
-	private Label ErrorCodfis;
+	 Label ErrorCodfis;
 
 	@FXML
-	private Button Indietro;
+	 Button Indietro;
 
 	@FXML
-	private Label ErrorData;
+	 Label ErrorData;
 	@FXML
-	private Label successo;
+	 Label successo;
 	
 	@SuppressWarnings("rawtypes")
 	static ObservableList sessi;

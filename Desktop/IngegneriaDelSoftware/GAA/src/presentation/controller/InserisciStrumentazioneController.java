@@ -18,40 +18,40 @@ import presentation.StageController;
  */
 public class InserisciStrumentazioneController extends StageController {
 	@FXML
-	private TextField tipo;
+	 TextField tipo;
 
 	@FXML
-	private TextField anno;
+	 TextField anno;
 
 	@FXML
-	private Label ErrorCampi;
+	 Label ErrorCampi;
 
 	@FXML
-	private Button Esci;
+	 Button Esci;
 
 	@FXML
-	private TextField proprietario;
+	 TextField proprietario;
 
 	@FXML
-	private Label ErrorSQL;
+	 Label ErrorSQL;
 
 	@FXML
-	private Button Inserisci;
+	 Button Inserisci;
 
 	@FXML
-	private Button Indietro;
+	 Button Indietro;
 
 	@FXML
-	private TextField nome;
+	 TextField nome;
 
 	@FXML
-	private TextField sede;
+	 TextField sede;
 
 	@FXML
-	private TextField modello;
+	 TextField modello;
 
 	@FXML
-	private Label successo;
+	 Label successo;
 
 	@FXML
 	void Inserisci(ActionEvent event) {

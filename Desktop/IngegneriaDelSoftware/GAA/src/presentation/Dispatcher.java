@@ -1,9 +1,10 @@
 package presentation;
 
-
 import presentation.controller.*;
+
 /**
  * Riceve le richieste dei vari controlli e visualizza la schermata relativa
+ * 
  * @author Giava
  *
  */
@@ -24,8 +25,8 @@ public class Dispatcher {
 		this.dipendentiController = new InserisciDipendenteController();
 		this.itemController = new InserisciStrumentazioneController();
 		this.modDip = new ModificaDipendenteController();
-		this.modSpace=new ModificaSpazioController();
-		this.modstr=new ModificaStrumentazioneController();
+		this.modSpace = new ModificaSpazioController();
+		this.modstr = new ModificaStrumentazioneController();
 	}
 
 	public void dispatch(String request) {
@@ -41,11 +42,16 @@ public class Dispatcher {
 			itemController.show();
 		} else if (request.compareToIgnoreCase("InserisciSpazio") == 0) {
 			spazioController.show();
-		}else if(request.compareToIgnoreCase("Modificadipendente")==0){
+		} else
+			Modifica(request);
+	}
+
+	private void Modifica(String request) {
+		if (request.compareToIgnoreCase("Modificadipendente") == 0) {
 			modDip.show();
-		}else if(request.compareToIgnoreCase("Modificaspazio")==0){
+		} else if (request.compareToIgnoreCase("Modificaspazio") == 0) {
 			modSpace.show();
-		}else if(request.compareToIgnoreCase("Modificastrumentazione")==0){
+		} else if (request.compareToIgnoreCase("Modificastrumentazione") == 0) {
 			modstr.show();
 		}
 	}

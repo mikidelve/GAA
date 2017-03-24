@@ -24,21 +24,21 @@ import presentation.controller.utility.ImageGetter;
  */
 public class LoginController extends StageController {
 	@FXML
-	private PasswordField pass;
+	 PasswordField pass;
 
 	@FXML
-	private Button exit_btn;
+	 Button exit_btn;
 
 	@FXML
-	private ImageView logo;
+	 ImageView logo;
 
 	@FXML
-	private Button enter;
+	 Button enter;
 
 	@FXML
-	private TextField user;
+	 TextField user;
 	@FXML
-	private Label error;
+	 Label error;
 	SchedaDAO schedaDAO=new SchedaDAO();
 
 	UtenteBase ub = new UtenteBase();
