@@ -780,7 +780,7 @@ public class FinestraAmministratoreController extends StageController {
 	@FXML
 	void modstatiche(ActionEvent event) {
 		this.txtintro.setEditable(true);
-		this.txtend.setEditable(false);
+		this.txtend.setEditable(true);
 	}
 
 	@FXML

@@ -16,6 +16,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 /**
  * Gestisce la creazione e la stampa del pdf
+ * 
  * @author Giava
  *
  */
@@ -24,12 +25,15 @@ public class PDFschedaGenerator {
 	/**
 	 * Destinazione e nome definito per la scheda che sarà salvata/stampata
 	 */
-	public static final String DEST = "GeneratedPDF/SchedaDescrittiva";
+	public static final String DEST = "GeneratedPDF/Scheda";
 
 	@SuppressWarnings("static-access")
 	public void createPdf(int numPDF, String data, String testointro, String contenuto, String testofinale)
 			throws IOException, DocumentException {
-		String dest = DEST + numPDF + ".pdf";
+		String anno = data.substring(8, 12);
+		String mese = data.substring(6, 7);
+		String giorno = data.substring(3, 5);
+		String dest = DEST + giorno + mese + anno + "N." + numPDF + ".pdf";
 		File file = new File(dest);
 		file.getParentFile().mkdirs();
 		Document document = new Document();
